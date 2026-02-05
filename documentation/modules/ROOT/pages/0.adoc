@@ -4,26 +4,8 @@ include::_attributes.adoc[]
 [#01]
 == Objetivo
 
-include::https://raw.githubusercontent.com/redhat-developer-demos/rhd-tutorial-common/master/prerequisites-kubernetes.adoc[]
-|===
-
-include::https://raw.githubusercontent.com/redhat-developer-demos/rhd-tutorial-common/master/optional-requisites.adoc[]
-|===
-
 [#02]
 == Material
 
-:profile: my_profile
-
-include::https://raw.githubusercontent.com/redhat-developer-demos/rhd-tutorial-common/master/kubernetes-setup.adoc[]
-
-And then you are ready for start using Kubernetes:
-
-image::kubelogo.png[]
-
 [#03]
 == Entorno
-
-:tutorial-url: https://github.com/redhat-developer-demos/rhd-tutorial-common.git
-:folder: my_folder
-include::https://raw.githubusercontent.com/redhat-developer-demos/rhd-tutorial-common/master/download-sources.adoc[]
