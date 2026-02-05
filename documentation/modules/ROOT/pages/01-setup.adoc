@@ -1,4 +1,4 @@
-= Setup
+= ¡Bienvenido!
 include::_attributes.adoc[]
 
 [#prerequisite]
