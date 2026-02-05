@@ -4,7 +4,7 @@ runtime:
 site:
   title: "Agentes 101: Crea tu primer agente con Red Hat AI"
   url: https://redhat-scholars.github.io/course-template
-  start_page: index.adoc
+  start_page: agents-101-workshop::index.adoc
 
 content:
   sources:
