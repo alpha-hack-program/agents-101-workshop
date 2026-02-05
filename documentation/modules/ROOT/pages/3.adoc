@@ -1,0 +1,9 @@
+= 3. Desplegar el Modelo
+include::_attributes.adoc[]
+
+[#31]
+== 3.1 ¿Qué es el modelo?
+
+[#32]
+== 3.2 Despliegues de OpenShift AI
+

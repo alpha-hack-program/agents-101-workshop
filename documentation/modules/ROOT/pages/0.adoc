@@ -1,8 +1,8 @@
-= ¡Bienvenido!
+= ¡Bienvenido al taller!
 include::_attributes.adoc[]
 
-[#prerequisite]
-== Prerequisite CLI tools
+[#01]
+== Objetivo
 
 include::https://raw.githubusercontent.com/redhat-developer-demos/rhd-tutorial-common/master/prerequisites-kubernetes.adoc[]
 |===
@@ -10,8 +10,8 @@ include::https://raw.githubusercontent.com/redhat-developer-demos/rhd-tutorial-c
 include::https://raw.githubusercontent.com/redhat-developer-demos/rhd-tutorial-common/master/optional-requisites.adoc[]
 |===
 
-[#minikube]
-== Setup Kubernetes
+[#02]
+== Material
 
 :profile: my_profile
 
@@ -21,8 +21,8 @@ And then you are ready for start using Kubernetes:
 
 image::kubelogo.png[]
 
-[#downloadtutorial]
-== Get tutorial sources
+[#03]
+== Entorno
 
 :tutorial-url: https://github.com/redhat-developer-demos/rhd-tutorial-common.git
 :folder: my_folder

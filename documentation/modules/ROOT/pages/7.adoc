@@ -1,0 +1,5 @@
+= ¡Taller terminado!
+include::_attributes.adoc[]
+
+[#71]
+== Conclusión

@@ -1,0 +1,11 @@
+= 2. Desarrollar el Servidor MCP
+include::_attributes.adoc[]
+
+[#21]
+== 2.1 ¿Qué es MCP?
+
+[#22]
+== 2.2 Penalty Engine
+
+[#33]
+== 2.3 Testear con MCP Inspector

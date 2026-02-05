@@ -1,7 +1,33 @@
-* xref:01-setup.adoc[1. ¡Bienvenido al taller!]
-** xref:01-setup.adoc#prerequisite[Prerequisites]
-** xref:01-setup.adoc#minikube[Setup Minikube]
+* xref:0.adoc[¡Bienvenido al taller!]
+** xref:0.adoc#01[Objetivo]
+** xref:0.adoc#02[Material]
+** xref:0.adoc#03[Entorno]
 
-* xref:02-deploy.adoc[2. Deploy Service]
-** xref:02-deploy.adoc#package[Build Service]
-** xref:02-deploy.adoc#deploy[Deploy Dervice]
+* xref:1.adoc[1. Preparar el Entorno]
+** xref:1.adoc#11[1.1 Entrar en OpenShift y OpenShift AI]
+** xref:1.adoc#12[1.2 Crear el Code Server]
+** xref:1.adoc#13[1.3 Configurar el Code Server]
+
+* xref:2.adoc[2. Desarrollar el Servidor MCP]
+** xref:2.adoc#21[2.1 ¿Qué es MCP?]
+** xref:2.adoc#22[2.2 Penalty Engine]
+** xref:2.adoc#23[2.3 Testear con MCP Inspector]
+
+* xref:3.adoc[3. Desplegar el Modelo]
+** xref:3.adoc#31[3.1 ¿Qué es el modelo?]
+** xref:3.adoc#32[3.2 Despliegues de OpenShift AI]
+
+* xref:4.adoc[4. Crear la Distribución de Llama Stack]
+** xref:4.adoc#41[4.1 ¿Qué es Llama Stack?]
+** xref:4.adoc#42[4.2 Añadir conexión al servidor MCP]
+** xref:4.adoc#43[4.3 Ingestión de documentos para RAG]
+** xref:4.adoc#44[4.4 Testear en un Playground]
+
+* xref:5.adoc[5. Desplegar el App Agéntica]
+** xref:5.adoc#51[5.1 Desplegar e interactuar con la app]
+
+* xref:6.adoc[6. Habilitar Observabilidad]
+** xref:6.adoc#61[6.1 Desplegar e interactuar con la app]
+
+* xref:7.adoc[¡Taller terminado!]
+** xref:7.adoc#71[Conclusión]
