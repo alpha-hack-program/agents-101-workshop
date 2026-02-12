@@ -1,8 +1,10 @@
 = 1. Preparar el Entorno
-include::_attributes.adoc[]
 
 [#11]
 == 1.1 Entrar en OpenShift y OpenShift AI
+
+image::access-to-openshift-ai.png[]
+
 
 [#12]
 == 1.2 Crear el Code Server
