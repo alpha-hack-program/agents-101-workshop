@@ -2,9 +2,9 @@ runtime:
   cache_dir: ./.cache/antora
 
 site:
-  title: "Agentes 101: Crea tu primer agente con Red Hat AI(Dev Mode)"
+  title: "Agents 101: How to Build the Agents of the Future Today with Red Hat AI(Dev Mode)"
   url: http://localhost:3000/rhs-build-course/index.html
-  start_page: template-tutorial::0.adoc
+  start_page: agents-101-workshop::0.adoc
 
 content:
   sources:
@@ -13,7 +13,7 @@ content:
       start_path: documentation
 asciidoc:
   attributes:
-    title: "Agentes 101: Crea tu primer agente con Red Hat AI(Dev Mode)"
+    title: "Agents 101: How to Build the Agents of the Future Today with Red Hat AI(Dev Mode)"
   extensions:
     - ./lib/remote-include-processor.js
     - ./lib/tab-block.js

@@ -4,6 +4,11 @@ include::_attributes.adoc[]
 [#21]
 == 2.1 ¿Qué es MCP?
 
+El Model Context Protocol (MCP) es básicamente el USB-C para la inteligencia artificial. Se trata de un estándar abierto que permite que los desarrolladores creen conectores universales para que cualquier IA pueda leer datos de cualquier fuente de forma segura y estandarizada.
+
+**¿Cómo funciona?**
+
+
 [#22]
 == 2.2 Penalty Engine
 

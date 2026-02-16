@@ -1,7 +1,6 @@
 * xref:0.adoc[¡Bienvenido al taller!]
 ** xref:0.adoc#01[Objetivo]
-** xref:0.adoc#02[Material]
-** xref:0.adoc#03[Entorno]
+** xref:0.adoc#02[Entorno]
 
 * xref:1.adoc[1. Preparar el Entorno]
 ** xref:1.adoc#11[1.1 Entrar en OpenShift y OpenShift AI]
