@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>¡Bienvenido al taller! :: Agentes 101: Crea tu primer agente con Red Hat AI</title>
+    <title>Untitled :: Agents 101: How to Build the Agents of the Future Today with Red Hat AI</title>
     <link rel="canonical" href="https://redhat-scholars.github.io/course-template/agents-101-workshop/0.html">
     <link rel="next" href="1.html">
     <meta name="generator" content="Antora 3.0.0">
@@ -14,7 +14,7 @@
   <nav class="navbar">
     <div class="navbar-brand">
       <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img src="../_/img/RHDLogo.svg" height="40px" alt="Red Hat Developer Program"></a>
-      <a class="navbar-item" style="font-size: 24px; color: white" href="https://redhat-scholars.github.io/course-template">Agentes 101: Crea tu primer agente con Red Hat AI</a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="https://redhat-scholars.github.io/course-template">Agents 101: How to Build the Agents of the Future Today with Red Hat AI</a>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
         <span></span>
@@ -58,10 +58,7 @@
     <a class="nav-link" href="#01">Objetivo</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#02">Material</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#03">Entorno</a>
+    <a class="nav-link" href="#02">Entorno</a>
   </li>
 </ul>
   </li>
@@ -166,7 +163,7 @@
   <a href="0.html" class="home-link is-current"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="0.html">Agentes 101: Crea tu primer agente con Red Hat AI</a></li>
+    <li><a href="0.html">Agents 101: How to Build the Agents of the Future Today with Red Hat AI</a></li>
     <li><a href="0.html">¡Bienvenido al taller!</a></li>
   </ul>
 </nav>
@@ -174,42 +171,58 @@
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">¡Bienvenido al taller!</h1>
-<div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
-<p>El mundo de la inteligencia artificial generativa avanza cada día y adaptarse a su ritmo es un reto recurrente para las empresas. En Red Hat, proponemos Red Hat AI. Se trata de una plataforma especializada en la gestión del ciclo de vida de las aplicaciones basadas en IA predictiva y generativa. De esta forma, centralizamos todas las herramientas necesarias para acelerar el desarrollo y despliegue de apps de IA.</p>
-</div>
-<div class="paragraph">
-<p>En este caso, nos adentraremos en uno de los últimos avances de la IA generativa, los agentes. ¿Qué diferencia hay entre los modelos con los que interactuamos mediante chat y estos agentes?</p>
-</div>
-<div class="paragraph">
-<p>Los modelos conversacionales son algoritmos de predicción de lenguaje. Se encargan de recibir y procesar información para después dar una respuesta. Estos modelos requieren de entrenamiento para aprender a predecir qué decir según lo recibido. Los modelos propietarios (OpenAI ChatGPT, Google Gemini&#8230;&#8203;) son gigantescos. Requieren de una potencia computacional muy grande para ser entrenados y al ser privados, no pueden ser reentrenados y requieren acceso continuo a internet.</p>
-</div>
-<div class="paragraph">
-<p>La buena noticia es que los modelos conversacionales open-source (Meta Llama 4, Mistral Large 3&#8230;&#8203;) han ido ganando terreno. En base a los últimos benchmarks, estos modelos consiguen resultados casi tan buenos como los modelos propietarios. La ventaja de los modelos open-source es que son mucho más pequeños permitiéndonos reentrenarlos y ejecutarlos en nuestra propia infraestructura.</p>
-</div>
-<div class="paragraph">
-<p>Un modelo sólo responde en base a lo que conoce. Es ahí donde entran los agentes. En un agente, proporcionamos a los modelos herramientas para mejorar sus respuestas. Mecanismos como RAG (Retrieval-Augmented Generation), búsqueda de información en la web o interacción con servidores MCP (Model Context Protocol).</p>
-</div>
-</div>
-</div>
 <div class="sect1">
-<h2 id="01"><a class="anchor" href="#01"></a>Objetivo</h2>
+<h2 id="_bienvenido_al_taller"><a class="anchor" href="#_bienvenido_al_taller"></a>¡Bienvenido al taller!</h2>
 <div class="sectionbody">
-
+<div class="paragraph">
+<p>El mundo de la inteligencia artificial generativa avanza cada día y adaptarse a su ritmo es un reto recurrente para las empresas. Aquí entra <strong>Red Hat AI</strong>. Se trata de una plataforma especializada en la gestión del ciclo de vida de las aplicaciones basadas en IA predictiva y generativa. De esta forma, centralizamos todas las herramientas necesarias para acelerar el desarrollo y despliegue de apps de IA.</p>
+</div>
+<div class="paragraph">
+<p>En este caso, nos adentraremos en uno de los últimos avances de la IA generativa, <strong>los agentes</strong>. ¿Qué diferencia hay entre los modelos con los que interactuamos mediante chat y estos agentes?</p>
+</div>
+<div class="paragraph">
+<p>Los <strong>modelos conversacionales</strong> son algoritmos de predicción de lenguaje. Se encargan de recibir y procesar información para después dar una respuesta. Estos modelos requieren de entrenamiento para aprender a predecir qué decir según lo recibido.</p>
+</div>
+<div class="paragraph">
+<p>Los <strong>modelos propietarios</strong> (OpenAI ChatGPT, Google Gemini) son gigantescos. Requieren de una potencia computacional <strong>muy grande</strong> para ser entrenados y al ser privados, no pueden ser reentrenados y requieren acceso continuo a internet.</p>
+</div>
+<div class="paragraph">
+<p>La <strong>buena noticia</strong> es que los modelos conversacionales <strong>open-source</strong> (Meta Llama 4, Mistral Large 3&#8230;&#8203;) han ido ganando terreno. En base a los últimos benchmarks, estos modelos consiguen <strong>resultados casi tan buenos</strong> como los modelos propietarios. La ventaja de los modelos open-source es que son <strong>mucho más pequeños</strong> permitiéndonos reentrenarlos y ejecutarlos en nuestra propia infraestructura.</p>
+</div>
+<div class="paragraph">
+<p>Un modelo sólo responde en base a lo que conoce. Es ahí donde entran en juego los agentes. En un agente, proporcionamos a los modelos herramientas para mejorar sus respuestas. Mecanismos como RAG (Retrieval-Augmented Generation), búsqueda de información en la web o interacción con servidores MCP (Model Context Protocol).</p>
+</div>
+<div class="sect2">
+<h3 id="01"><a class="anchor" href="#01"></a>Objetivo</h3>
+<div class="paragraph">
+<p>El objetivo de este taller es desplegar un <strong>asistente gubernamental</strong> que ayude a los ciudadanos a recibir información sobre las leyes. Lo haremos utilizando un agente basado en Llama Stack, RAG y servidores MCP. Conocerás paso a paso cómo es el flujo de trabajo dentro de OpenShift AI para tanto el desarrollo como el despliegue del agente.</p>
 </div>
 </div>
-<div class="sect1">
-<h2 id="02"><a class="anchor" href="#02"></a>Material</h2>
-<div class="sectionbody">
-
+<div class="sect2">
+<h3 id="02"><a class="anchor" href="#02"></a>Entorno</h3>
+<div class="paragraph">
+<p>Para este taller, <strong>no tienes que instalar nada en tu portátil</strong>. Sólo un navegador al que acceder a las URLs donde trabajaras. Dispondrás de acceso a un clúster de OpenShift que ya dispone de OpenShift AI e iremos trabajando en diferentes pestañas:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>En la <strong>consola del propio OpenShift</strong>, comprobaremos los despliegues que haremos.</p>
+</li>
+<li>
+<p>En la <strong>consola de OpenShift AI</strong>, crearemos nuestro espacio de trabajo, desplegaremos el modelo y testearemos el agente.</p>
+</li>
+<li>
+<p>El <strong>espacio de trabajo</strong> que crearemos en OpenShift AI será nuesto IDE. Trabajaremos en el código y el terminal.</p>
+</li>
+<li>
+<p>La <strong>app final</strong>. Veremos cómo se traslada nuestro trabajo al chat con el asistente.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Puedes comenzar el taller clicando en la barra lateral izquierda en <strong>1. Preparar el Entorno</strong>. ¡Vamos allá!</p>
 </div>
 </div>
-<div class="sect1">
-<h2 id="03"><a class="anchor" href="#03"></a>Entorno</h2>
-<div class="sectionbody">
-
 </div>
 </div>
 <nav class="pagination">

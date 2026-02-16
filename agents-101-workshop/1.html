@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>1. Preparar el Entorno :: Agentes 101: Crea tu primer agente con Red Hat AI</title>
+    <title>Untitled :: Agents 101: How to Build the Agents of the Future Today with Red Hat AI</title>
     <link rel="canonical" href="https://redhat-scholars.github.io/course-template/agents-101-workshop/1.html">
     <link rel="prev" href="0.html">
     <link rel="next" href="2.html">
@@ -15,7 +15,7 @@
   <nav class="navbar">
     <div class="navbar-brand">
       <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img src="../_/img/RHDLogo.svg" height="40px" alt="Red Hat Developer Program"></a>
-      <a class="navbar-item" style="font-size: 24px; color: white" href="https://redhat-scholars.github.io/course-template">Agentes 101: Crea tu primer agente con Red Hat AI</a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="https://redhat-scholars.github.io/course-template">Agents 101: How to Build the Agents of the Future Today with Red Hat AI</a>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
         <span></span>
@@ -59,10 +59,7 @@
     <a class="nav-link" href="0.html#01">Objetivo</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="0.html#02">Material</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="0.html#03">Entorno</a>
+    <a class="nav-link" href="0.html#02">Entorno</a>
   </li>
 </ul>
   </li>
@@ -167,7 +164,7 @@
   <a href="0.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="0.html">Agentes 101: Crea tu primer agente con Red Hat AI</a></li>
+    <li><a href="0.html">Agents 101: How to Build the Agents of the Future Today with Red Hat AI</a></li>
     <li><a href="1.html">1. Preparar el Entorno</a></li>
   </ul>
 </nav>
@@ -175,27 +172,119 @@
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">1. Preparar el Entorno</h1>
 <div class="sect1">
-<h2 id="11"><a class="anchor" href="#11"></a>1.1 Entrar en OpenShift y OpenShift AI</h2>
+<h2 id="_1_preparar_el_entorno"><a class="anchor" href="#_1_preparar_el_entorno"></a>1. Preparar el Entorno</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>Para empezar, los facilitadores del taller os daremos acceso al cluster de OpenShift con vuestro usuario y contraseña. Recordad ambos porque os harán falta varias veces.</p>
+</div>
+<div class="paragraph">
+<p>El objetivo de esta sección 1 es preparar el entorno donde trabajaremos. Desplegaremos un espacio de trabajo (un IDE) desde OpenShift AI para poder modificar código e interactuar por el terminal.</p>
+</div>
+<div class="paragraph">
+<p>¡Comencemos!</p>
+</div>
+<div class="sect2">
+<h3 id="11"><a class="anchor" href="#11"></a>1.1 Entrar en OpenShift y OpenShift AI</h3>
 <div class="imageblock">
 <div class="content">
 <img src="_images/access-to-openshift-ai.png" alt="access to openshift ai">
 </div>
 </div>
+<div class="paragraph">
+<p>Como ves en la imagen, ve a la esquina superior derecha, abre el desplegable y clica en el acceso directo.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/login.png" alt="login">
 </div>
 </div>
-<div class="sect1">
-<h2 id="12"><a class="anchor" href="#12"></a>1.2 Crear el Code Server</h2>
-<div class="sectionbody">
-
+<div class="paragraph">
+<p>Introduce tu usuario y tu contraseña para entrar a la consola de OpenShift AI.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/openshift-ai-homepage.png" alt="openshift ai homepage">
 </div>
 </div>
-<div class="sect1">
-<h2 id="13"><a class="anchor" href="#13"></a>1.3 Configurar el Code Server</h2>
-<div class="sectionbody">
-
+<div class="paragraph">
+<p>¡Estamos dentro de OpenShift AI! Tu página de inicio debería parecerse a la imagen.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="12"><a class="anchor" href="#12"></a>1.2 Crear el Code Server</h3>
+<div class="paragraph">
+<p>Queremos crear un espacio de trabajo, pero ¿dónde? Necesitamos un proyecto donde hacerlo. En la barra lateral, entra en la sección Projects.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/create-project.png" alt="create project">
+</div>
+</div>
+<div class="paragraph">
+<p>Clica ahora en "Create project". Vamos a llamarle project-user&lt;número-de-usuario&gt;. Es decir, si tu usuario es el número 1, debería ser project-user1.</p>
+</div>
+<div class="paragraph">
+<p>Al crear el proyecto, deberías ser redirigido a una página como la siguiente. Ahora, clica en "Create a workbench".</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/project-openshift-ai.png" alt="project openshift ai">
+</div>
+</div>
+<div class="paragraph">
+<p>Vamos a rellenar el formulario de creación del workbench como en la imagen. Cuando lo tengamos listo, confirmamos al botón inferior izquierdo "Create workbench".</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/workbench-form.png" alt="workbench form">
+</div>
+</div>
+<div class="paragraph">
+<p>¡Perfecto! El espacio de trabajo debería tardar uno o dos minutos en crearse. Una vez que el status sea "Running", clica en el nombre del workbench y se abrirá la pestaña del espacio de trabajo.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/workbench-list.png" alt="workbench list">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="13"><a class="anchor" href="#13"></a>1.3 Configurar el Code Server</h3>
+<div class="paragraph">
+<p>Si todo ha ido bien, te encontrarás en un editor de código basado en VS Code. El objetivo de estos entornos en OpenShift AI es acelerar el trabajo de los equipos de desarrollo, así pueden entrar fácilmente con una URL a un espacio de trabajo con todas las librerías que les hacen falta. Además, al estar definidos como un objeto de Kubernetes se pueden escalar y eliminar al momento.</p>
+</div>
+<div class="paragraph">
+<p>Ahora vamos a clonar el repositorio del taller. Primero, vamos a crear un terminal clicando en el menú hamburguesa de la esquina superior izquierda y Terminal&gt;New Terminal.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/create-terminal.png" alt="create terminal">
+</div>
+</div>
+<div class="paragraph">
+<p>Ahora tienes el terminal en la parte inferior de la ventana. Ya disponemos del comando Git, por lo que procedemos al clone. Puedes copiar el comando clicando en el icono del portapapeles de la derecha.</p>
+</div>
+<div class="paragraph">
+<p>Si tienes problemas al pegarlo, prueba a mantener SHIFT, CTRL y pulsar V. Si continúa sin pegar, puede ser que el navegador necesite permisos para hacerlo.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone github.com/alpha-hack-program/llama-stack-demo</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/workbench-clone.png" alt="workbench clone">
+</div>
+</div>
+<div class="paragraph">
+<p>Una vez hecho el clone, deberías tener en la barra lateral izquierda el contenido del repositorio. Encontrarás los YAMLs de los objetos que vamos a desplegar, además de plantillas HELM para automatizar el despliegue.</p>
+</div>
+<div class="paragraph">
+<p>Ya tienes el IDE ya configurado, puedes pasar a la sección <strong>2. Desarrollar el Servidor MCP</strong>.</p>
+</div>
+</div>
 </div>
 </div>
 <nav class="pagination">
