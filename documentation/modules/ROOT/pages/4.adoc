@@ -1,14 +1,14 @@
-= 4. Crear la Distribución de Llama Stack
+== 4. Crear la Distribución de Llama Stack
 include::_attributes.adoc[]
 
 [#41]
-== 4.1 ¿Qué es Llama Stack?
+=== 4.1 ¿Qué es Llama Stack?
 
 [#42]
-== 4.2 Añadir conexión al servidor MCP
+=== 4.2 Añadir conexión al servidor MCP
 
 [#43]
-== 4.3 Ingestión de documentos para RAG
+=== 4.3 Ingestión de documentos para RAG
 
 [#44]
-== 4.4 Testear en un Playground
+=== 4.4 Testear en un Playground

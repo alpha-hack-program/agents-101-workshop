@@ -1,6 +1,6 @@
-= 6. Habilitar Observabilidad
+== 6. Habilitar Observabilidad
 include::_attributes.adoc[]
 
 [#61]
-== 6.1 Desplegar e interactuar con la app
+=== 6.1 Desplegar e interactuar con la app
 
