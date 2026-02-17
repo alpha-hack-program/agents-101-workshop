@@ -260,10 +260,10 @@
 </div>
 </div>
 <div class="paragraph">
-<p>Ahora tienes el terminal en la parte inferior de la ventana. Ya disponemos del comando Git, por lo que procedemos al clone. Puedes copiar el comando clicando en el icono del portapapeles de la derecha.</p>
+<p>Ahora tienes el terminal en la parte inferior de la ventana. Ya disponemos del comando <code>git</code>, por lo que procedemos al <code>git clone</code>. Puedes copiar el comando clicando en el icono del portapapeles de la derecha.</p>
 </div>
 <div class="paragraph">
-<p>Si tienes problemas al pegarlo, prueba a mantener SHIFT, CTRL y pulsar V. Si continúa sin pegar, puede ser que el navegador necesite permisos para hacerlo.</p>
+<p>Si tienes problemas al pegarlo, prueba a mantener <code>SHIFT</code>, <code>CTRL</code> y pulsar <code>V</code>. Si continúa sin pegar, puede ser que el navegador necesite permisos para hacerlo.</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
@@ -276,10 +276,42 @@
 </div>
 </div>
 <div class="paragraph">
-<p>Una vez hecho el clone, deberías tener en la barra lateral izquierda el contenido del repositorio. Encontrarás los YAMLs de los objetos que vamos a desplegar, además de plantillas HELM para automatizar el despliegue.</p>
+<p>Una vez hecho el <code>git clone</code>, deberías tener en la barra lateral izquierda el contenido del repositorio. Encontrarás los YAMLs de los objetos que vamos a desplegar.</p>
 </div>
 <div class="paragraph">
-<p>Ya tienes el IDE ya configurado, puedes pasar a la sección <strong>2. Desarrollar el Servidor MCP</strong>.</p>
+<p>Utilizaremos Helm para agilizar los despliegues en OpenShift, por lo que vamos a instalarlo. Copia los siguientes comandos en el terminal.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mkdir -p $HOME/.local/bin &amp;&amp; \
+curl -L <a href="https://get.helm.sh/helm-v4.0.0-linux-amd64.tar.gz" class="bare">https://get.helm.sh/helm-v4.0.0-linux-amd64.tar.gz</a> | tar -xzO linux-amd64/helm &gt; $HOME/.local/bin/helm &amp;&amp; \
+chmod +x $HOME/.local/bin/helm</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Para verificar que se ha instalado correctamente, prueba a escribir <code>helm</code> en el terminal.</p>
+</div>
+<div class="paragraph">
+<p>Deberías tener un output como este:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">helm
+The Kubernetes package manager
+
+Common actions for Helm:
+
+- helm search:    search for charts
+- helm pull:      download a chart to your local directory to view
+- helm install:   upload the chart to Kubernetes
+- helm list:      list releases of charts
+...
+[.console-input]
+[source,bash,subs="+macros,+attributes"]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>¡Genial! Ya tienes el IDE ya configurado, puedes pasar a la sección <strong>2. Desarrollar el Servidor MCP</strong>.</p>
 </div>
 </div>
 </div>
