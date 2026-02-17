@@ -80,28 +80,28 @@
   </li>
   <li class="nav-item is-current-page" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="2.html">2. Desarrollar el Servidor MCP</a>
+    <a class="nav-link" href="2.html">2. Desplegar el Modelo</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#21">2.1 ¿Qué es MCP?</a>
+    <a class="nav-link" href="#21">2.1 ¿Qué es el modelo?</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#22">2.2 Penalty Engine</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#23">2.3 Testear con MCP Inspector</a>
+    <a class="nav-link" href="#22">2.2 Despliegues de OpenShift AI</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="3.html">3. Desplegar el Modelo</a>
+    <a class="nav-link" href="3.html">3. Desarrollar el Servidor MCP</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="3.html#31">3.1 ¿Qué es el modelo?</a>
+    <a class="nav-link" href="3.html#31">3.1 ¿Qué es MCP?</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="3.html#32">3.2 Despliegues de OpenShift AI</a>
+    <a class="nav-link" href="3.html#32">3.2 Penalty Engine</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#33">3.3 Testear con MCP Inspector</a>
   </li>
 </ul>
   </li>
@@ -162,7 +162,7 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="0.html">Agents 101: How to Build the Agents of the Future Today with Red Hat AI</a></li>
-    <li><a href="2.html">2. Desarrollar el Servidor MCP</a></li>
+    <li><a href="2.html">2. Desplegar el Modelo</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/alpha-hack-program/agents-101-workshop/edit/master/documentation/modules/ROOT/pages/2.adoc">Edit this Page</a></div>
@@ -170,71 +170,109 @@
   <div class="content">
 <article class="doc">
 <div class="sect1">
-<h2 id="_2_desarrollar_el_servidor_mcp"><a class="anchor" href="#_2_desarrollar_el_servidor_mcp"></a>2. Desarrollar el Servidor MCP</h2>
+<h2 id="_2_desplegar_el_modelo"><a class="anchor" href="#_2_desplegar_el_modelo"></a>2. Desplegar el Modelo</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="21"><a class="anchor" href="#21"></a>2.1 ¿Qué es MCP?</h3>
+<h3 id="21"><a class="anchor" href="#21"></a>2.1 ¿Qué es el modelo?</h3>
 <div class="paragraph">
-<p>El <strong>Model Context Protocol (MCP)</strong> es básicamente el USB-C para la inteligencia artificial. Se trata de un estándar abierto que permite a los desarrolladores crear conectores universales para que cualquier IA pueda leer datos de cualquier fuente de forma segura y estandarizada.</p>
+<p>En este taller, cuando hablamos del modelo nos referimos a un <strong>modelo de IA generativa</strong>. Se trata de un tipo de inteligencia artificial diseñado para <strong>crear contenido nuevo</strong> en lugar de simplemente analizar o clasificar datos existentes.</p>
 </div>
 <div class="paragraph">
-<p>Esto permite a nuestro modelo interactuar con herramientas externas como Slack, nuestro clúster de OpenShift y también realizar operaciones lógicas como calcular presupuestos con más fiabilidad.</p>
-</div>
-<div class="paragraph">
-<p><strong>¿Qué hace falta?</strong> Para incluir una herramienta basada en MCP en nuestra arquitectura, necesitamos tres componentes:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Por un lado, necesitamos <strong>un modelo y un motor de inferencia</strong>. Gracias a vLLM, tenemos flexibilidad para servir el modelo on-premise, en la nube que prefiramos o simplemente que sea servido por terceros.</p>
-</li>
-<li>
-<p>Nos hará falta definir <strong>un servidor MCP</strong>, que contendrá la lógica que queremos que el modelo ejecute cuando sea necesario.</p>
-</li>
-<li>
-<p>Finalmente necesitamos <strong>un cliente MCP</strong>. ¿Dónde lo encontramos? En la otra gran pieza de este taller, Llama Stack. Se trata de un framework de creación de agentes que nos permite centralizar todas las herramientas necesarias para crearlos. Más adelante, desplegaremos una distribución de Llama Stack para verlo más a fondo.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p><strong>¿Cómo funciona?</strong> El flujo sería el siguiente:</p>
+<p><strong>¿Cómo lo hacen?</strong> Estos modelos funcionan mediante <strong>probabilidades estadísticas</strong>.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Antes de que el usuario interactúe con el agente, Llama Stack se conecta al servidor MCP y este le envía un <strong>manifiesto</strong> de sus herramientas disponibles.</p>
+<p>El modelo pasa por una fase de <strong>entrenamiento</strong>, en la que obtiene información de millones de ejemplos (textos, imágenes, código). Con estos, busca patrones para aprender las estructuras subyacentes. Así al generar una frase, calculará cuál es la siguiente palabra más probable.</p>
 </li>
 <li>
-<p>El usuario envía un prompt y Llama Stack <strong>añade en él</strong> la lista de herramientas disponibles.</p>
-</li>
-<li>
-<p>El modelo <strong>procesa</strong> el prompt y si lo requiere, <strong>genera una llamada</strong> a la función del servidor MCP.</p>
-</li>
-<li>
-<p>Llama Stack <strong>recibe</strong> la llamada y <strong>llama</strong> al servidor MCP para ejecutar la herramienta.</p>
-</li>
-<li>
-<p>Llama Stack <strong>devuelve el resultado</strong> de la herramienta al modelo.</p>
-</li>
-<li>
-<p>Con la nueva información, el modelo genera su <strong>respuesta final</strong> y el usuario la recibe.</p>
+<p>Ya entrenado, el modelo necesita un <strong>motor de inferencia</strong>. El motor se encarga de ejecutar la lógica del modelo y así poder responder a los prompts del usuario.</p>
 </li>
 </ol>
 </div>
 </div>
 <div class="sect2">
-<h3 id="22"><a class="anchor" href="#22"></a>2.2 Penalty Engine</h3>
-
+<h3 id="22"><a class="anchor" href="#22"></a>2.2 Despliegues de OpenShift AI</h3>
+<div class="paragraph">
+<p>En nuestro caso, vamos a desplegar un <strong>modelo Llama 3.1</strong> con 8 billones de parámetros en el motor de inferencia de Red Hat, el <strong>Red Hat AI Inference Server</strong>, que está basado en el proyecto open-source vLLM.</p>
 </div>
-<div class="sect2">
-<h3 id="33"><a class="anchor" href="#33"></a>2.3 Testear con MCP Inspector</h3>
-
+<div class="paragraph">
+<p>Vamos a volver a la pestaña de OpenShift AI. En la barra lateral, ve al <strong>AI Hub</strong> a la sección <strong>Catalog</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Aquí podrás ver una lista de modelos de IA generativa que han sido <strong>validados</strong> en varias configuraciones de hardware por el equipo de Red Hat y que están listos para ser desplegados en el clúster. Entre ellos, encontrarás una gran variedad de modelos, incluyendo Granite, Llama, Deepseek, Mistral, etc.</p>
+</div>
+<div class="paragraph">
+<p>En nuestro caso, vamos a descender hasta la sección de <strong>Red Hat AI validated models</strong> y clicar en <strong>Llama-3.1-8B-Instruct</strong>, debería ser el tercero en aparecer.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/models.png" alt="models">
+</div>
+</div>
+<div class="paragraph">
+<p>Al entrar en la página del modelo, vemos información como detalles sobe su arquitectura y su fecha de lanzamiento. Si descendemos, veremos los resultados que ha obtenido en los benchmarks más populares.</p>
+</div>
+<div class="paragraph">
+<p>Vamos a continuar clicando el botón <code>Deploy model</code> en la esquina superior derecha.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/model-data.png" alt="model data">
+</div>
+</div>
+<div class="paragraph">
+<p>Entraremos en el primer paso del formulario para configurar el despliegue del modelo. Continúa clicando en <code>Next</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/deploy-model.png" alt="deploy model">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>MODIFICAR SEGÚN SE NECESITE</strong> En el segundo paso, vamos especificar el proyecto, el nombre del modelo a desplegar y su perfil de hardware. Cuando esté listo, clica en <code>Next</code>.</p>
+</div>
+<div class="paragraph">
+<p>En el tercer paso tenemos opciones de configuración avanzada. Modifica el formulario como se muestra en la siguiente imagen.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/deploy-model-3.png" alt="deploy model 3">
+</div>
+</div>
+<div class="paragraph">
+<p>Llegamos al cuarto y último paso. Veremos un resumen de nuestro formulario, vamos a lanzar el despliegue clicando en <code>Deploy model</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/deploy-model-4.png" alt="deploy model 4">
+</div>
+</div>
+<div class="paragraph">
+<p>Al hacerlo, seremos redirigidos a la página de Deployments, donde veremos los modelos que hemos desplegado. El modelo necesitará unos minutos en desplegarse, su status debería cambiar a <code>Running</code>.</p>
+</div>
+<div class="paragraph">
+<p>¡Hemos desplegado el modelo! Vamos a testear sus respuestas en un <strong>playground</strong>, un lugar donde chatear rápidamente con nuestros modelos.</p>
+</div>
+<div class="paragraph">
+<p>Clica en la barra lateral en Gen AI studio en la sección AI asset endpoints.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/deployments.png" alt="deployments">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/assets.png" alt="assets">
+</div>
+</div>
 </div>
 </div>
 </div>
 <nav class="pagination">
   <span class="prev"><a href="1.html">1. Preparar el Entorno</a></span>
-  <span class="next"><a href="3.html">3. Desplegar el Modelo</a></span>
+  <span class="next"><a href="3.html">3. Desarrollar el Servidor MCP</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">

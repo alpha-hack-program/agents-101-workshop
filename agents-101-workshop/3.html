@@ -6,7 +6,7 @@
     <title>Untitled :: Agents 101: How to Build the Agents of the Future Today with Red Hat AI</title>
     <link rel="canonical" href="https://redhat-scholars.github.io/course-template/agents-101-workshop/3.html">
     <link rel="prev" href="2.html">
-    <link rel="next" href="4.html">
+    <link rel="next" href="2.html#33">
     <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
@@ -80,28 +80,28 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="2.html">2. Desarrollar el Servidor MCP</a>
+    <a class="nav-link" href="2.html">2. Desplegar el Modelo</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="2.html#21">2.1 ¿Qué es MCP?</a>
+    <a class="nav-link" href="2.html#21">2.1 ¿Qué es el modelo?</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="2.html#22">2.2 Penalty Engine</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="2.html#23">2.3 Testear con MCP Inspector</a>
+    <a class="nav-link" href="2.html#22">2.2 Despliegues de OpenShift AI</a>
   </li>
 </ul>
   </li>
   <li class="nav-item is-current-page" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="3.html">3. Desplegar el Modelo</a>
+    <a class="nav-link" href="3.html">3. Desarrollar el Servidor MCP</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#31">3.1 ¿Qué es el modelo?</a>
+    <a class="nav-link" href="#31">3.1 ¿Qué es MCP?</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#32">3.2 Despliegues de OpenShift AI</a>
+    <a class="nav-link" href="#32">3.2 Penalty Engine</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="2.html#33">3.3 Testear con MCP Inspector</a>
   </li>
 </ul>
   </li>
@@ -162,7 +162,7 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="0.html">Agents 101: How to Build the Agents of the Future Today with Red Hat AI</a></li>
-    <li><a href="3.html">3. Desplegar el Modelo</a></li>
+    <li><a href="3.html">3. Desarrollar el Servidor MCP</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/alpha-hack-program/agents-101-workshop/edit/master/documentation/modules/ROOT/pages/3.adoc">Edit this Page</a></div>
@@ -170,21 +170,71 @@
   <div class="content">
 <article class="doc">
 <div class="sect1">
-<h2 id="_3_desplegar_el_modelo"><a class="anchor" href="#_3_desplegar_el_modelo"></a>3. Desplegar el Modelo</h2>
+<h2 id="_3_desarrollar_el_servidor_mcp"><a class="anchor" href="#_3_desarrollar_el_servidor_mcp"></a>3. Desarrollar el Servidor MCP</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="31"><a class="anchor" href="#31"></a>3.1 ¿Qué es el modelo?</h3>
+<h3 id="31"><a class="anchor" href="#31"></a>3.1 ¿Qué es MCP?</h3>
+<div class="paragraph">
+<p>El <strong>Model Context Protocol (MCP)</strong> es básicamente el USB-C para la inteligencia artificial. Se trata de un estándar abierto que permite a los desarrolladores crear conectores universales para que cualquier IA pueda leer datos de cualquier fuente de forma segura y estandarizada.</p>
+</div>
+<div class="paragraph">
+<p>Esto permite a nuestro modelo interactuar con herramientas externas como Slack, nuestro clúster de OpenShift y también realizar operaciones lógicas como calcular presupuestos con más fiabilidad.</p>
+</div>
+<div class="paragraph">
+<p><strong>¿Qué hace falta?</strong> Para incluir una herramienta basada en MCP en nuestra arquitectura, necesitamos tres componentes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Por un lado, necesitamos <strong>un modelo y un motor de inferencia</strong>. Gracias a vLLM, tenemos flexibilidad para servir el modelo on-premise, en la nube que prefiramos o simplemente que sea servido por terceros.</p>
+</li>
+<li>
+<p>Nos hará falta definir <strong>un servidor MCP</strong>, que contendrá la lógica que queremos que el modelo ejecute cuando sea necesario.</p>
+</li>
+<li>
+<p>Finalmente necesitamos <strong>un cliente MCP</strong>. ¿Dónde lo encontramos? En la otra gran pieza de este taller, Llama Stack. Se trata de un framework de creación de agentes que nos permite centralizar todas las herramientas necesarias para crearlos. Más adelante, desplegaremos una distribución de Llama Stack para verlo más a fondo.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>¿Cómo funciona?</strong> El flujo sería el siguiente:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Antes de que el usuario interactúe con el agente, Llama Stack se conecta al servidor MCP y este le envía un <strong>manifiesto</strong> de sus herramientas disponibles.</p>
+</li>
+<li>
+<p>El usuario envía un prompt y Llama Stack <strong>añade en él</strong> la lista de herramientas disponibles.</p>
+</li>
+<li>
+<p>El modelo <strong>procesa</strong> el prompt y si lo requiere, <strong>genera una llamada</strong> a la función del servidor MCP.</p>
+</li>
+<li>
+<p>Llama Stack <strong>recibe</strong> la llamada y <strong>llama</strong> al servidor MCP para ejecutar la herramienta.</p>
+</li>
+<li>
+<p>Llama Stack <strong>devuelve el resultado</strong> de la herramienta al modelo.</p>
+</li>
+<li>
+<p>Con la nueva información, el modelo genera su <strong>respuesta final</strong> y el usuario la recibe.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="32"><a class="anchor" href="#32"></a>3.2 Penalty Engine</h3>
 
 </div>
 <div class="sect2">
-<h3 id="32"><a class="anchor" href="#32"></a>3.2 Despliegues de OpenShift AI</h3>
+<h3 id="33"><a class="anchor" href="#33"></a>3.3 Testear con MCP Inspector</h3>
 
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="2.html">2. Desarrollar el Servidor MCP</a></span>
-  <span class="next"><a href="4.html">4. Crear la Distribución de Llama Stack</a></span>
+  <span class="prev"><a href="2.html">2. Desplegar el Modelo</a></span>
+  <span class="next"><a href="2.html#33">3.3 Testear con MCP Inspector</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
