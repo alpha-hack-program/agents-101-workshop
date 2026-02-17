@@ -1,11 +1,31 @@
-= ¡Bienvenido al taller!
+== ¡Bienvenido al taller!
 include::_attributes.adoc[]
 
+El mundo de la inteligencia artificial generativa avanza cada día y adaptarse a su ritmo es un reto recurrente para las empresas. Aquí entra **Red Hat AI**. Se trata de una plataforma especializada en la gestión del ciclo de vida de las aplicaciones basadas en IA predictiva y generativa. De esta forma, centralizamos todas las herramientas necesarias para acelerar el desarrollo y despliegue de apps de IA.
+
+En este caso, nos adentraremos en uno de los últimos avances de la IA generativa, **los agentes**. ¿Qué diferencia hay entre los modelos con los que interactuamos mediante chat y estos agentes?
+
+Los **modelos conversacionales** son algoritmos de predicción de lenguaje. Se encargan de recibir y procesar información para después dar una respuesta. Estos modelos requieren de entrenamiento para aprender a predecir qué decir según lo recibido.
+
+Los **modelos propietarios** (OpenAI ChatGPT, Google Gemini) son gigantescos. Requieren de una potencia computacional **muy grande** para ser entrenados y al ser privados, no pueden ser reentrenados y requieren acceso continuo a internet.
+
+La **buena noticia** es que los modelos conversacionales **open-source** (Meta Llama 4, Mistral Large 3...) han ido ganando terreno. En base a los últimos benchmarks, estos modelos consiguen **resultados casi tan buenos** como los modelos propietarios. La ventaja de los modelos open-source es que son **mucho más pequeños** permitiéndonos reentrenarlos y ejecutarlos en nuestra propia infraestructura.
+
+Un modelo sólo responde en base a lo que conoce. Es ahí donde entran en juego los agentes. En un agente, proporcionamos a los modelos herramientas para mejorar sus respuestas. Mecanismos como RAG (Retrieval-Augmented Generation), búsqueda de información en la web o interacción con servidores MCP (Model Context Protocol).
+
 [#01]
-== Objetivo
+=== Objetivo
+
+El objetivo de este taller es desplegar un **asistente gubernamental** que ayude a los ciudadanos a recibir información sobre las leyes. Lo haremos utilizando un agente basado en Llama Stack, RAG y servidores MCP. Conocerás paso a paso cómo es el flujo de trabajo dentro de OpenShift AI para tanto el desarrollo como el despliegue del agente.
 
 [#02]
-== Material
+=== Entorno
 
-[#03]
-== Entorno
+Para este taller, **no tienes que instalar nada en tu portátil**. Sólo un navegador al que acceder a las URLs donde trabajaras. Dispondrás de acceso a un clúster de OpenShift que ya dispone de OpenShift AI e iremos trabajando en diferentes pestañas:
+
+* En la **consola del propio OpenShift**, comprobaremos los despliegues que haremos.
+* En la **consola de OpenShift AI**, crearemos nuestro espacio de trabajo, desplegaremos el modelo y testearemos el agente.
+* El **espacio de trabajo** que crearemos en OpenShift AI será nuesto IDE. Trabajaremos en el código y el terminal.
+* La **app final**. Veremos cómo se traslada nuestro trabajo al chat con el asistente.
+
+Puedes comenzar el taller clicando en la barra lateral izquierda en **1. Preparar el Entorno**. ¡Vamos allá!
