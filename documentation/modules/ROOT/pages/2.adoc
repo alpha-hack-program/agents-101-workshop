@@ -48,9 +48,23 @@ Al hacerlo, seremos redirigidos a la página de Deployments, donde veremos los m
 
 ¡Hemos desplegado el modelo! Vamos a testear sus respuestas en un **playground**, un lugar donde chatear rápidamente con nuestros modelos.
 
-Clica en la barra lateral en Gen AI studio en la sección AI asset endpoints.
+Clica en la barra lateral en `Gen AI studio` en la sección `AI asset endpoints`.
 
 image::deployments.png[]
 
+Cambia el proyecto en la parte superior. Deberías poder ver el modelo que acabas de desplegar. Continua pinchando en `Add to playground` y luego `Create`.
 
 image::assets.png[]
+
+Puede que al hacerlo, salte el siguiente mensaje de error. Estos espacios de testeo aún están en Tech Preview. Puedes ignorarlo, cerrarlo pinchando en la `X` y continuar con el siguiente paso sin problema.
+
+image::playground-error.png[]
+
+Vamos a acceder al espacio de pruebas clicando en la barra lateral izquierda en `Gen AI studio` en la sección `Playground`.
+
+image::playground-chat.png[]
+
+¡Perfecto! Prueba a escribir algo en la barra inferior para que el modelo responda.
+
+Hemos terminado esta parte. Pasa a la sección **3.Desarrollar el Servidor MCP**.
+
