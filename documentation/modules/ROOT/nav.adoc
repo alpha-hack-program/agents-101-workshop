@@ -20,7 +20,6 @@
 ** xref:4.adoc#41[4.1 ¿Qué es Llama Stack?]
 ** xref:4.adoc#42[4.2 Añadir conexión al servidor MCP]
 ** xref:4.adoc#43[4.3 Ingestión de documentos para RAG]
-** xref:4.adoc#44[4.4 Testear en un Playground]
 
 * xref:5.adoc[5. Desplegar el App Agéntica]
 ** xref:5.adoc#51[5.1 Desplegar e interactuar con la app]

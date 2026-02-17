@@ -10,5 +10,3 @@ include::_attributes.adoc[]
 [#43]
 === 4.3 Ingestión de documentos para RAG
 
-[#44]
-=== 4.4 Testear en un Playground
