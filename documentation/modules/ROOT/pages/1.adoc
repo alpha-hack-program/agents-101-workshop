@@ -96,4 +96,4 @@ Common actions for Helm:
 [source,bash,subs="+macros,+attributes"]
 ----
 
-¡Genial! Ya tienes el IDE ya configurado, puedes pasar a la sección **2. Desarrollar el Servidor MCP**. 
+¡Genial! Ya tienes el IDE ya configurado, puedes pasar a la sección **2. Desplegar el Modelo**. 

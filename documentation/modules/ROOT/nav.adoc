@@ -7,14 +7,14 @@
 ** xref:1.adoc#12[1.2 Crear el Code Server]
 ** xref:1.adoc#13[1.3 Configurar el Code Server]
 
-* xref:2.adoc[2. Desarrollar el Servidor MCP]
-** xref:2.adoc#21[2.1 ¿Qué es MCP?]
-** xref:2.adoc#22[2.2 Penalty Engine]
-** xref:2.adoc#23[2.3 Testear con MCP Inspector]
+* xref:2.adoc[2. Desplegar el Modelo]
+** xref:2.adoc#21[2.1 ¿Qué es el modelo?]
+** xref:2.adoc#22[2.2 Despliegues de OpenShift AI]
 
-* xref:3.adoc[3. Desplegar el Modelo]
-** xref:3.adoc#31[3.1 ¿Qué es el modelo?]
-** xref:3.adoc#32[3.2 Despliegues de OpenShift AI]
+* xref:3.adoc[3. Desarrollar el Servidor MCP]
+** xref:3.adoc#31[3.1 ¿Qué es MCP?]
+** xref:3.adoc#32[3.2 Penalty Engine]
+** xref:2.adoc#33[3.3 Testear con MCP Inspector]
 
 * xref:4.adoc[4. Crear la Distribución de Llama Stack]
 ** xref:4.adoc#41[4.1 ¿Qué es Llama Stack?]

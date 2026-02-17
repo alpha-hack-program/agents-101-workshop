@@ -1,34 +1,56 @@
-== 2. Desarrollar el Servidor MCP
+== 2. Desplegar el Modelo
 include::_attributes.adoc[]
 
 [#21]
-=== 2.1 ¿Qué es MCP?
+=== 2.1 ¿Qué es el modelo?
 
-El **Model Context Protocol (MCP)** es básicamente el USB-C para la inteligencia artificial. Se trata de un estándar abierto que permite a los desarrolladores crear conectores universales para que cualquier IA pueda leer datos de cualquier fuente de forma segura y estandarizada.
+En este taller, cuando hablamos del modelo nos referimos a un **modelo de IA generativa**. Se trata de un tipo de inteligencia artificial diseñado para **crear contenido nuevo** en lugar de simplemente analizar o clasificar datos existentes.
 
-Esto permite a nuestro modelo interactuar con herramientas externas como Slack, nuestro clúster de OpenShift y también realizar operaciones lógicas como calcular presupuestos con más fiabilidad.
+**¿Cómo lo hacen?** Estos modelos funcionan mediante **probabilidades estadísticas**.
 
-**¿Qué hace falta?** Para incluir una herramienta basada en MCP en nuestra arquitectura, necesitamos tres componentes:
-
-* Por un lado, necesitamos **un modelo y un motor de inferencia**. Gracias a vLLM, tenemos flexibilidad para servir el modelo on-premise, en la nube que prefiramos o simplemente que sea servido por terceros.
-* Nos hará falta definir **un servidor MCP**, que contendrá la lógica que queremos que el modelo ejecute cuando sea necesario.
-* Finalmente necesitamos **un cliente MCP**. ¿Dónde lo encontramos? En la otra gran pieza de este taller, Llama Stack. Se trata de un framework de creación de agentes que nos permite centralizar todas las herramientas necesarias para crearlos. Más adelante, desplegaremos una distribución de Llama Stack para verlo más a fondo.
-
-**¿Cómo funciona?** El flujo sería el siguiente:
-
-1. Antes de que el usuario interactúe con el agente, Llama Stack se conecta al servidor MCP y este le envía un **manifiesto** de sus herramientas disponibles.
-2. El usuario envía un prompt y Llama Stack **añade en él** la lista de herramientas disponibles.
-3. El modelo **procesa** el prompt y si lo requiere, **genera una llamada** a la función del servidor MCP.
-4. Llama Stack **recibe** la llamada y **llama** al servidor MCP para ejecutar la herramienta.
-5. Llama Stack **devuelve el resultado** de la herramienta al modelo.
-6. Con la nueva información, el modelo genera su **respuesta final** y el usuario la recibe.
-
-
-
-
+1. El modelo pasa por una fase de **entrenamiento**, en la que obtiene información de millones de ejemplos (textos, imágenes, código). Con estos, busca patrones para aprender las estructuras subyacentes. Así al generar una frase, calculará cuál es la siguiente palabra más probable.
+2. Ya entrenado, el modelo necesita un **motor de inferencia**. El motor se encarga de ejecutar la lógica del modelo y así poder responder a los prompts del usuario.
 
 [#22]
-=== 2.2 Penalty Engine
+=== 2.2 Despliegues de OpenShift AI
 
-[#33]
-=== 2.3 Testear con MCP Inspector
+En nuestro caso, vamos a desplegar un **modelo Llama 3.1** con 8 billones de parámetros en el motor de inferencia de Red Hat, el **Red Hat AI Inference Server**, que está basado en el proyecto open-source vLLM.
+
+Vamos a volver a la pestaña de OpenShift AI. En la barra lateral, ve al **AI Hub** a la sección **Catalog**.
+
+Aquí podrás ver una lista de modelos de IA generativa que han sido **validados** en varias configuraciones de hardware por el equipo de Red Hat y que están listos para ser desplegados en el clúster. Entre ellos, encontrarás una gran variedad de modelos, incluyendo Granite, Llama, Deepseek, Mistral, etc. 
+
+En nuestro caso, vamos a descender hasta la sección de **Red Hat AI validated models** y clicar en **Llama-3.1-8B-Instruct**, debería ser el tercero en aparecer.
+
+image::models.png[]
+
+Al entrar en la página del modelo, vemos información como detalles sobe su arquitectura y su fecha de lanzamiento. Si descendemos, veremos los resultados que ha obtenido en los benchmarks más populares.
+
+Vamos a continuar clicando el botón `Deploy model` en la esquina superior derecha.
+
+image::model-data.png[]
+
+Entraremos en el primer paso del formulario para configurar el despliegue del modelo. Continúa clicando en `Next`.
+
+image::deploy-model.png[]
+
+**MODIFICAR SEGÚN SE NECESITE** En el segundo paso, vamos especificar el proyecto, el nombre del modelo a desplegar y su perfil de hardware. Cuando esté listo, clica en `Next`.
+
+En el tercer paso tenemos opciones de configuración avanzada. Modifica el formulario como se muestra en la siguiente imagen.
+
+image::deploy-model-3.png[]
+
+Llegamos al cuarto y último paso. Veremos un resumen de nuestro formulario, vamos a lanzar el despliegue clicando en `Deploy model`.
+
+image::deploy-model-4.png[]
+
+Al hacerlo, seremos redirigidos a la página de Deployments, donde veremos los modelos que hemos desplegado. El modelo necesitará unos minutos en desplegarse, su status debería cambiar a `Running`.
+
+¡Hemos desplegado el modelo! Vamos a testear sus respuestas en un **playground**, un lugar donde chatear rápidamente con nuestros modelos.
+
+Clica en la barra lateral en Gen AI studio en la sección AI asset endpoints.
+
+image::deployments.png[]
+
+
+image::assets.png[]

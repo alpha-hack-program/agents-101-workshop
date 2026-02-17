@@ -1,9 +1,32 @@
-== 3. Desplegar el Modelo
+== 3. Desarrollar el Servidor MCP
 include::_attributes.adoc[]
 
 [#31]
-=== 3.1 ¿Qué es el modelo?
+=== 3.1 ¿Qué es MCP?
+
+El **Model Context Protocol (MCP)** es básicamente el USB-C para la inteligencia artificial. Se trata de un estándar abierto que permite a los desarrolladores crear conectores universales para que cualquier IA pueda leer datos de cualquier fuente de forma segura y estandarizada.
+
+Esto permite a nuestro modelo interactuar con herramientas externas como Slack, nuestro clúster de OpenShift y también realizar operaciones lógicas como calcular presupuestos con más fiabilidad.
+
+**¿Qué hace falta?** Para incluir una herramienta basada en MCP en nuestra arquitectura, necesitamos tres componentes:
+
+* Por un lado, necesitamos **un modelo y un motor de inferencia**. Gracias a vLLM, tenemos flexibilidad para servir el modelo on-premise, en la nube que prefiramos o simplemente que sea servido por terceros.
+* Nos hará falta definir **un servidor MCP**, que contendrá la lógica que queremos que el modelo ejecute cuando sea necesario.
+* Finalmente necesitamos **un cliente MCP**. ¿Dónde lo encontramos? En la otra gran pieza de este taller, Llama Stack. Se trata de un framework de creación de agentes que nos permite centralizar todas las herramientas necesarias para crearlos. Más adelante, desplegaremos una distribución de Llama Stack para verlo más a fondo.
+
+**¿Cómo funciona?** El flujo sería el siguiente:
+
+1. Antes de que el usuario interactúe con el agente, Llama Stack se conecta al servidor MCP y este le envía un **manifiesto** de sus herramientas disponibles.
+2. El usuario envía un prompt y Llama Stack **añade en él** la lista de herramientas disponibles.
+3. El modelo **procesa** el prompt y si lo requiere, **genera una llamada** a la función del servidor MCP.
+4. Llama Stack **recibe** la llamada y **llama** al servidor MCP para ejecutar la herramienta.
+5. Llama Stack **devuelve el resultado** de la herramienta al modelo.
+6. Con la nueva información, el modelo genera su **respuesta final** y el usuario la recibe.
+
+
 
 [#32]
-=== 3.2 Despliegues de OpenShift AI
+=== 3.2 Penalty Engine
 
+[#33]
+=== 3.3 Testear con MCP Inspector
