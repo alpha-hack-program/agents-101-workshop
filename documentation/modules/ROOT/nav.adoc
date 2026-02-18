@@ -14,7 +14,7 @@
 * xref:3.adoc[3. Desarrollar el Servidor MCP]
 ** xref:3.adoc#31[3.1 ¿Qué es MCP?]
 ** xref:3.adoc#32[3.2 Penalty Engine]
-** xref:2.adoc#33[3.3 Testear con MCP Inspector]
+** xref:3.adoc#33[3.3 Testear con MCP Inspector]
 
 * xref:4.adoc[4. Crear la Distribución de Llama Stack]
 ** xref:4.adoc#41[4.1 ¿Qué es Llama Stack?]
