@@ -92,8 +92,6 @@ Common actions for Helm:
 - helm install:   upload the chart to Kubernetes
 - helm list:      list releases of charts
 ...
-[.console-input]
-[source,bash,subs="+macros,+attributes"]
 ----
 
 ¡Genial! Ya tienes el IDE ya configurado, puedes pasar a la sección **2. Desplegar el Modelo**. 
