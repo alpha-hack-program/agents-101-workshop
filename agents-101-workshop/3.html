@@ -221,10 +221,794 @@
 </li>
 </ol>
 </div>
+<div class="paragraph">
+<p><a href="https://github.com/dgpmakes/compatibility-engine-mcp-rs.git" class="bare">https://github.com/dgpmakes/compatibility-engine-mcp-rs.git</a></p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="32"><a class="anchor" href="#32"></a>3.2 Penalty Engine</h3>
+<div class="paragraph">
+<p>RAG permite al modelo acceder a documentación y aprender de ella, pero a la hora de realizar cálculos basados en la información, puede cometer fallos. Vamos a crear un servidor MCP para mejorar la fiabilidad a la hora de calcular la penalización por no realizar un pago.</p>
+</div>
+<div class="paragraph">
+<p>Para empezar, vamos a descargar el repositorio usando <code>git clone</code>:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone XXXX</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>En la barra lateral izquierda, accede a compatibility-engine&gt;src&gt;common/compatibility-engine.yaml. Este es el archivo en el que definiremos todo el servidor.</p>
+</div>
+<div class="paragraph">
+<p>IMAGEN DE LA FORMULA</p>
+</div>
+<div class="paragraph">
+<p>Vamos a construir el servidor MCP paso a paso, en total son 8. El código está escrito en Rust, no hace falta que tengas conocimientos sobre este lenguaje de programación. Iremos copiando cada paso en el archivo hasta obtener un servidor MCP funcional.</p>
+</div>
+<div class="paragraph">
+<p><strong>Paso 1: Configuración Dinámica (Lazy Initialization)</strong></p>
+</div>
+<div class="paragraph">
+<p>Definimos el EngineConfig, una estructura que almacena los valores por defecto para los cálculos (tasas, topes e intereses).</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Carga de Entorno: Utiliza <code>std::env</code> para intentar leer variables de entorno (como <code>ENGINE_DEFAULT_CAP</code>). Si no existen, usa valores predeterminados (como 1000.0).</p>
+</li>
+<li>
+<p>Lazy: Se usa <code>once_cell::sync::Lazy</code> para asegurar que la configuración se cargue una sola vez y sea accesible globalmente de forma segura entre hilos.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Copia el siguiente fragmento y pégalo al inicio del archivo.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">// =================== 1. CONFIGURATION ===================
+// Defaults loaded from environment variables for penalty logic.
 
+#[derive(Debug, Clone)]
+pub struct EngineConfig {
+    // Penalty calculation defaults
+    pub default_rate_per_day: f64,
+    pub default_cap: f64,
+    pub default_interest_rate: f64,
+}
+
+impl EngineConfig {
+    pub fn from_env() -&gt; Self {
+        Self {
+            default_rate_per_day: env::var("ENGINE_DEFAULT_RATE_PER_DAY")
+                .ok()
+                .and_then(|s| s.parse().ok())
+                .unwrap_or(100.0),  // From LyFin-Compliance-Annex.md: "100 per day"
+
+            default_cap: env::var("ENGINE_DEFAULT_CAP")
+                .ok()
+                .and_then(|s| s.parse().ok())
+                .unwrap_or(1000.0),  // From LyFin-Compliance-Annex.md: "Maximum Cap: 1000"
+
+            default_interest_rate: env::var("ENGINE_DEFAULT_INTEREST_RATE")
+                .ok()
+                .and_then(|s| s.parse().ok())
+                .unwrap_or(0.05),  // From LyFin-Compliance-Annex.md: "5 percent annual"
+        }
+    }
+}
+
+static CONFIG: Lazy&lt;EngineConfig&gt; = Lazy::new(EngineConfig::from_env);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Paso 2: Deserialización Flexible</strong></p>
+</div>
+<div class="paragraph">
+<p>Los LLMs a veces envían números como cadenas ("12") y otras veces como números puros (12). Con la función <code>deserialize_flexible_f64</code> permitimos que el servidor sea robusto, aceptando ambos formatos y convirtiéndolos internamente a una <code>String</code> para procesarlo sin problemas.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">// =================== 2. CUSTOM DESERIALIZERS ===================
+// Serde visitors that accept numbers or strings and store them as strings.
+
+/// Custom deserializer that accepts both f64 numbers and strings, then parses them
+fn deserialize_flexible_f64&lt;'de, D&gt;(deserializer: D) -&gt; Result&lt;String, D::Error&gt;
+where
+    D: Deserializer&lt;'de&gt;,
+{
+    struct FlexibleF64Visitor;
+
+    impl&lt;'de&gt; de::Visitor&lt;'de&gt; for FlexibleF64Visitor {
+        type Value = String;
+
+        fn expecting(&amp;self, formatter: &amp;mut fmt::Formatter) -&gt; fmt::Result {
+            formatter.write_str("a number or a string representing a number")
+        }
+
+        fn visit_i64&lt;E&gt;(self, value: i64) -&gt; Result&lt;Self::Value, E&gt;
+        where
+            E: de::Error,
+        {
+            Ok(value.to_string())
+        }
+
+        fn visit_u64&lt;E&gt;(self, value: u64) -&gt; Result&lt;Self::Value, E&gt;
+        where
+            E: de::Error,
+        {
+            Ok(value.to_string())
+        }
+
+        fn visit_f64&lt;E&gt;(self, value: f64) -&gt; Result&lt;Self::Value, E&gt;
+        where
+            E: de::Error,
+        {
+            Ok(value.to_string())
+        }
+
+        fn visit_str&lt;E&gt;(self, value: &amp;str) -&gt; Result&lt;Self::Value, E&gt;
+        where
+            E: de::Error,
+        {
+            Ok(value.to_string())
+        }
+
+        fn visit_string&lt;E&gt;(self, value: String) -&gt; Result&lt;Self::Value, E&gt;
+        where
+            E: de::Error,
+        {
+            Ok(value)
+        }
+    }
+
+    deserializer.deserialize_any(FlexibleF64Visitor)
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Paso 3: Parseo y Comprobaciones de Seguridad</strong></p>
+</div>
+<div class="paragraph">
+<p>Antes de procesar cualquier dato, el código aplica una capa de defensa en profundidad:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>sanitize_for_error_message</code>: Limpia los inputs antes de devolverlos en mensajes de error. Reemplaza caracteres peligrosos (&lt;, &gt;, ", \n) por ? para prevenir ataques de inyección de Log o XSS si estos errores se muestran en una interfaz web.</p>
+</li>
+<li>
+<p><code>validate_input_security</code>: Bloquea ataques de denegación de servicio (DoS) limitando el tamaño del input (máximo 100 caracteres) y detectando caracteres de control maliciosos.</p>
+</li>
+<li>
+<p><code>parse_f64_from_string</code>: Limpia símbolos de moneda ($, €, %) y comas antes de convertir la cadena en un número real (f64).</p>
+</li>
+</ul>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">// =================== 3. PARSING UTILITIES ===================
+// Input validation and string-to-number parsing helpers.
+
+/// Sanitize user input for safe inclusion in error messages
+/// Prevents JSON injection, XSS, log injection, and other attacks
+fn sanitize_for_error_message(input: &amp;str) -&gt; String {
+    // Limit length to prevent DoS and overly verbose errors
+    let truncated = if input.len() &gt; 50 {
+        format!("{}...", &amp;input[..47])
+    } else {
+        input.to_string()
+    };
+
+    // Replace dangerous and non-printable characters
+    truncated
+        .chars()
+        .map(|c| match c {
+            // Replace line breaks and control chars that could break JSON/logs
+            '\n' | '\r' | '\t' =&gt; ' ',
+            // Replace quote chars that could break JSON structure
+            '"' | '\'' | '`' =&gt; '?',
+            // Replace backslashes that could escape JSON
+            '\\' =&gt; '?',
+            // Replace HTML/script chars for XSS prevention
+            '&lt;' | '&gt;' =&gt; '?',
+            // Keep normal printable ASCII and space
+            c if c.is_ascii_graphic() || c == ' ' =&gt; c,
+            // Replace any other non-printable or unicode control chars
+            _ =&gt; '?'
+        })
+        .collect()
+}
+
+/// Validate input length and format for security
+fn validate_input_security(input: &amp;str, field_name: &amp;str) -&gt; Result&lt;(), String&gt; {
+    // Check maximum length to prevent DoS
+    if input.len() &gt; 100 {
+        return Err(format!("Invalid {}: input too long (max 100 characters)", field_name));
+    }
+
+    // Check for null bytes (can cause issues in some contexts)
+    if input.contains('\0') {
+        return Err(format!("Invalid {}: input contains null bytes", field_name));
+    }
+
+    // Check for excessive control characters (potential log injection)
+    let control_char_count = input.chars().filter(|c| c.is_control()).count();
+    if control_char_count &gt; 2 {  // Allow a couple for legitimate formatting
+        return Err(format!("Invalid {}: input contains too many control characters", field_name));
+    }
+
+    Ok)) }  /// Parse a string to f64, handling various formats with security validation fn parse_f64_from_string(s: &amp;str) -&gt; Result&lt;f64, String&gt; {     let trimmed = s.trim();      // Security validation first     if let Err(e) = validate_input_security(trimmed, "number") {         return Err(e);     }      // Handle empty strings     if trimmed.is_empty() {         return Err("Empty string cannot be parsed as number".to_string(;
+    }
+
+    // Sanitize input for error messages
+    let sanitized = sanitize_for_error_message(trimmed);
+
+    // Remove common formatting characters
+    let cleaned = trimmed
+        .replace(',', "")  // Remove thousands separators
+        .replace('$', "")  // Remove dollar, euro, pound, etc. signs
+        .replace('€', "")  // Remove euro signs
+        .replace('£', "")  // Remove pound signs
+        .replace('¥', "")  // Remove yen signs
+        .replace('%', ""); // Remove percentage signs
+
+    match cleaned.parse::&lt;f64&gt;() {
+        Ok(value) =&gt; {
+            if value.is_infinite() || value.is_nan() {
+                Err(format!("Invalid number: '{}'", sanitized))
+            } else {
+                Ok(value)
+            }
+        },
+        Err(_) =&gt; Err(format!("Cannot parse '{}' as a number", sanitized))
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Paso 4: Estructuras de Datos</strong></p>
+</div>
+<div class="paragraph">
+<p>Aquí se definen los parámetros de entrada (CalcPenaltyParams) y la respuesta (CalcPenaltyResponse).</p>
+</div>
+<div class="paragraph">
+<p>La parte <code>#[schemars(description = "&#8230;&#8203;")]</code> es vital para MCP. Esto genera automáticamente un esquema JSON que le explica al LLM qué significa cada campo.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">// =================== 4. DATA STRUCTURES ===================
+// Request/response types for calc_penalty.
+
+#[derive(Debug, Serialize, Deserialize, PartialEq, schemars::JsonSchema)]
+pub struct CalcPenaltyParams {
+    #[serde(deserialize_with = "deserialize_flexible_f64")]
+    #[schemars(description = "Number of days late")]
+    pub days_late: String,
+}
+
+// Response structures with explanations
+#[derive(Debug, Serialize, Deserialize, PartialEq, schemars::JsonSchema)]
+pub struct CalcPenaltyResponse {
+    #[schemars(description = "Calculated penalty amount")]
+    pub penalty: f64,
+    #[schemars(description = "Explanation of calculation steps")]
+    pub explanation: String,
+    #[schemars(description = "Any errors in input validation")]
+    pub errors: Vec&lt;String&gt;,
+    #[schemars(description = "Warnings or additional information")]
+    pub warnings: Vec&lt;String&gt;,
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Paso 5: Función</strong> <code>calc_penalty_engine</code></p>
+</div>
+<div class="paragraph">
+<p>Esta función es la pieza fundamental del servidor, contiene la lógica del cálculo. Implementa la fórmula matemática para calcular la penalización y genera una explicación textual paso a paso de cómo se llegó al resultado. Esto es muy importante, ya que permitimos al agente que pueda explicar el proceso al usuario.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">// =================== 5. COMPATIBILITY ENGINE ===================
+// Core calculation logic for penalties and progressive tax.
+
+#[derive(Debug, Clone)]
+pub struct CompatibilityEngine {
+    tool_router: ToolRouter&lt;Self&gt;,
+}
+
+impl CompatibilityEngine {
+    /// Calculate penalty with cap and interest
+    fn calc_penalty_internal(
+        days_late: f64,
+        rate_per_day: f64,
+        cap: f64,
+        interest_rate: f64
+    ) -&gt; CalcPenaltyResponse {
+        let mut errors = Vec::new();
+        let mut warnings = Vec::new();
+        let mut explanation_parts = Vec::new();
+
+        // Validation
+        if days_late &lt; 0.0 {
+            errors.push("Days late cannot be negative".to_string());
+        }
+        if rate_per_day &lt; 0.0 {
+            errors.push("Rate per day cannot be negative".to_string());
+        }
+        if cap &lt; 0.0 {
+            errors.push("Cap cannot be negative".to_string());
+        }
+        if interest_rate &lt; 0.0 {
+            errors.push("Interest rate cannot be negative".to_string());
+        }
+
+        if !errors.is_empty() {
+            return CalcPenaltyResponse {
+                penalty: 0.0,
+                explanation: "Calculation failed due to invalid inputs".to_string(),
+                errors,
+                warnings,
+            };
+        }
+
+        // Calculate base penalty
+        let base_penalty = days_late * rate_per_day;
+        explanation_parts.push(format!("Base penalty: {} days × {} = {:.2}", days_late, rate_per_day, base_penalty));
+
+        // Apply cap
+        let penalty = base_penalty.min(cap);
+        if base_penalty &gt; cap {
+            explanation_parts.push(format!("Applied cap: {:.2} capped at {:.2}", base_penalty, cap));
+            warnings.push(format!("Base penalty {:.2} exceeded cap of {:.2}", base_penalty, cap));
+        } else {
+            explanation_parts.push(format!("No cap applied ({:.2} ≤ {:.2})", base_penalty, cap));
+        }
+
+        // Calculate interest
+        let interest = penalty * interest_rate;
+        explanation_parts.push(format!("Interest: {:.2} × {:.1}% = {:.2}", penalty, interest_rate * 100.0, interest));
+
+        let final_penalty = penalty + interest;
+        explanation_parts.push(format!("Final penalty: {:.2} + {:.2} = {:.2}", penalty, interest, final_penalty));
+
+        if interest_rate &gt; 0.1 {
+            warnings.push(format!("High interest rate: {:.1}%", interest_rate * 100.0));
+        }
+
+        CalcPenaltyResponse {
+            penalty: final_penalty,
+            explanation: explanation_parts.join(". "),
+            errors,
+            warnings,
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Paso 6: Rutas de Herramientas MCP</strong></p>
+</div>
+<div class="paragraph">
+<p>Aquí es donde el código se "registra" como un servidor de herramientas.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>#[tool]</code>. Esta macro expone la función <code>calc_penalty</code> al protocolo MCP.</p>
+</li>
+<li>
+<p><code>Métricas</code>: Incluye un <code>RequestTimer</code> e incrementa contadores de éxito o error. Esto permite monitorizar el rendimiento del servidor en producción.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">// =================== 6. MCP TOOL ROUTES ===================
+// Tool registration and request handling.
+#[tool_router]
+impl CompatibilityEngine {
+    pub fn new() -&gt; Self {
+        Self {
+            tool_router: Self::tool_router(),
+        }
+    }
+
+    /// Calculate penalty with cap and interest
+    /// Logic: penalty = min(days_late × rate_per_day, cap), then add interest = penalty × interest_rate
+    #[tool(description = "Calculate penalty with cap and interest. Returns structured response with penalty amount, detailed explanation of calculation steps, errors for invalid inputs, and warnings. Logic: penalty = min(days_late × rate_per_day, cap), then add interest = penalty × interest_rate. Rate, cap, and interest values are configured via environment variables. Example: '12' days late → uses configured defaults")]
+    pub async fn calc_penalty(
+        &amp;self,
+        Parameters(params): Parameters&lt;CalcPenaltyParams&gt;
+    ) -&gt; Result&lt;CallToolResult, McpError&gt; {
+        let _timer = RequestTimer::new();
+        increment_requests();
+
+        // Parse string parameter
+        let days_late = match parse_f64_from_string(&amp;params.days_late) {
+            Ok(value) =&gt; value,
+            Err(parse_error) =&gt; {
+                increment_errors();
+                return Ok(CallToolResult::error(vec![Content::text(format!(
+                    "Invalid days_late parameter: {}", parse_error
+                ))]));
+            }
+        };
+
+        let result = Self::calc_penalty_internal(
+            days_late,
+            CONFIG.default_rate_per_day,
+            CONFIG.default_cap,
+            CONFIG.default_interest_rate,
+        );
+
+        if !result.errors.is_empty() {
+            increment_errors();
+            return Ok(CallToolResult::error(vec![Content::text(format!(
+                "Calculation errors: {}", result.errors.join(", ")
+            ))]));
+        }
+
+        match serde_json::to_string_pretty(&amp;result) {
+            Ok(json_str) =&gt; Ok(CallToolResult::success(vec![Content::text(json_str)])),
+            Err(e) =&gt; {
+                increment_errors();
+                Ok(CallToolResult::error(vec![Content::text(format!(
+                    "Error serializing response: {}", e
+                ))]))
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Paso 7: Handler del Servidor</strong></p>
+</div>
+<div class="paragraph">
+<p>La implementación de ServerHandler define la identidad del servidor. Le dice al cliente (Llama Stack) cómo se llama el servidor (penalty-engine-mcp-rs), su versión y qué instrucciones generales debe seguir la IA al usarlo.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">// =================== 7. MCP SERVER HANDLER ===================
+// Server metadata and capabilities exposed to MCP clients.
+#[tool_handler]
+impl ServerHandler for CompatibilityEngine {
+    fn get_info(&amp;self) -&gt; ServerInfo {
+        // Read basic information from .env file (replaced by sync script during release)
+        let name = "penalty-engine-mcp-rs".to_string();
+        let version = "2.0.2".to_string();
+        let title = "Penalty Engine MCP Server".to_string();
+        let website_url = "https://github.com/alpha-hack-program/compatibility-engine-mcp-rs.git#workshop".to_string();
+
+        ServerInfo {
+            instructions: Some(
+                "Penalty Engine providing a penalty calculation function:\
+            \n\n1. calc_penalty - Calculate penalty with cap and interest\
+            \n\nThe function is strongly typed and provides explicit calculations.".into()
+            ),
+            capabilities: ServerCapabilities::builder().enable_tools().build(),
+            server_info: rmcp::model::Implementation {
+                name: name,
+                version: version,
+                title: Some(title),
+                icons: None,
+                website_url: Some(website_url)
+            },
+            ..Default::default()
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Paso 8: Tests de comprobación</strong></p>
+</div>
+<div class="paragraph">
+<p>En este paso final, realizamos varias pruebas para no solo verificar el cálculo, sino poner a prueba la resistencia del servidor:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Inyección JSON</strong>: Verifica que no se pueda romper la estructura del mensaje enviando comillas maliciosas.</p>
+</li>
+<li>
+<p><strong>Ataques de Null Byte</strong>: Asegura que caracteres nulos no corrompan el flujo.</p>
+</li>
+<li>
+<p><strong>Trimming</strong>: Confirma que los espacios en blanco no afecten el cálculo.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">// =================== 8. TESTS ===================
+// Unit tests covering parsing and tool behavior.
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[tokio::test]
+    async fn test_calc_penalty() {
+        let engine = CompatibilityEngine::new();
+        let params = CalcPenaltyParams {
+            days_late: "12".to_string(),
+        };
+
+        let result = engine.calc_penalty(Parameters(params)).await;
+        assert!(result.is_ok());
+
+        let call_result = result.unwrap();
+        let content = call_result.content;
+        let json_text = content[0].raw.as_text().unwrap().text.as_str();
+        let response: CalcPenaltyResponse = serde_json::from_str(json_text).unwrap();
+
+        // Expected: min(12 * 100, 1000) = 1000, then 1000 + (1000 * 0.05) = 1050
+        assert_eq!(response.penalty, 1050.0);
+        assert!(response.errors.is_empty());
+        assert!(response.explanation.contains("Applied cap"));
+        assert!(response.explanation.contains("Interest"));
+    }
+
+    #[tokio::test]
+    async fn test_calc_penalty_with_errors() {
+        let engine = CompatibilityEngine::new();
+        let params = CalcPenaltyParams {
+            days_late: "-5".to_string(),  // Invalid: negative
+        };
+
+        let result = engine.calc_penalty(Parameters(params)).await;
+        assert!(result.is_ok());
+
+        let call_result = result.unwrap();
+        // Should be an error response due to invalid input
+        assert!(call_result.is_error.unwrap_or(false));
+        let content = call_result.content;
+        let error_text = content[0].raw.as_text().unwrap().text.as_str();
+        // Now the error comes from parsing and calculation
+        assert!(error_text.contains("Days late cannot be negative") || error_text.contains("Calculation errors"));
+    }
+
+    #[tokio::test]
+    async fn test_calc_penalty_small_amount() {
+        let engine = CompatibilityEngine::new();
+        let params = CalcPenaltyParams {
+            days_late: "10".to_string(),
+        };
+
+        let result = engine.calc_penalty(Parameters(params)).await;
+        assert!(result.is_ok());
+
+        let call_result = result.unwrap();
+        let content = call_result.content;
+        let json_text = content[0].raw.as_text().unwrap().text.as_str();
+        let response: CalcPenaltyResponse = serde_json::from_str(json_text).unwrap();
+
+        // Uses configured defaults: rate_per_day=100.0, cap=1000.0, interest_rate=0.05
+        // Expected: min(10 * 100, 1000) = 1000, then 1000 + (1000 * 0.05) = 1050
+        assert_eq!(response.penalty, 1050.0);
+        assert!(response.errors.is_empty());
+    }
+
+    #[tokio::test]
+    async fn test_string_parsing_invalid_format() {
+        let engine = CompatibilityEngine::new();
+        let params = CalcPenaltyParams {
+            days_late: "not-a-number".to_string(), // Invalid format
+        };
+
+        let result = engine.calc_penalty(Parameters(params)).await;
+        assert!(result.is_ok());
+
+        let call_result = result.unwrap();
+        assert!(call_result.is_error.unwrap_or(false));
+        let content = call_result.content;
+        let error_text = content[0].raw.as_text().unwrap().text.as_str();
+        assert!(error_text.contains("Invalid days_late parameter"));
+        assert!(error_text.contains("Cannot parse 'not-a-number' as a number"));
+    }
+
+    #[tokio::test]
+    async fn test_string_parsing_with_whitespace() {
+        let engine = CompatibilityEngine::new();
+        let params = CalcPenaltyParams {
+            days_late: "  12.5  ".to_string(), // Test whitespace trimming
+        };
+
+        let result = engine.calc_penalty(Parameters(params)).await;
+        assert!(result.is_ok());
+
+        let call_result = result.unwrap();
+        assert!(!call_result.is_error.unwrap_or(false));
+        let content = call_result.content;
+        let json_text = content[0].raw.as_text().unwrap().text.as_str();
+        let response: CalcPenaltyResponse = serde_json::from_str(json_text).unwrap();
+
+        // Should parse as 12.5 and calculate penalty
+        assert!(response.penalty &gt; 0.0);
+        assert!(response.errors.is_empty());
+    }
+
+    // =================== SECURITY TESTS ===================
+
+    #[tokio::test]
+    async fn test_security_input_length_limit() {
+        let engine = CompatibilityEngine::new();
+        // Create a string longer than 100 characters
+        let long_string = "1".repeat(101);
+        let params = CalcPenaltyParams {
+            days_late: long_string,
+        };
+
+        let result = engine.calc_penalty(Parameters(params)).await;
+        assert!(result.is_ok());
+
+        let call_result = result.unwrap();
+        assert!(call_result.is_error.unwrap_or(false));
+        let content = call_result.content;
+        let error_text = content[0].raw.as_text().unwrap().text.as_str();
+        assert!(error_text.contains("input too long"));
+        assert!(error_text.contains("max 100 characters"));
+    }
+
+    #[tokio::test]
+    async fn test_security_json_injection_prevention() {
+        let engine = CompatibilityEngine::new();
+        let params = CalcPenaltyParams {
+            days_late: r#"12", "malicious": "payload"#.to_string(),
+        };
+
+        let result = engine.calc_penalty(Parameters(params)).await;
+        assert!(result.is_ok());
+
+        let call_result = result.unwrap();
+        assert!(call_result.is_error.unwrap_or(false));
+        let content = call_result.content;
+        let error_text = content[0].raw.as_text().unwrap().text.as_str();
+
+        // Quotes should be sanitized to prevent JSON breaking
+        assert!(!error_text.contains(r#""malicious""#));
+        assert!(error_text.contains("12?, ?malicious?: ?payload"));
+    }
+
+    #[tokio::test]
+    async fn test_security_xss_prevention() {
+        let engine = CompatibilityEngine::new();
+        let params = CalcPenaltyParams {
+            days_late: "&lt;script&gt;alert('xss')&lt;/script&gt;".to_string(),
+        };
+
+        let result = engine.calc_penalty(Parameters(params)).await;
+        assert!(result.is_ok());
+
+        let call_result = result.unwrap();
+        assert!(call_result.is_error.unwrap_or(false));
+        let content = call_result.content;
+        let error_text = content[0].raw.as_text().unwrap().text.as_str();
+
+        // HTML/script tags should be sanitized
+        assert!(!error_text.contains("&lt;script&gt;"));
+        assert!(!error_text.contains("&lt;/script&gt;"));
+        assert!(error_text.contains("?script?"));
+    }
+
+    #[tokio::test]
+    async fn test_security_newline_injection_prevention() {
+        let engine = CompatibilityEngine::new();
+        let params = CalcPenaltyParams {
+            days_late: "12\n\nFAKE LOG ENTRY: Unauthorized access".to_string(),
+        };
+
+        let result = engine.calc_penalty(Parameters(params)).await;
+        assert!(result.is_ok());
+
+        let call_result = result.unwrap();
+        assert!(call_result.is_error.unwrap_or(false));
+        let content = call_result.content;
+        let error_text = content[0].raw.as_text().unwrap().text.as_str();
+
+        // Newlines should be replaced with spaces
+        assert!(!error_text.contains('\n'));
+        assert!(error_text.contains("12  FAKE LOG ENTRY"));
+    }
+
+    #[tokio::test]
+    async fn test_security_null_byte_prevention() {
+        let engine = CompatibilityEngine::new();
+        let params = CalcPenaltyParams {
+            days_late: "12\0malicious".to_string(),
+        };
+
+        let result = engine.calc_penalty(Parameters(params)).await;
+        assert!(result.is_ok());
+
+        let call_result = result.unwrap();
+        assert!(call_result.is_error.unwrap_or(false));
+        let content = call_result.content;
+        let error_text = content[0].raw.as_text().unwrap().text.as_str();
+
+        // Should be rejected due to null bytes
+        assert!(error_text.contains("null bytes"));
+    }
+
+    #[tokio::test]
+    async fn test_security_control_character_limit() {
+        let engine = CompatibilityEngine::new();
+        // Create input with excessive control characters
+        let malicious_input = "12\x01\x02\x03\x04\x05evil";
+        let params = CalcPenaltyParams {
+            days_late: malicious_input.to_string(),
+        };
+
+        let result = engine.calc_penalty(Parameters(params)).await;
+        assert!(result.is_ok());
+
+        let call_result = result.unwrap();
+        assert!(call_result.is_error.unwrap_or(false));
+        let content = call_result.content;
+        let error_text = content[0].raw.as_text().unwrap().text.as_str();
+
+        // Should be rejected due to too many control characters
+        assert!(error_text.contains("too many control characters"));
+    }
+
+    #[tokio::test]
+    async fn test_security_length_truncation_in_error() {
+        let engine = CompatibilityEngine::new();
+        // Create a 60-character invalid string (over the 50 error display limit but under input limit)
+        let long_invalid = "not-a-number-".repeat(4) + "extra-text"; // ~60 chars of invalid input
+        let params = CalcPenaltyParams {
+            days_late: long_invalid,
+        };
+
+        let result = engine.calc_penalty(Parameters(params)).await;
+        assert!(result.is_ok());
+
+        let call_result = result.unwrap();
+        assert!(call_result.is_error.unwrap_or(false));
+        let content = call_result.content;
+        let error_text = content[0].raw.as_text().unwrap().text.as_str();
+
+        // Error message should be truncated with "..." since input is over 50 chars
+        assert!(error_text.contains("..."));
+        assert!(error_text.len() &lt; 200); // Error message itself should be reasonable length
+    }
+
+    #[tokio::test]
+    async fn test_security_backslash_sanitization() {
+        let engine = CompatibilityEngine::new();
+        let params = CalcPenaltyParams {
+            days_late: r#"12\"malicious\"payload"#.to_string(),
+        };
+
+        let result = engine.calc_penalty(Parameters(params)).await;
+        assert!(result.is_ok());
+
+        let call_result = result.unwrap();
+        assert!(call_result.is_error.unwrap_or(false));
+        let content = call_result.content;
+        let error_text = content[0].raw.as_text().unwrap().text.as_str();
+
+        // Backslashes and quotes should be sanitized
+        assert!(!error_text.contains(r#"\""#));
+        assert!(error_text.contains("12??malicious??payload"));
+    }
+
+    #[tokio::test]
+    async fn test_all_parameter_types_with_numbers() {
+        // Test CalcPenaltyParams with native number
+        let json_penalty = r#"{"days_late": 12.5}"#;
+        let penalty_params: CalcPenaltyParams = serde_json::from_str(json_penalty).unwrap();
+        assert_eq!(penalty_params.days_late, "12.5");
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>¡Hasta aquí el copiado! Deberías tener alrededor de 660 líneas de código.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="33"><a class="anchor" href="#33"></a>3.3 Testear con MCP Inspector</h3>
