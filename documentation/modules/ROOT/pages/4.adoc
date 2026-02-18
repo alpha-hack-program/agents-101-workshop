@@ -1,8 +1,10 @@
 == 4. Crear la Distribución de Llama Stack
-include::_attributes.adoc[]
 
 [#41]
 === 4.1 ¿Qué es Llama Stack?
+
+Llama Stack es un framework open-source para desplegar agentes propuesto por Meta. En lugar de que cada desarrollador tenga que "reinventar la rueda" cada vez que quiere construir un agente, Llama Stack dispone de un conjunto de APIs y especificaciones estandarizadas que permiten que diferentes componentes de software hablen el mismo idioma.
+
 
 [#42]
 === 4.2 Añadir conexión al servidor MCP
