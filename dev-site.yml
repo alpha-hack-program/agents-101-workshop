@@ -3,7 +3,7 @@ runtime:
 
 site:
   title: "Agents 101: How to Build the Agents of the Future Today with Red Hat AI(Dev Mode)"
-  url: http://localhost:3000/rhs-build-course/index.html
+  url: http://localhost:3000/agents-101-workshop/0.html
   start_page: agents-101-workshop::0.adoc
 
 content:

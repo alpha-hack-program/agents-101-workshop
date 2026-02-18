@@ -3,7 +3,7 @@ runtime:
 
 site:
   title: "Agents 101: How to Build the Agents of the Future Today with Red Hat AI"
-  url: https://redhat-scholars.github.io/course-template
+  url: https://alpha-hack-program.github.io/agents-101-workshop/agents-101-workshop/0.html
   start_page: agents-101-workshop::0.adoc
 
 content:
