@@ -3,3 +3,7 @@ include::_attributes.adoc[]
 
 [#71]
 === Conclusión
+
+¡Gracias por haber participado en el taller! Si te ha parecido interesante y quieres experimentar algo más, puedes acceder al código fuente de este taller https://github.com/alpha-hack-program/llama-stack-demo[aquí].
+
+¿Quieres saber más sobre **Red Hat AI**? Accede a la https://www.redhat.com/es/products/ai[web oficial] para obtener más información.

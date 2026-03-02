@@ -4,3 +4,9 @@ include::_attributes.adoc[]
 [#51]
 === 5.1 Desplegar e interactuar con la app
 
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+helm upgrade llama-stack-demo XXX
+----
+

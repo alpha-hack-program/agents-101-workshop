@@ -18,7 +18,7 @@
 
 * xref:4.adoc[4. Crear la Distribución de Llama Stack]
 ** xref:4.adoc#41[4.1 ¿Qué es Llama Stack?]
-** xref:4.adoc#42[4.2 Añadir conexión al servidor MCP]
+** xref:4.adoc#42[4.2 Desplegar Llama Stack]
 ** xref:4.adoc#43[4.3 Ingestión de documentos para RAG]
 
 * xref:5.adoc[5. Desplegar el App Agéntica]
