@@ -113,7 +113,7 @@
     <a class="nav-link" href="#41">4.1 ¿Qué es Llama Stack?</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#42">4.2 Añadir conexión al servidor MCP</a>
+    <a class="nav-link" href="#42">4.2 Desplegar Llama Stack</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#43">4.3 Ingestión de documentos para RAG</a>
@@ -175,16 +175,78 @@
 <div class="sect2">
 <h3 id="41"><a class="anchor" href="#41"></a>4.1 ¿Qué es Llama Stack?</h3>
 <div class="paragraph">
-<p>Llama Stack es un framework open-source para desplegar agentes propuesto por Meta. En lugar de que cada desarrollador tenga que "reinventar la rueda" cada vez que quiere construir un agente, Llama Stack dispone de un conjunto de APIs y especificaciones estandarizadas que permiten que diferentes componentes de software hablen el mismo idioma.</p>
+<p><strong>Llama Stack</strong> es un framework open-source para desplegar agentes propuesto por Meta. En lugar de que cada desarrollador tenga que reinventar la rueda" cada vez que quiere construir un agente, Llama Stack dispone de un <strong>conjunto de APIs y especificaciones estandarizadas</strong> que permiten que diferentes componentes de software hablen el mismo idioma.</p>
+</div>
+<div class="paragraph">
+<p>Llama Stack integra la inferencia de modelos, la generación de embeddings y el almacenamiento vectorial en <strong>un único stack</strong> optimizado para RAG y los flujos de trabajo de IA basados en agentes.</p>
+</div>
+<div class="paragraph">
+<p>En OpenShift, el <strong>Llama Stack Operator</strong> gestiona el ciclo de vida del despliegue de estos componentes, garantizando la escalabilidad, la coherencia y la integración con los proyectos de OpenShift AI.</p>
+</div>
+<div class="paragraph">
+<p>¿Cómo se implementa Llama Stack? Vamos a echar un vistazo a los tres elementos esenciales:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Llama Stack Operator</strong>: Instala y gestiona instancias del servidor Llama Stack en OpenShift AI, encargándose de las operaciones del ciclo de vida, tales como el despliegue, el escalado y las actualizaciones.</p>
+</li>
+<li>
+<p><strong>Archivo run.yaml</strong>: Define qué APIs están habilitadas y cómo se configuran los proveedores de backend para un servidor de Llama Stack. Red Hat incluye un <code>run.yaml</code> por defecto que admite los escenarios de despliegue comunes. Puedes proporcionar un <code>run.yaml</code> personalizado para habilitar flujos de trabajo avanzados o integrar proveedores adicionales.</p>
+</li>
+<li>
+<p><strong>El Custom Resource LlamaStackDistribution</strong>: Declara la configuración de ejecución para un servidor de Llama Stack, incluyendo los proveedores de modelos, la configuración de embeddings, el almacenamiento vectorial y los ajustes de persistencia.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="42"><a class="anchor" href="#42"></a>4.2 Añadir conexión al servidor MCP</h3>
-
+<h3 id="42"><a class="anchor" href="#42"></a>4.2 Desplegar Llama Stack</h3>
+<div class="paragraph">
+<p>Para entornos de producción o desarrollo avanzado en OpenShift AI, la gestión manual de manifiestos YAML puede volverse tediosa. Por ello, vamos a utilizar Helm Charts para orquestar nuestra distribución.</p>
+</div>
+<div class="paragraph">
+<p>Volvemos a la pestaña de nuestro espacio de trabajo, el IDE. Vamos a desplegar una primera versión de nuestro Llama Stack.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">helm install llama-stack-demo helm/ --namespace ${PROJECT} --timeout 20m</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Una vez ejecutado el comando, ve a la consola de OpenShift. En la barra lateral, selecciona <code>Topology</code>. Deberías ver todos los elementos que hemos desplegado:</p>
+</div>
+<div class="paragraph">
+<p>XXX</p>
+</div>
+<div class="paragraph">
+<p>La arquitectura que hemos desplegado dispone de lo siguiente:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A</p>
+</li>
+<li>
+<p>B</p>
+</li>
+<li>
+<p>C</p>
+</li>
+<li>
+<p>D</p>
+</li>
+<li>
+<p>E</p>
+</li>
+</ul>
+</div>
 </div>
 <div class="sect2">
 <h3 id="43"><a class="anchor" href="#43"></a>4.3 Ingestión de documentos para RAG</h3>
-
+<div class="paragraph">
+<p>La Helm chart que hemos desplegado incorpora de automaticaciones para hacer RAG. Partimos de unos documentos legales ficticios disponibles en el IDE. Estos documentos son troceados y guardados en la base de datos vectorial. La distribución de Llama Stack que hemos desplegado incorpora un modelo de embedding, necesario para realizar la búsqueda y retrieval de información de esa base de datos.</p>
+</div>
 </div>
 </div>
 </div>
