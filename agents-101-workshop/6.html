@@ -210,10 +210,28 @@
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="61"><a class="anchor" href="#61"></a>6.1 Desplegar e interactuar con la app</h3>
+<div class="paragraph">
+<p>Disponer de herramientas de <strong>observabilidad</strong> es un pilar clave para operar con confianza y rapidez. En este caso, vamos a usar una integración basada en <strong>OpenTelemetry</strong> que centraliza trazas y métricas, y facilita su visualización con <strong>Grafana</strong>. De esta forma, tenemos un flujo unificado para entender qué ocurre en la aplicación del agente y por qué.</p>
+</div>
+<div class="paragraph">
+<p>Para desplegar, vuelve al IDE e ejecuta el siguiente comando:</p>
+</div>
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">helm upgrade llama-stack-demo XXX</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>En este caso, nos adentramos en cómo fluye la telemetría desde las apps hasta su análisis. ¿Qué diferencia hay entre instrumentar aplicaciones y almacenar/visualizar los datos?</p>
+</div>
+<div class="paragraph">
+<p>La instrumentación se encarga de generar telemetría: trazas y métricas que describen lo que hace la app. Esto se hace con OpenTelemetry y se exporta mediante OTLP a un collector compartido del clúster. Ese collector enruta las trazas hacia Tempo, donde quedan almacenadas y listas para su análisis.</p>
+</div>
+<div class="paragraph">
+<p>El almacenamiento y visualización lo gestionan Tempo y Grafana. Tempo conserva las trazas y Grafana ofrece los paneles para explorarlas, correlacionarlas y navegar por los servicios. Para las métricas, Prometheus se encarga del scrapeo, y el chart configura ServiceMonitors para que los servicios expongan lo necesario.</p>
+</div>
+<div class="paragraph">
+<p>Desplegando de esta manera, la infraestructura base (collector, Tempo y el stack de monitorización) se prepara solo una sola vez a nivel de clúster. Luego, el despliegue de la app solo agrega lo específico: dashboards, datasources y ServiceMonitors, sin duplicar componentes.</p>
 </div>
 </div>
 </div>
