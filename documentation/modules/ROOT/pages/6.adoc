@@ -4,8 +4,22 @@ include::_attributes.adoc[]
 [#61]
 === 6.1 Desplegar e interactuar con la app
 
+Disponer de herramientas de **observabilidad** es un pilar clave para operar con confianza y rapidez. En este caso, vamos a usar una integración basada en **OpenTelemetry** que centraliza trazas y métricas, y facilita su visualización con **Grafana**. De esta forma, tenemos un flujo unificado para entender qué ocurre en la aplicación del agente y por qué.
+
+Para desplegar, vuelve al IDE e ejecuta el siguiente comando:
+
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
 helm upgrade llama-stack-demo XXX
 ----
+
+En este caso, nos adentramos en cómo fluye la telemetría desde las apps hasta su análisis. ¿Qué diferencia hay entre instrumentar aplicaciones y almacenar/visualizar los datos?
+
+La instrumentación se encarga de generar telemetría: trazas y métricas que describen lo que hace la app. Esto se hace con OpenTelemetry y se exporta mediante OTLP a un collector compartido del clúster. Ese collector enruta las trazas hacia Tempo, donde quedan almacenadas y listas para su análisis.
+
+El almacenamiento y visualización lo gestionan Tempo y Grafana. Tempo conserva las trazas y Grafana ofrece los paneles para explorarlas, correlacionarlas y navegar por los servicios. Para las métricas, Prometheus se encarga del scrapeo, y el chart configura ServiceMonitors para que los servicios expongan lo necesario.
+
+Desplegando de esta manera, la infraestructura base (collector, Tempo y el stack de monitorización) se prepara solo una sola vez a nivel de clúster. Luego, el despliegue de la app solo agrega lo específico: dashboards, datasources y ServiceMonitors, sin duplicar componentes.
+
+
