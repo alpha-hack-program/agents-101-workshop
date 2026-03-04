@@ -16,7 +16,7 @@
 ** xref:3.adoc#32[3.2 Penalty Engine]
 ** xref:3.adoc#33[3.3 Testear con MCP Inspector]
 
-* xref:4.adoc[4. Crear la Distribución de Llama Stack]
+* xref:4.adoc[4. Desplegar la Distribución de Llama Stack]
 ** xref:4.adoc#41[4.1 ¿Qué es Llama Stack?]
 ** xref:4.adoc#42[4.2 Desplegar Llama Stack]
 ** xref:4.adoc#43[4.3 Ingestión de documentos para RAG]

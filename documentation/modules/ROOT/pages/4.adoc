@@ -1,4 +1,4 @@
-== 4. Crear la Distribución de Llama Stack
+== 4. Desplegar la Distribución de Llama Stack
 
 [#41]
 === 4.1 ¿Qué es Llama Stack?

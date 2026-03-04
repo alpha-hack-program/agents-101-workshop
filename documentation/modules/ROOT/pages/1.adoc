@@ -1,8 +1,13 @@
+include::_attributes.adoc[]
+
 == 1. Preparar el Entorno
 
 Para empezar, los facilitadores del taller os daremos acceso al cluster de OpenShift con vuestro usuario y contraseña. Recordad ambos porque os harán falta varias veces.
 
 El objetivo de esta sección 1 es preparar el entorno donde trabajaremos. Desplegaremos un espacio de trabajo (un IDE) desde OpenShift AI para poder modificar código e interactuar por el terminal. 
+
+* Usuario asignado: {username}
+* Contraseña: {password}
 
 ¡Comencemos!
 

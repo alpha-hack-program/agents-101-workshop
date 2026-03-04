@@ -1,2 +1,8 @@
 :experimental:
 :source-highlighter: highlightjs
+:username: %USERNAME%
+:password: %PASSWORD%
+:namespace: llama-stack-demo-{username}
+:base_subdomain: %BASE_SUBDOMAIN%
+:api-domain: {base_subdomain}:6443 
+:openshift-console-url: https://console-openshift-console.apps.{base_subdomain}

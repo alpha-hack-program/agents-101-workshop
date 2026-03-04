@@ -14,15 +14,16 @@ En este taller, cuando hablamos del modelo nos referimos a un **modelo de IA gen
 [#22]
 === 2.2 Despliegues de OpenShift AI
 
-En nuestro caso, vamos a desplegar un **modelo Llama 3.1** con 8 billones de parámetros en el motor de inferencia de Red Hat, el **Red Hat AI Inference Server**, que está basado en el proyecto open-source vLLM.
+En nuestro caso, vamos a desplegar un **modelo Qwen 3** con 8 billones de parámetros en el motor de inferencia de Red Hat, el **Red Hat AI Inference Server**, que está basado en el proyecto open-source vLLM.
 
 Vamos a volver a la pestaña de OpenShift AI. En la barra lateral, ve al **AI Hub** a la sección **Catalog**.
 
 Aquí podrás ver una lista de modelos de IA generativa que han sido **validados** en varias configuraciones de hardware por el equipo de Red Hat y que están listos para ser desplegados en el clúster. Entre ellos, encontrarás una gran variedad de modelos, incluyendo Granite, Llama, Deepseek, Mistral, etc. 
 
-En nuestro caso, vamos a descender hasta la sección de **Red Hat AI validated models** y clicar en **Llama-3.1-8B-Instruct**, debería ser el tercero en aparecer.
-
 image::models.png[]
+
+En nuestro caso, vamos a escribir en la barra de búsqueda **Qwen3-8B-FP8-dynamic**. Clica en el nombre del modelo para entrar en su página de información.
+
 
 Al entrar en la página del modelo, vemos información como detalles sobe su arquitectura y su fecha de lanzamiento. Si descendemos, veremos los resultados que ha obtenido en los benchmarks más populares.
 
@@ -30,11 +31,15 @@ Vamos a continuar clicando el botón `Deploy model` en la esquina superior derec
 
 image::model-data.png[]
 
-Entraremos en el primer paso del formulario para configurar el despliegue del modelo. Continúa clicando en `Next`.
+Entraremos en el primer paso del formulario para configurar el despliegue del modelo. 
+
+Continúa clicando en `Next`.
 
 image::deploy-model.png[]
 
-**MODIFICAR SEGÚN SE NECESITE** En el segundo paso, vamos especificar el proyecto, el nombre del modelo a desplegar y su perfil de hardware. Cuando esté listo, clica en `Next`.
+En el segundo paso, vamos a definir el **proyecto** con el nombre `llama-stack-demo-user<NOMBRE-USUARIO>`. En el **Hardware profile**, selecciona `nvidia`. Cuando esté listo, clica en `Next`.
+
+image::deploy-model-2.png[]
 
 En el tercer paso tenemos opciones de configuración avanzada. Modifica el formulario como se muestra en la siguiente imagen.
 
@@ -66,5 +71,5 @@ image::playground-chat.png[]
 
 ¡Perfecto! Prueba a escribir algo en la barra inferior para que el modelo responda.
 
-Hemos terminado esta parte. Pasa a la sección **3.Desarrollar el Servidor MCP**.
+Hemos terminado esta parte, vamos a pasar a la sección **3.Desarrollar el Servidor MCP**.
 
