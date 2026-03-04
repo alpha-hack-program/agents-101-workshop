@@ -9,13 +9,16 @@
     <link rel="next" href="3.html">
     <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../_/css/site.css">
+<link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body class="article">
 <header class="header">
   <nav class="navbar">
     <div class="navbar-brand">
-      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img src="../_/img/RHDLogo.svg" height="40px" alt="Red Hat Developer Program"></a>
-      <a class="navbar-item" style="font-size: 24px; color: white" href="https://alpha-hack-program.github.io/agents-101-workshop/agents-101-workshop/0.html">Agents 101: How to Build the Agents of the Future Today with Red Hat AI</a>
+      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img
+          src="../_/img/header_logo.png" height="40px" alt="Red Hat Developer Program"></a>
+      <a class="navbar-item" href="https://alpha-hack-program.github.io/agents-101-workshop/agents-101-workshop/0.html">Agents 101: How to Build the Agents of the Future Today with Red Hat AI</a>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
         <span></span>
@@ -24,18 +27,35 @@
     </div>
     <div id="topbar-nav" class="navbar-menu">
       <div class="navbar-end">
-        <a class="navbar-item" href="https://developers.redhat.com/ebooks/" target="_blank">Books</a>
-        <a class="navbar-item" href="https://developers.redhat.com/cheatsheets/" target="_blank">Cheat Sheets</a>
-        <a class="navbar-item" href="https://developers.redhat.com/events/" target="_blank">Upcoming Events</a>
+        <a class="navbar-item" href="#">Books</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">CheatSheets</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">CheatSheet A</a>
+            <a class="navbar-item" href="#">CheatSheet B</a>
+            <a class="navbar-item" href="#">CheatSheet C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Upcoming Events</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Event A</a>
+            <a class="navbar-item" href="#">Event B</a>
+            <a class="navbar-item" href="#">Event C</a>
+          </div>
+        </div>
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link" href="#">More Tutorials</a>
           <div class="navbar-dropdown">
-            <a class="navbar-item" href="https://redhat-developer-demos.github.io/kubernetes-tutorial/" target="_blank">Kubernetes</a>
-            <a class="navbar-item" href="https://redhat-developer-demos.github.io/istio-tutorial/" target="_blank">Istio</a>
-            <a class="navbar-item" href="https://redhat-developer-demos.github.io/quarkus-tutorial/" target="_blank">Quarkus</a>
-            <a class="navbar-item" href="https://redhat-developer-demos.github.io/knative-tutorial/" target="_blank">Knative</a>
-            <a class="navbar-item" href="https://redhat-developer-demos.github.io/tekton-tutorial/" target="_blank">Tekton</a>
+            <a class="navbar-item" href="#">Tutorial A</a>
+            <a class="navbar-item" href="#">Tutorial B</a>
+            <a class="navbar-item" href="#">Tutorial C</a>
           </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
         </div>
       </div>
     </div>
@@ -47,7 +67,7 @@
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <h3 class="title"><a href="0.html"></a></h3>
+    <h3 class="title"><a href="0.html" class=" query-params-link">Agents 101: How to Build the Agents of the Future Today with Red Hat AI</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
@@ -107,7 +127,7 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="4.html">4. Crear la Distribución de Llama Stack</a>
+    <a class="nav-link" href="4.html">4. Desplegar la Distribución de Llama Stack</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="4.html#41">4.1 ¿Qué es Llama Stack?</a>
@@ -152,6 +172,22 @@
 </ul>
   </nav>
 </div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Agents 101: How to Build the Agents of the Future Today with Red Hat AI</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Agents 101: How to Build the Agents of the Future Today with Red Hat AI</span>
+      <ul class="versions">
+        <li class="version is-current">
+          <a href="0.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
     </div>
   </aside>
 </div>
@@ -194,7 +230,7 @@
 <div class="sect2">
 <h3 id="22"><a class="anchor" href="#22"></a>2.2 Despliegues de OpenShift AI</h3>
 <div class="paragraph">
-<p>En nuestro caso, vamos a desplegar un <strong>modelo Llama 3.1</strong> con 8 billones de parámetros en el motor de inferencia de Red Hat, el <strong>Red Hat AI Inference Server</strong>, que está basado en el proyecto open-source vLLM.</p>
+<p>En nuestro caso, vamos a desplegar un <strong>modelo Qwen 3</strong> con 8 billones de parámetros en el motor de inferencia de Red Hat, el <strong>Red Hat AI Inference Server</strong>, que está basado en el proyecto open-source vLLM.</p>
 </div>
 <div class="paragraph">
 <p>Vamos a volver a la pestaña de OpenShift AI. En la barra lateral, ve al <strong>AI Hub</strong> a la sección <strong>Catalog</strong>.</p>
@@ -202,13 +238,13 @@
 <div class="paragraph">
 <p>Aquí podrás ver una lista de modelos de IA generativa que han sido <strong>validados</strong> en varias configuraciones de hardware por el equipo de Red Hat y que están listos para ser desplegados en el clúster. Entre ellos, encontrarás una gran variedad de modelos, incluyendo Granite, Llama, Deepseek, Mistral, etc.</p>
 </div>
-<div class="paragraph">
-<p>En nuestro caso, vamos a descender hasta la sección de <strong>Red Hat AI validated models</strong> y clicar en <strong>Llama-3.1-8B-Instruct</strong>, debería ser el tercero en aparecer.</p>
-</div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/models.png" alt="models">
 </div>
+</div>
+<div class="paragraph">
+<p>En nuestro caso, vamos a escribir en la barra de búsqueda <strong>Qwen3-8B-FP8-dynamic</strong>. Clica en el nombre del modelo para entrar en su página de información.</p>
 </div>
 <div class="paragraph">
 <p>Al entrar en la página del modelo, vemos información como detalles sobe su arquitectura y su fecha de lanzamiento. Si descendemos, veremos los resultados que ha obtenido en los benchmarks más populares.</p>
@@ -222,15 +258,23 @@
 </div>
 </div>
 <div class="paragraph">
-<p>Entraremos en el primer paso del formulario para configurar el despliegue del modelo. Continúa clicando en <code>Next</code>.</p>
+<p>Entraremos en el primer paso del formulario para configurar el despliegue del modelo.</p>
 </div>
-<div class="imageblock">
+<div class="paragraph">
+<p>Continúa clicando en <code>Next</code>.</p>
+</div>
+<div class="imageblock unresolved">
 <div class="content">
-<img src="_images/deploy-model.png" alt="deploy model">
+<img src="deploy-model.png" alt="deploy model">
 </div>
 </div>
 <div class="paragraph">
-<p><strong>MODIFICAR SEGÚN SE NECESITE</strong> En el segundo paso, vamos especificar el proyecto, el nombre del modelo a desplegar y su perfil de hardware. Cuando esté listo, clica en <code>Next</code>.</p>
+<p>En el segundo paso, vamos a definir el <strong>proyecto</strong> con el nombre <code>llama-stack-demo-user&lt;NOMBRE-USUARIO&gt;</code>. En el <strong>Hardware profile</strong>, selecciona <code>nvidia</code>. Cuando esté listo, clica en <code>Next</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/deploy-model-2.png" alt="deploy model 2">
+</div>
 </div>
 <div class="paragraph">
 <p>En el tercer paso tenemos opciones de configuración avanzada. Modifica el formulario como se muestra en la siguiente imagen.</p>
@@ -290,14 +334,14 @@
 <p>¡Perfecto! Prueba a escribir algo en la barra inferior para que el modelo responda.</p>
 </div>
 <div class="paragraph">
-<p>Hemos terminado esta parte. Pasa a la sección <strong>3.Desarrollar el Servidor MCP</strong>.</p>
+<p>Hemos terminado esta parte, vamos a pasar a la sección <strong>3.Desarrollar el Servidor MCP</strong>.</p>
 </div>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="1.html">1. Preparar el Entorno</a></span>
-  <span class="next"><a href="3.html">3. Desarrollar el Servidor MCP</a></span>
+  <span class="prev"><a href="1.html" class="query-params-link">1. Preparar el Entorno</a></span>
+  <span class="next"><a href="3.html" class="query-params-link">3. Desarrollar el Servidor MCP</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
