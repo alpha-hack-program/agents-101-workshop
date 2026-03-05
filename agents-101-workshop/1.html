@@ -222,6 +222,9 @@
 <li>
 <p>Contraseña: %PASSWORD%</p>
 </li>
+<li>
+<p>URL: <a href="https://console-openshift-console.apps.%BASE_SUBDOMAIN%" class="bare">https://console-openshift-console.apps.%BASE_SUBDOMAIN%</a></p>
+</li>
 </ul>
 </div>
 <div class="paragraph">
@@ -257,18 +260,18 @@
 <div class="sect2">
 <h3 id="12"><a class="anchor" href="#12"></a>1.2 Crear el Code Server</h3>
 <div class="paragraph">
-<p>Queremos crear un espacio de trabajo, pero ¿dónde? Necesitamos un proyecto donde hacerlo. En la barra lateral, entra en la sección Projects.</p>
+<p>Primero vamos a ir a los proyectos de OpenShift AI para elegir dónde crear el Code Server.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/create-project.png" alt="create project">
+<img src="_images/project.png" alt="project">
 </div>
 </div>
 <div class="paragraph">
-<p>Clica ahora en "Create project". Vamos a llamarle project-user&lt;número-de-usuario&gt;. Es decir, si tu usuario es el número 1, debería ser project-user1.</p>
+<p>Elije el proyecto <code>llama-stack-demo-%USERNAME%</code>.</p>
 </div>
 <div class="paragraph">
-<p>Al crear el proyecto, deberías ser redirigido a una página como la siguiente. Ahora, clica en "Create a workbench".</p>
+<p>Deberías estar a una página como la siguiente. Ahora, clica en "Create a workbench".</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -276,7 +279,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>Vamos a rellenar el formulario de creación del workbench como en la imagen. Cuando lo tengamos listo, confirmamos al botón inferior izquierdo "Create workbench".</p>
+<p>Vamos a rellenar el formulario de creación del workbench. En <code>name</code>, escribe workbench-%USERNAME%. Cuando lo tengamos listo, confirma al botón inferior izquierdo "Create workbench".</p>
 </div>
 <div class="imageblock">
 <div class="content">

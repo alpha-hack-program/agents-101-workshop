@@ -266,19 +266,22 @@
 <div class="paragraph">
 <p>RAG permite al modelo acceder a documentación y aprender de ella, pero a la hora de realizar cálculos basados en la información, puede cometer fallos. Vamos a crear un servidor MCP para mejorar la fiabilidad a la hora de calcular la penalización por no realizar un pago.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/penalty-engine.png" alt="penalty engine">
+</div>
+</div>
 <div class="paragraph">
 <p>Para empezar, vamos a descargar el repositorio usando <code>git clone</code>:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone XXXX</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd
+git clone --branch empty --single-branch <a href="mailto:git@github.com">git@github.com</a>:alpha-hack-program/penalty-engine-mcp-rs.git</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>En la barra lateral izquierda, accede a compatibility-engine&gt;src&gt;common/compatibility-engine.yaml. Este es el archivo en el que definiremos todo el servidor.</p>
-</div>
-<div class="paragraph">
-<p>IMAGEN DE LA FORMULA</p>
+<p>En la barra lateral izquierda, accede a <code>penalty-engine&gt;src&gt;common/penalty-engine.yaml</code>. Este es el archivo en el que definiremos todo el servidor.</p>
 </div>
 <div class="paragraph">
 <p>Vamos a construir el servidor MCP paso a paso, en total son 8. El código está escrito en Rust, no hace falta que tengas conocimientos sobre este lenguaje de programación. Iremos copiando cada paso en el archivo hasta obtener un servidor MCP funcional.</p>
