@@ -10,3 +10,5 @@ include::_attributes.adoc[]
 helm upgrade llama-stack-demo XXX
 ----
 
+image::app-deployment.png[]
+

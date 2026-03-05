@@ -41,7 +41,7 @@ Deberías estar a una página como la siguiente. Ahora, clica en "Create a workb
 
 image::project-openshift-ai.png[]
 
-Vamos a rellenar el formulario de creación del workbench. En `name`, escribe {workbench}. Cuando lo tengamos listo, confirma al botón inferior izquierdo "Create workbench".
+Vamos a rellenar el formulario de creación del workbench como en la siguiente imagen. Recuerda que en `name`, tienes que escribir {workbench}. Cuando lo tengas listo, confirma al botón inferior izquierdo "Create workbench".
 
 image::workbench-form.png[]
 

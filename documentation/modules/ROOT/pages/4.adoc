@@ -9,7 +9,6 @@ Llama Stack integra la inferencia de modelos, la generación de embeddings y el 
 
 En OpenShift, el **Llama Stack Operator** gestiona el ciclo de vida del despliegue de estos componentes, garantizando la escalabilidad, la coherencia y la integración con los proyectos de OpenShift AI.
 
-
 ¿Cómo se implementa Llama Stack? Vamos a echar un vistazo a los tres elementos esenciales:
 
 * **Llama Stack Operator**: Instala y gestiona instancias del servidor Llama Stack en OpenShift AI, encargándose de las operaciones del ciclo de vida, tales como el despliegue, el escalado y las actualizaciones.
@@ -33,7 +32,7 @@ helm install llama-stack-demo helm/ --namespace ${PROJECT} --timeout 20m
 
 Una vez ejecutado el comando, ve a la consola de OpenShift. En la barra lateral, selecciona `Topology`. Deberías ver todos los elementos que hemos desplegado:
 
-XXX
+image::llama-stack-deployment.png[]
 
 La arquitectura que hemos desplegado dispone de lo siguiente:
 
@@ -44,6 +43,7 @@ La arquitectura que hemos desplegado dispone de lo siguiente:
 * E
 
 [#43]
+
 === 4.3 Ingestión de documentos para RAG
 
 La Helm chart que hemos desplegado incorpora de automaticaciones para hacer RAG. Partimos de unos documentos legales ficticios disponibles en el IDE. Estos documentos son troceados y guardados en la base de datos vectorial. La distribución de Llama Stack que hemos desplegado incorpora un modelo de embedding, necesario para realizar la búsqueda y retrieval de información de esa base de datos.
