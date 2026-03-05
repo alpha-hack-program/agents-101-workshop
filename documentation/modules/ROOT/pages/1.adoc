@@ -8,6 +8,7 @@ El objetivo de esta sección 1 es preparar el entorno donde trabajaremos. Desple
 
 * Usuario asignado: {username}
 * Contraseña: {password}
+* URL: {openshift-console-url}
 
 ¡Comencemos!
 
@@ -30,17 +31,17 @@ image::openshift-ai-homepage.png[]
 [#12]
 === 1.2 Crear el Code Server
 
-Queremos crear un espacio de trabajo, pero ¿dónde? Necesitamos un proyecto donde hacerlo. En la barra lateral, entra en la sección Projects.
+Primero vamos a ir a los proyectos de OpenShift AI para elegir dónde crear el Code Server.
 
-image::create-project.png[]
+image::project.png[]
 
-Clica ahora en "Create project". Vamos a llamarle project-user<número-de-usuario>. Es decir, si tu usuario es el número 1, debería ser project-user1.
+Elije el proyecto `{namespace}`.
 
-Al crear el proyecto, deberías ser redirigido a una página como la siguiente. Ahora, clica en "Create a workbench".
+Deberías estar a una página como la siguiente. Ahora, clica en "Create a workbench".
 
 image::project-openshift-ai.png[]
 
-Vamos a rellenar el formulario de creación del workbench como en la imagen. Cuando lo tengamos listo, confirmamos al botón inferior izquierdo "Create workbench".
+Vamos a rellenar el formulario de creación del workbench. En `name`, escribe {workbench}. Cuando lo tengamos listo, confirma al botón inferior izquierdo "Create workbench".
 
 image::workbench-form.png[]
 

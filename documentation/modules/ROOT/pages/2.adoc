@@ -16,7 +16,7 @@ En este taller, cuando hablamos del modelo nos referimos a un **modelo de IA gen
 
 En nuestro caso, vamos a desplegar un **modelo Qwen 3** con 8 billones de parámetros en el motor de inferencia de Red Hat, el **Red Hat AI Inference Server**, que está basado en el proyecto open-source vLLM.
 
-Vamos a volver a la pestaña de OpenShift AI. En la barra lateral, ve al **AI Hub** a la sección **Catalog**.
+Vamos a volver a la pestaña de OpenShift AI. En la barra lateral, ve al `AI Hub` a la sección `Catalog`.
 
 Aquí podrás ver una lista de modelos de IA generativa que han sido **validados** en varias configuraciones de hardware por el equipo de Red Hat y que están listos para ser desplegados en el clúster. Entre ellos, encontrarás una gran variedad de modelos, incluyendo Granite, Llama, Deepseek, Mistral, etc. 
 
@@ -37,7 +37,7 @@ Continúa clicando en `Next`.
 
 image::deploy-model.png[]
 
-En el segundo paso, vamos a definir el **proyecto** con el nombre `llama-stack-demo-user<NOMBRE-USUARIO>`. En el **Hardware profile**, selecciona `nvidia`. Cuando esté listo, clica en `Next`.
+En el segundo paso, vamos a definir el **proyecto** con el nombre `{namespace}`. En el **Hardware profile**, selecciona `nvidia`. Cuando esté listo, clica en `Next`.
 
 image::deploy-model-2.png[]
 

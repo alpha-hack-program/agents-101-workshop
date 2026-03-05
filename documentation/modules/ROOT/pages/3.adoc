@@ -30,17 +30,18 @@ https://github.com/dgpmakes/compatibility-engine-mcp-rs.git
 
 RAG permite al modelo acceder a documentación y aprender de ella, pero a la hora de realizar cálculos basados en la información, puede cometer fallos. Vamos a crear un servidor MCP para mejorar la fiabilidad a la hora de calcular la penalización por no realizar un pago.
 
+image::penalty-engine.png[]
+
 Para empezar, vamos a descargar el repositorio usando `git clone`:
 
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
-git clone XXXX
+cd
+git clone --branch empty --single-branch git@github.com:alpha-hack-program/penalty-engine-mcp-rs.git
 ----
 
-En la barra lateral izquierda, accede a compatibility-engine>src>common/compatibility-engine.yaml. Este es el archivo en el que definiremos todo el servidor. 
-
-IMAGEN DE LA FORMULA
+En la barra lateral izquierda, accede a `penalty-engine>src>common/penalty-engine.yaml`. Este es el archivo en el que definiremos todo el servidor. 
 
 Vamos a construir el servidor MCP paso a paso, en total son 8. El código está escrito en Rust, no hace falta que tengas conocimientos sobre este lenguaje de programación. Iremos copiando cada paso en el archivo hasta obtener un servidor MCP funcional.
 
