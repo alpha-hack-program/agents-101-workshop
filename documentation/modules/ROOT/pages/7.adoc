@@ -1,5 +1,6 @@
-== ¡Taller terminado!
 include::_attributes.adoc[]
+
+== ¡Taller terminado!
 
 [#71]
 === Conclusión

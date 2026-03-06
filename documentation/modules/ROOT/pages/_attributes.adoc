@@ -7,3 +7,4 @@
 :api-domain: {base_subdomain}:6443 
 :openshift-console-url: https://console-openshift-console.apps.{base_subdomain}
 :workbench: workbench-%USERNAME%
+:project: llama-stack-demo-{username}

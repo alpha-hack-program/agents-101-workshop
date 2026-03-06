@@ -1,5 +1,6 @@
-== 2. Desplegar el Modelo
 include::_attributes.adoc[]
+
+== 2. Desplegar el Modelo
 
 [#21]
 === 2.1 ¿Qué es el modelo?

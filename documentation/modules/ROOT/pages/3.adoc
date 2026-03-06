@@ -1,5 +1,6 @@
-== 3. Desarrollar el Servidor MCP
 include::_attributes.adoc[]
+
+== 3. Desarrollar el Servidor MCP
 
 [#31]
 === 3.1 ¿Qué es MCP?

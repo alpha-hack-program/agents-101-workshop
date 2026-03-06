@@ -1,3 +1,5 @@
+include::_attributes.adoc[]
+
 == 4. Desplegar la Distribución de Llama Stack
 
 [#41]
@@ -6,6 +8,8 @@
 **Llama Stack** es un framework open-source para desplegar agentes propuesto por Meta. En lugar de que cada desarrollador tenga que reinventar la rueda" cada vez que quiere construir un agente, Llama Stack dispone de un **conjunto de APIs y especificaciones estandarizadas** que permiten que diferentes componentes de software hablen el mismo idioma.
 
 Llama Stack integra la inferencia de modelos, la generación de embeddings y el almacenamiento vectorial en **un único stack** optimizado para RAG y los flujos de trabajo de IA basados en agentes.
+
+image::llama-stack-explanation.png[]
 
 En OpenShift, el **Llama Stack Operator** gestiona el ciclo de vida del despliegue de estos componentes, garantizando la escalabilidad, la coherencia y la integración con los proyectos de OpenShift AI.
 
