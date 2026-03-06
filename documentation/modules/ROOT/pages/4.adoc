@@ -34,17 +34,20 @@ Volvemos a la pestaña de nuestro espacio de trabajo, el IDE. Vamos a desplegar 
 helm install llama-stack-demo helm/ --namespace ${PROJECT} --timeout 20m
 ----
 
-Una vez ejecutado el comando, ve a la consola de OpenShift. En la barra lateral, selecciona `Topology`. Deberías ver todos los elementos que hemos desplegado:
+Una vez ejecutado el comando, ve a la consola de OpenShift. En la barra lateral, selecciona `Topology`. Aunque el orden de los despliegues no concuerde con el de la imagen, deberías tener todos estos:
 
 image::llama-stack-deployment.png[]
 
 La arquitectura que hemos desplegado dispone de lo siguiente:
 
-* A
-* B
-* C
-* D
-* E
+* A la izquierda del todo, tenemos el despliegue de Penalty Engine, el servidor MCP que vimos en la sección 3.
+* A su lado, tenemos la base de datos de vectores de PostgreSQL junto a su propia interfaz web.
+* Un poco más arriba, tres Deployments que pertenecen a Milvus.
+* La fila de Deployments de la parte inferior
+* La pieza central es la distribución de Llama Stack, que actúa como conector del resto de elementos del stack.
+* Encima, encontramos el modelo Qwen que desplegamos en la sección 2.
+* En verde, jobs para automatizar el despliegue del workshop.
+* Finalmente en la parte inferior, tenemos Deployments de pipelines. Con ellas hemos realizado la ingestión de archivos para hacer RAG y también tests de RAGas.
 
 [#43]
 
