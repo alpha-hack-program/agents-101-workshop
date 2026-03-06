@@ -23,8 +23,6 @@ Esto permite a nuestro modelo interactuar con herramientas externas como Slack, 
 5. Llama Stack **devuelve el resultado** de la herramienta al modelo.
 6. Con la nueva información, el modelo genera su **respuesta final** y el usuario la recibe.
 
-https://github.com/dgpmakes/compatibility-engine-mcp-rs.git
-
 [#32]
 === 3.2 Penalty Engine
 

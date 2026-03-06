@@ -35,7 +35,7 @@ Entraremos en el primer paso del formulario para configurar el despliegue del mo
 
 Continúa clicando en `Next`.
 
-image::deploy-model.png[]
+image::deploy-model-1.png[]
 
 En el segundo paso, vamos a definir el **proyecto** con el nombre `{namespace}`. En el **Hardware profile**, selecciona `nvidia`. Cuando esté listo, clica en `Next`.
 

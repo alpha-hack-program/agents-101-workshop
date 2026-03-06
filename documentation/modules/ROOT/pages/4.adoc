@@ -46,4 +46,4 @@ La arquitectura que hemos desplegado dispone de lo siguiente:
 
 === 4.3 Ingestión de documentos para RAG
 
-La Helm chart que hemos desplegado incorpora de automaticaciones para hacer RAG. Partimos de unos documentos legales ficticios disponibles en el IDE. Estos documentos son troceados y guardados en la base de datos vectorial. La distribución de Llama Stack que hemos desplegado incorpora un modelo de embedding, necesario para realizar la búsqueda y retrieval de información de esa base de datos.
+La Helm chart que hemos desplegado incorpora de automatizaciones para hacer RAG. Partimos de unos documentos legales ficticios disponibles en el IDE. Estos documentos son troceados y guardados en la base de datos vectorial. La distribución de Llama Stack que hemos desplegado incorpora un modelo de embedding, necesario para realizar la búsqueda y retrieval de información de esa base de datos.
