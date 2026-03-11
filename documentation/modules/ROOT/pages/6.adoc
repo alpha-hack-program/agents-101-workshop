@@ -3,7 +3,7 @@ include::_attributes.adoc[]
 == 6. Habilitar Observabilidad
 
 [#61]
-=== 6.1 Desplegar e interactuar con la app
+=== 6.1 Desplegar Observabilidad
 
 Disponer de herramientas de **observabilidad** es un pilar clave para operar con confianza y rapidez. En este caso, vamos a usar una integración basada en **OpenTelemetry** que centraliza trazas y métricas, y facilita su visualización con **Grafana**. De esta forma, tenemos un flujo unificado para entender qué ocurre en la aplicación del agente y por qué.
 
@@ -15,12 +15,23 @@ Para desplegar, vuelve al IDE e ejecuta el siguiente comando:
 helm upgrade llama-stack-demo XXX
 ----
 
-En este caso, nos adentramos en cómo fluye la telemetría desde las apps hasta su análisis. ¿Qué diferencia hay entre instrumentar aplicaciones y almacenar/visualizar los datos?
+En este caso, nos adentramos en cómo fluye la *telemetría* desde las apps hasta su análisis. ¿Qué diferencia hay entre instrumentar aplicaciones y almacenar/visualizar los datos?
 
-La instrumentación se encarga de generar telemetría: trazas y métricas que describen lo que hace la app. Esto se hace con OpenTelemetry y se exporta mediante OTLP a un collector compartido del clúster. Ese collector enruta las trazas hacia Tempo, donde quedan almacenadas y listas para su análisis.
-
-El almacenamiento y visualización lo gestionan Tempo y Grafana. Tempo conserva las trazas y Grafana ofrece los paneles para explorarlas, correlacionarlas y navegar por los servicios. Para las métricas, Prometheus se encarga del scrapeo, y el chart configura ServiceMonitors para que los servicios expongan lo necesario.
+La instrumentación se encarga de generar telemetría: *trazas y métricas* que describen lo que hace la app. Esto se hace con OpenTelemetry y se exporta a un collector compartido del clúster. Ese collector *enruta las trazas* hacia Tempo, donde quedan almacenadas y listas para su análisis. Grafana se encarga de la *visualización*, ofreciendo los paneles de trazas para explorarlas y correlacionarlas.
 
 Desplegando de esta manera, la infraestructura base (collector, Tempo y el stack de monitorización) se prepara solo una sola vez a nivel de clúster. Luego, el despliegue de la app solo agrega lo específico: dashboards, datasources y ServiceMonitors, sin duplicar componentes.
 
+En Openshift, vuelve a `Workloads>Topology` y esta vez clica en el Deployment `llama-stack-demo-grafana`, con el icono naranja. Clica en la ruta que aparece en el panel de la derecha.
+
+image::reaching-grafana.png[]
+
+¡Perfecto! Ahora se abrirá una pestaña nueva a la interfaz de Grafana. En el panel lateral izquierdo, clica en Dashboards y abre el dashboard que aparece. Deberías llegar a la siguiente imagen:
+
+image::grafana-dashboards.png[]
+
+Si quieres comprobar cómo se visualizan las trazas *en tiempo real*, cambia la franja de tiempo visualizado en el campo superior derecha con un reloj. Selecciona los últimos 5 minutos y prueba a chatear con el agente. Deberían aparecer nuevas trazas. Al clicar en el `Trace ID` azul de la tabla, verás en detalle las trazas:
+
+image::grafana-traces.png[]
+
+Tenemos la observabilidad lista. ¡Hemos acabado el taller! Vamos a recapitular qué hemos hecho en la siguiente sección.
 

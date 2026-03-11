@@ -62,7 +62,7 @@ Cambia el proyecto en la parte superior. Deberías poder ver el modelo que acaba
 
 image::assets.png[]
 
-Puede que al hacerlo, salte el siguiente mensaje de error. Estos espacios de testeo aún están en Tech Preview. Puedes ignorarlo, cerrarlo pinchando en la `X` y continuar con el siguiente paso sin problema.
+Puede que al hacerlo, salte el siguiente mensaje de error. Estos espacios de testeo aún están en `Tech Preview`. Puedes ignorarlo, cerrarlo pinchando en la `X` y continuar con el siguiente paso sin problema.
 
 image::playground-error.png[]
 

@@ -9,11 +9,11 @@ El **Model Context Protocol (MCP)** es básicamente el USB-C para la inteligenci
 
 Esto permite a nuestro modelo interactuar con herramientas externas como Slack, nuestro clúster de OpenShift y también realizar operaciones lógicas como calcular presupuestos con más fiabilidad.
 
-**¿Qué hace falta?** Para incluir una herramienta basada en MCP en nuestra arquitectura, necesitamos tres componentes:
+**¿Qué hace falta?** Para tener un agente basado en MCP, necesitamos tres componentes:
 
-* Por un lado, necesitamos **un modelo y un motor de inferencia**. Gracias a vLLM, tenemos flexibilidad para servir el modelo on-premise, en la nube que prefiramos o simplemente que sea servido por terceros.
+* Por un lado, necesitamos **un modelo y un motor de inferencia**. Gracias a *vLLM*, tenemos flexibilidad para servir el modelo on-premise, en la nube que prefiramos o simplemente que sea servido por terceros.
 * Nos hará falta definir **un servidor MCP**, que contendrá la lógica que queremos que el modelo ejecute cuando sea necesario.
-* Finalmente necesitamos **un cliente MCP**. ¿Dónde lo encontramos? En la otra gran pieza de este taller, Llama Stack. Se trata de un framework de creación de agentes que nos permite centralizar todas las herramientas necesarias para crearlos. Más adelante, desplegaremos una distribución de Llama Stack para verlo más a fondo.
+* Finalmente necesitamos **un cliente MCP**. ¿Dónde lo encontramos? En la otra gran pieza de este taller, *Llama Stack*. Se trata de un framework de creación de agentes que nos permite centralizar todas las herramientas necesarias para crearlos. Más adelante, desplegaremos una distribución de Llama Stack para verlo más a fondo.
 
 **¿Cómo funciona?** El flujo sería el siguiente:
 
@@ -27,7 +27,7 @@ Esto permite a nuestro modelo interactuar con herramientas externas como Slack, 
 [#32]
 === 3.2 Penalty Engine
 
-RAG permite al modelo acceder a documentación y aprender de ella, pero a la hora de realizar cálculos basados en la información, puede cometer fallos. Vamos a crear un servidor MCP para mejorar la fiabilidad a la hora de calcular la penalización por no realizar un pago.
+RAG permite al modelo acceder a documentación y aprender de ella, pero a la hora de realizar cálculos basados en la información, puede cometer fallos. Vamos a crear un servidor MCP para mejorar la fiabilidad a la hora de calcular la penalización por no realizar un pago. Lo llamaremos *Penalty Engine* y funcionará de la siguiente forma:
 
 image::penalty-engine.png[]
 
@@ -780,7 +780,4 @@ mod tests {
 }
 ----
 
-¡Hasta aquí el copiado! Deberías tener alrededor de 660 líneas de código.
-
-[#33]
-=== 3.3 Testear con MCP Inspector
+¡Hasta aquí el copiado! Deberías tener alrededor de 660 líneas de código en las que queda toda la lógica del servidor MCP. ¿Cuál será el siguiente paso? Crear una imagen con el código y desplegarla junto al resto de componentes de Llama Stack. ¡Continúa a la siguiente sección!

@@ -5,11 +5,39 @@ include::_attributes.adoc[]
 [#51]
 === 5.1 Desplegar e interactuar con la app
 
+¡Es hora de *unir todas las piezas* en la app! Esta app consistirá en una ventana de chat con el agente que hemos creado. Se trata de un front-end bastante sencillo que nos permite experimentar con el comportamiento del agente.
+
+No es necesario que tengas conocimientos de programación. Vamos a desplegar directamente la app con este comando:
+
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
 helm upgrade llama-stack-demo XXX
 ----
 
-image::app-deployment.png[]
+Ve a la ventana de Openshift. En el panel lateral, busca `Workloads>Topology`. Esta vez vamos a clicar en el Deployment `llama-stack-demo-app`, con el icono azul y amarillo de Python. Luego clica en la ruta que aparece en el panel de la derecha.
+
+image::reaching-app.png[]
+
+Se abrirá otra pestaña en la que accedemos a la app. Vamos a configurar el chat desde el panel del lado izquierdo tal como aparece en la siguiente imagen.
+
+image::app.png[]
+
+¡Genial! Ya solo queda a poner a prueba el agente. Escribe lo siguiente:
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+Hello! I want you to calculate the penalty for 12 days.
+----
+
+Si todo ha ido bien, deberías tener una respuesta parecida a esta:
+
+[source,bash,subs="+macros,+attributes"]
+----
+PEGAR RESPUESTA 
+----
+
+¡Finalmente tenemos el agente funcionando! Aunque... ¿cómo sabemos qué el agente está interactuando correctamente con el nuestro stack de IA? Toca el paso final, habilitar la capa de *observabilidad*.
+
 

@@ -40,17 +40,18 @@ image::llama-stack-deployment.png[]
 
 La arquitectura que hemos desplegado dispone de lo siguiente:
 
-* A la izquierda del todo, tenemos el despliegue de Penalty Engine, el servidor MCP que vimos en la sección 3.
-* A su lado, tenemos la base de datos de vectores de PostgreSQL junto a su propia interfaz web.
-* Un poco más arriba, tres Deployments que pertenecen a Milvus.
-* La fila de Deployments de la parte inferior
-* La pieza central es la distribución de Llama Stack, que actúa como conector del resto de elementos del stack.
-* Encima, encontramos el modelo Qwen que desplegamos en la sección 2.
+* A la izquierda, tenemos el despliegue de *Penalty Engine*, el servidor MCP.
+* A su lado, tenemos la *base de datos de vectores* de PostgreSQL junto a su propia interfaz web.
+* Un poco más arriba, tres despliegues que pertenecen a Milvus, otra base de datos de vectores que podemos usar opcionalmente.
+* La *pieza central* es la distribución de Llama Stack, que actúa como conector del resto de elementos del stack.
+* Encima, encontramos el *modelo Qwen 3* que desplegamos al principio del taller.
 * En verde, jobs para automatizar el despliegue del workshop.
-* Finalmente en la parte inferior, tenemos Deployments de pipelines. Con ellas hemos realizado la ingestión de archivos para hacer RAG y también tests de RAGas.
+* Finalmente en la parte inferior, tenemos despliegues de *pipelines*. Con ellas hemos realizado la ingestión de archivos para hacer RAG y también tests de RAGas.
 
 [#43]
 
 === 4.3 Ingestión de documentos para RAG
 
 La Helm chart que hemos desplegado incorpora de automatizaciones para hacer RAG. Partimos de unos documentos legales ficticios disponibles en el IDE. Estos documentos son troceados y guardados en la base de datos vectorial. La distribución de Llama Stack que hemos desplegado incorpora un modelo de embedding, necesario para realizar la búsqueda y retrieval de información de esa base de datos.
+
+Una vez que tenemos Llama Stack, podemos desplegar la app que interactuará con él. ¡Pasa a la siguiente sección!
