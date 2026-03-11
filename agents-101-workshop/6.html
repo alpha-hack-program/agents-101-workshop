@@ -120,9 +120,6 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="3.html#32">3.2 Penalty Engine</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="3.html#33">3.3 Testear con MCP Inspector</a>
-  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -209,7 +206,7 @@
 <h2 id="_6_habilitar_observabilidad"><a class="anchor" href="#_6_habilitar_observabilidad"></a>6. Habilitar Observabilidad</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="61"><a class="anchor" href="#61"></a>6.1 Desplegar e interactuar con la app</h3>
+<h3 id="61"><a class="anchor" href="#61"></a>6.1 Desplegar Observabilidad</h3>
 <div class="paragraph">
 <p>Disponer de herramientas de <strong>observabilidad</strong> es un pilar clave para operar con confianza y rapidez. En este caso, vamos a usar una integración basada en <strong>OpenTelemetry</strong> que centraliza trazas y métricas, y facilita su visualización con <strong>Grafana</strong>. De esta forma, tenemos un flujo unificado para entender qué ocurre en la aplicación del agente y por qué.</p>
 </div>
@@ -222,16 +219,40 @@
 </div>
 </div>
 <div class="paragraph">
-<p>En este caso, nos adentramos en cómo fluye la telemetría desde las apps hasta su análisis. ¿Qué diferencia hay entre instrumentar aplicaciones y almacenar/visualizar los datos?</p>
+<p>En este caso, nos adentramos en cómo fluye la <strong>telemetría</strong> desde las apps hasta su análisis. ¿Qué diferencia hay entre instrumentar aplicaciones y almacenar/visualizar los datos?</p>
 </div>
 <div class="paragraph">
-<p>La instrumentación se encarga de generar telemetría: trazas y métricas que describen lo que hace la app. Esto se hace con OpenTelemetry y se exporta mediante OTLP a un collector compartido del clúster. Ese collector enruta las trazas hacia Tempo, donde quedan almacenadas y listas para su análisis.</p>
-</div>
-<div class="paragraph">
-<p>El almacenamiento y visualización lo gestionan Tempo y Grafana. Tempo conserva las trazas y Grafana ofrece los paneles para explorarlas, correlacionarlas y navegar por los servicios. Para las métricas, Prometheus se encarga del scrapeo, y el chart configura ServiceMonitors para que los servicios expongan lo necesario.</p>
+<p>La instrumentación se encarga de generar telemetría: <strong>trazas y métricas</strong> que describen lo que hace la app. Esto se hace con OpenTelemetry y se exporta a un collector compartido del clúster. Ese collector <strong>enruta las trazas</strong> hacia Tempo, donde quedan almacenadas y listas para su análisis. Grafana se encarga de la <strong>visualización</strong>, ofreciendo los paneles de trazas para explorarlas y correlacionarlas.</p>
 </div>
 <div class="paragraph">
 <p>Desplegando de esta manera, la infraestructura base (collector, Tempo y el stack de monitorización) se prepara solo una sola vez a nivel de clúster. Luego, el despliegue de la app solo agrega lo específico: dashboards, datasources y ServiceMonitors, sin duplicar componentes.</p>
+</div>
+<div class="paragraph">
+<p>En Openshift, vuelve a <code>Workloads&gt;Topology</code> y esta vez clica en el Deployment <code>llama-stack-demo-grafana</code>, con el icono naranja. Clica en la ruta que aparece en el panel de la derecha.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/reaching-grafana.png" alt="reaching grafana">
+</div>
+</div>
+<div class="paragraph">
+<p>¡Perfecto! Ahora se abrirá una pestaña nueva a la interfaz de Grafana. En el panel lateral izquierdo, clica en Dashboards y abre el dashboard que aparece. Deberías llegar a la siguiente imagen:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/grafana-dashboards.png" alt="grafana dashboards">
+</div>
+</div>
+<div class="paragraph">
+<p>Si quieres comprobar cómo se visualizan las trazas <strong>en tiempo real</strong>, cambia la franja de tiempo visualizado en el campo superior derecha con un reloj. Selecciona los últimos 5 minutos y prueba a chatear con el agente. Deberían aparecer nuevas trazas. Al clicar en el <code>Trace ID</code> azul de la tabla, verás en detalle las trazas:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/grafana-traces.png" alt="grafana traces">
+</div>
+</div>
+<div class="paragraph">
+<p>Tenemos la observabilidad lista. ¡Hemos acabado el taller! Vamos a recapitular qué hemos hecho en la siguiente sección.</p>
 </div>
 </div>
 </div>

@@ -120,9 +120,6 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="3.html#32">3.2 Penalty Engine</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="3.html#33">3.3 Testear con MCP Inspector</a>
-  </li>
 </ul>
   </li>
   <li class="nav-item is-current-page" data-depth="1">
@@ -268,28 +265,25 @@
 <div class="ulist">
 <ul>
 <li>
-<p>A la izquierda del todo, tenemos el despliegue de Penalty Engine, el servidor MCP que vimos en la sección 3.</p>
+<p>A la izquierda, tenemos el despliegue de <strong>Penalty Engine</strong>, el servidor MCP.</p>
 </li>
 <li>
-<p>A su lado, tenemos la base de datos de vectores de PostgreSQL junto a su propia interfaz web.</p>
+<p>A su lado, tenemos la <strong>base de datos de vectores</strong> de PostgreSQL junto a su propia interfaz web.</p>
 </li>
 <li>
-<p>Un poco más arriba, tres Deployments que pertenecen a Milvus.</p>
+<p>Un poco más arriba, tres despliegues que pertenecen a Milvus, otra base de datos de vectores que podemos usar opcionalmente.</p>
 </li>
 <li>
-<p>La fila de Deployments de la parte inferior</p>
+<p>La <strong>pieza central</strong> es la distribución de Llama Stack, que actúa como conector del resto de elementos del stack.</p>
 </li>
 <li>
-<p>La pieza central es la distribución de Llama Stack, que actúa como conector del resto de elementos del stack.</p>
-</li>
-<li>
-<p>Encima, encontramos el modelo Qwen que desplegamos en la sección 2.</p>
+<p>Encima, encontramos el <strong>modelo Qwen 3</strong> que desplegamos al principio del taller.</p>
 </li>
 <li>
 <p>En verde, jobs para automatizar el despliegue del workshop.</p>
 </li>
 <li>
-<p>Finalmente en la parte inferior, tenemos Deployments de pipelines. Con ellas hemos realizado la ingestión de archivos para hacer RAG y también tests de RAGas.</p>
+<p>Finalmente en la parte inferior, tenemos despliegues de <strong>pipelines</strong>. Con ellas hemos realizado la ingestión de archivos para hacer RAG y también tests de RAGas.</p>
 </li>
 </ul>
 </div>
@@ -298,6 +292,9 @@
 <h3 id="43"><a class="anchor" href="#43"></a>4.3 Ingestión de documentos para RAG</h3>
 <div class="paragraph">
 <p>La Helm chart que hemos desplegado incorpora de automatizaciones para hacer RAG. Partimos de unos documentos legales ficticios disponibles en el IDE. Estos documentos son troceados y guardados en la base de datos vectorial. La distribución de Llama Stack que hemos desplegado incorpora un modelo de embedding, necesario para realizar la búsqueda y retrieval de información de esa base de datos.</p>
+</div>
+<div class="paragraph">
+<p>Una vez que tenemos Llama Stack, podemos desplegar la app que interactuará con él. ¡Pasa a la siguiente sección!</p>
 </div>
 </div>
 </div>

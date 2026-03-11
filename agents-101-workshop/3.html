@@ -120,9 +120,6 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#32">3.2 Penalty Engine</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#33">3.3 Testear con MCP Inspector</a>
-  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -217,18 +214,18 @@
 <p>Esto permite a nuestro modelo interactuar con herramientas externas como Slack, nuestro clúster de OpenShift y también realizar operaciones lógicas como calcular presupuestos con más fiabilidad.</p>
 </div>
 <div class="paragraph">
-<p><strong>¿Qué hace falta?</strong> Para incluir una herramienta basada en MCP en nuestra arquitectura, necesitamos tres componentes:</p>
+<p><strong>¿Qué hace falta?</strong> Para tener un agente basado en MCP, necesitamos tres componentes:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Por un lado, necesitamos <strong>un modelo y un motor de inferencia</strong>. Gracias a vLLM, tenemos flexibilidad para servir el modelo on-premise, en la nube que prefiramos o simplemente que sea servido por terceros.</p>
+<p>Por un lado, necesitamos <strong>un modelo y un motor de inferencia</strong>. Gracias a <strong>vLLM</strong>, tenemos flexibilidad para servir el modelo on-premise, en la nube que prefiramos o simplemente que sea servido por terceros.</p>
 </li>
 <li>
 <p>Nos hará falta definir <strong>un servidor MCP</strong>, que contendrá la lógica que queremos que el modelo ejecute cuando sea necesario.</p>
 </li>
 <li>
-<p>Finalmente necesitamos <strong>un cliente MCP</strong>. ¿Dónde lo encontramos? En la otra gran pieza de este taller, Llama Stack. Se trata de un framework de creación de agentes que nos permite centralizar todas las herramientas necesarias para crearlos. Más adelante, desplegaremos una distribución de Llama Stack para verlo más a fondo.</p>
+<p>Finalmente necesitamos <strong>un cliente MCP</strong>. ¿Dónde lo encontramos? En la otra gran pieza de este taller, <strong>Llama Stack</strong>. Se trata de un framework de creación de agentes que nos permite centralizar todas las herramientas necesarias para crearlos. Más adelante, desplegaremos una distribución de Llama Stack para verlo más a fondo.</p>
 </li>
 </ul>
 </div>
@@ -261,7 +258,7 @@
 <div class="sect2">
 <h3 id="32"><a class="anchor" href="#32"></a>3.2 Penalty Engine</h3>
 <div class="paragraph">
-<p>RAG permite al modelo acceder a documentación y aprender de ella, pero a la hora de realizar cálculos basados en la información, puede cometer fallos. Vamos a crear un servidor MCP para mejorar la fiabilidad a la hora de calcular la penalización por no realizar un pago.</p>
+<p>RAG permite al modelo acceder a documentación y aprender de ella, pero a la hora de realizar cálculos basados en la información, puede cometer fallos. Vamos a crear un servidor MCP para mejorar la fiabilidad a la hora de calcular la penalización por no realizar un pago. Lo llamaremos <strong>Penalty Engine</strong> y funcionará de la siguiente forma:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1043,12 +1040,8 @@ mod tests {
 </div>
 </div>
 <div class="paragraph">
-<p>¡Hasta aquí el copiado! Deberías tener alrededor de 660 líneas de código.</p>
+<p>¡Hasta aquí el copiado! Deberías tener alrededor de 660 líneas de código en las que queda toda la lógica del servidor MCP. ¿Cuál será el siguiente paso? Crear una imagen con el código y desplegarla junto al resto de componentes de Llama Stack. ¡Continúa a la siguiente sección!</p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="33"><a class="anchor" href="#33"></a>3.3 Testear con MCP Inspector</h3>
-
 </div>
 </div>
 </div>
