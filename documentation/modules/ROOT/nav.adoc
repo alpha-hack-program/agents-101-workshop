@@ -24,7 +24,7 @@
 ** xref:5.adoc#51[5.1 Desplegar e interactuar con la app]
 
 * xref:6.adoc[6. Habilitar Observabilidad]
-** xref:6.adoc#61[6.1 Desplegar e interactuar con la app]
+** xref:6.adoc#61[6.1 Desplegar Observabilidad]
 
 * xref:7.adoc[¡Taller terminado!]
 ** xref:7.adoc#71[Conclusión]
