@@ -5,7 +5,7 @@ include::_attributes.adoc[]
 [#41]
 === 4.1 ¿Qué es Llama Stack?
 
-**Llama Stack** es un framework open-source para desplegar agentes propuesto por Meta. En lugar de que cada desarrollador tenga que reinventar la rueda" cada vez que quiere construir un agente, Llama Stack dispone de un **conjunto de APIs y especificaciones estandarizadas** que permiten que diferentes componentes de software hablen el mismo idioma.
+**Llama Stack** es un framework open-source para desplegar agentes propuesto por Meta. En lugar de que cada desarrollador tenga que reinventar la rueda cada vez que quiere construir un agente, Llama Stack dispone de un **conjunto de APIs y especificaciones estandarizadas** que permiten que diferentes componentes de software hablen el mismo idioma.
 
 Llama Stack integra la inferencia de modelos, la generación de embeddings y el almacenamiento vectorial en **un único stack** optimizado para RAG y los flujos de trabajo de IA basados en agentes.
 

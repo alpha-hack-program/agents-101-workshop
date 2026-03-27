@@ -5,6 +5,15 @@ include::_attributes.adoc[]
 [#71]
 === Conclusión
 
+Antes de terminar, vamos a hacer un repaso de todo lo que se ha hecho en este taller:
+
+* Hemos creado fácilmente un entorno de desarrollo con los workbenches de OpenShift AI.
+* Hemos desplegado un modelo Qwen3 en nuestro cluster y hemos comprobado sus respuestas desde el Playground.
+* Hemos visto más de cerca qué compone a un servidor MCP y qué es necesario para garantizar que funcione correctamente.
+* Hemos unificado la comunicación de nuestro stack desplegando una distribución de LlamaStack y sus respectivos componentes.
+* Hemos terminado desplegando la aplicación agéntica que usa todas las piezas de nuestra arquitectura.
+* Como paso final, hemos habilitado la observabilidad de trazas de nuestra aplicación agéntica.
+
 ¡Gracias por haber participado en el taller! Si te ha parecido interesante y quieres experimentar algo más, puedes acceder al *código fuente* de este taller https://github.com/alpha-hack-program/llama-stack-demo[aquí].
 
-¿Quieres saber más sobre **Red Hat AI**? Accede a la https://www.redhat.com/es/products/ai[web oficial] para obtener más información.
+¿Aún tienes preguntas? Puedes preguntar directamente a los facilitadores del taller. Si quieres saber más sobre  **Red Hat AI**, accede a la https://www.redhat.com/es/products/ai[web oficial] para obtener más información.

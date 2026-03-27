@@ -65,7 +65,7 @@ Si tienes problemas al pegarlo, prueba a mantener `SHIFT`, `CTRL` y pulsar `V`. 
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
-git clone github.com/alpha-hack-program/llama-stack-demo
+git clone https://github.com/alpha-hack-program/llama-stack-demo.git
 ----
 
 image::workbench-clone.png[]
