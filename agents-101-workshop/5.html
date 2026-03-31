@@ -215,11 +215,19 @@
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">helm upgrade llama-stack-demo XXX</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">helm upgrade llama-stack-demo helm/ -f helm/values-app.yaml --set assigned="$llama-stack-demo-%USERNAME%" --namespace $llama-stack-demo-%USERNAME% --timeout 20m</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Ve a la ventana de Openshift. En el panel lateral, busca <code>Workloads&gt;Topology</code>. Esta vez vamos a clicar en el Deployment <code>llama-stack-demo-app</code>, con el icono azul y amarillo de Python. Luego clica en la ruta que aparece en el panel de la derecha.</p>
+<p>Vuelve a la ventana de Openshift. En el panel lateral, busca <code>Workloads&gt;Topology</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/values-app.png" alt="values app">
+</div>
+</div>
+<div class="paragraph">
+<p>Esta vez vamos a clicar en el Deployment <code>llama-stack-demo-app</code>, con el icono azul y amarillo de Python. Luego clica en la ruta que aparece en el panel de la derecha.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -243,12 +251,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>Si todo ha ido bien, deberías tener una respuesta parecida a esta:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">PEGAR RESPUESTA</code></pre>
-</div>
+<p>Si todo ha ido bien, el modelo responderá con el importe de la penalización. Puedes probar a preguntarle cómo ha llegado a ese cálculo.</p>
 </div>
 <div class="paragraph">
 <p>¡Finalmente tenemos el agente funcionando! Aunque&#8230;&#8203; ¿cómo sabemos qué el agente está interactuando correctamente con el nuestro stack de IA? Toca el paso final, habilitar la capa de <strong>observabilidad</strong>.</p>

@@ -240,6 +240,11 @@
 </div>
 <div class="sect2">
 <h3 id="42"><a class="anchor" href="#42"></a>4.2 Desplegar Llama Stack</h3>
+<div class="imageblock">
+<div class="content">
+<img src="_images/values-none.png" alt="values none">
+</div>
+</div>
 <div class="paragraph">
 <p>Para entornos de producción o desarrollo avanzado en OpenShift AI, la gestión manual de manifiestos YAML puede volverse tediosa. Por ello, vamos a utilizar Helm Charts para orquestar nuestra distribución.</p>
 </div>
@@ -248,7 +253,8 @@
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">helm install llama-stack-demo helm/ --namespace $llama-stack-demo-%USERNAME% --timeout 20m</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">PROJECT="llama-stack-demo-%USERNAME%"
+helm install llama-stack-demo helm/ --namespace $llama-stack-demo-%USERNAME% --timeout 20m</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -256,7 +262,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/llama-stack-deployment.png" alt="llama stack deployment">
+<img src="_images/values-llama-stack.png" alt="values llama stack">
 </div>
 </div>
 <div class="paragraph">

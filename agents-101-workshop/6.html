@@ -215,7 +215,7 @@
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">helm upgrade llama-stack-demo XXX</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">helm upgrade llama-stack-demo helm/ -f helm/values-observability.yaml --set assigned="$llama-stack-demo-%USERNAME%" --namespace $llama-stack-demo-%USERNAME% --timeout 20m</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -228,7 +228,15 @@
 <p>Desplegando de esta manera, la infraestructura base (collector, Tempo y el stack de monitorización) se prepara solo una sola vez a nivel de clúster. Luego, el despliegue de la app solo agrega lo específico: dashboards, datasources y ServiceMonitors, sin duplicar componentes.</p>
 </div>
 <div class="paragraph">
-<p>En Openshift, vuelve a <code>Workloads&gt;Topology</code> y esta vez clica en el Deployment <code>llama-stack-demo-grafana</code>, con el icono naranja. Clica en la ruta que aparece en el panel de la derecha.</p>
+<p>En Openshift, vuelve a <code>Workloads&gt;Topology</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/values-observability.png" alt="values observability">
+</div>
+</div>
+<div class="paragraph">
+<p>Esta vez clica en el Deployment <code>llama-stack-demo-grafana</code>, con el icono naranja. Clica en la ruta que aparece en el panel de la derecha.</p>
 </div>
 <div class="imageblock">
 <div class="content">
