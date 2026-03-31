@@ -12,10 +12,14 @@ No es necesario que tengas conocimientos de programación. Vamos a desplegar dir
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
-helm upgrade llama-stack-demo XXX
+helm upgrade llama-stack-demo helm/ -f helm/values-app.yaml --set assigned="${PROJECT}" --namespace ${PROJECT} --timeout 20m
 ----
 
-Ve a la ventana de Openshift. En el panel lateral, busca `Workloads>Topology`. Esta vez vamos a clicar en el Deployment `llama-stack-demo-app`, con el icono azul y amarillo de Python. Luego clica en la ruta que aparece en el panel de la derecha.
+Vuelve a la ventana de Openshift. En el panel lateral, busca `Workloads>Topology`.
+
+image::values-app.png[]
+
+Esta vez vamos a clicar en el Deployment `llama-stack-demo-app`, con el icono azul y amarillo de Python. Luego clica en la ruta que aparece en el panel de la derecha.
 
 image::reaching-app.png[]
 
@@ -31,12 +35,7 @@ image::app.png[]
 Hello! I want you to calculate the penalty for 12 days.
 ----
 
-Si todo ha ido bien, deberías tener una respuesta parecida a esta:
-
-[source,bash,subs="+macros,+attributes"]
-----
-PEGAR RESPUESTA 
-----
+Si todo ha ido bien, el modelo responderá con el importe de la penalización. Puedes probar a preguntarle cómo ha llegado a ese cálculo.
 
 ¡Finalmente tenemos el agente funcionando! Aunque... ¿cómo sabemos qué el agente está interactuando correctamente con el nuestro stack de IA? Toca el paso final, habilitar la capa de *observabilidad*.
 

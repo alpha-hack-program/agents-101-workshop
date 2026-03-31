@@ -26,7 +26,10 @@ image::models.png[]
 En nuestro caso, vamos a escribir en la barra de búsqueda **Qwen3-8B-FP8-dynamic**. Clica en el nombre del modelo para entrar en su página de información.
 
 
-Al entrar en la página del modelo, vemos información como detalles sobe su arquitectura y su fecha de lanzamiento. Si descendemos, veremos los resultados que ha obtenido en los benchmarks más populares.
+Al entrar en la página del modelo, vemos información como detalles sobe su arquitectura y su fecha de lanzamiento. Si descendemos, veremos los resultados que ha obtenido en los benchmarks más populares. Si clicas en Performance Insights, verás los resultados obtenidos en los tests de velocidad realizados por Red Hat en diferentes configuraciones de GPUs.
+
+image::model-performance.png[]
+
 
 Vamos a continuar clicando el botón `Deploy model` en la esquina superior derecha.
 
@@ -50,13 +53,13 @@ Llegamos al cuarto y último paso. Veremos un resumen de nuestro formulario, vam
 
 image::deploy-model-4.png[]
 
-Al hacerlo, seremos redirigidos a la página de Deployments, donde veremos los modelos que hemos desplegado. El modelo necesitará unos minutos en desplegarse, su status debería cambiar a `Running`.
+Al hacerlo, seremos redirigidos a la página de Deployments, donde veremos los modelos que hemos desplegado. El modelo puede llegar a tardar 10 minutos en desplegarse. Sabrás que se ha desplegado correctamente cuando su status cambie a `Running`.
+
+image::deployments.png[]
 
 ¡Hemos desplegado el modelo! Vamos a testear sus respuestas en un **playground**, un lugar donde chatear rápidamente con nuestros modelos.
 
 Clica en la barra lateral en `Gen AI studio` en la sección `AI asset endpoints`.
-
-image::deployments.png[]
 
 Cambia el proyecto en la parte superior. Deberías poder ver el modelo que acabas de desplegar. Continua pinchando en `Add to playground` y luego `Create`.
 
@@ -66,11 +69,23 @@ Puede que al hacerlo, salte el siguiente mensaje de error. Estos espacios de tes
 
 image::playground-error.png[]
 
-Vamos a acceder al espacio de pruebas clicando en la barra lateral izquierda en `Gen AI studio` en la sección `Playground`.
+Vamos a acceder al espacio de pruebas clicando en la barra lateral izquierda en `Gen AI studio` en la sección `Playground`. El playground puede tardar hasta 5 minutos en desplegarse. Durante este tiempo, lo que está haciendo OpenShift AI es crear una distribución de Llama Stack con los assets que le hemos indicado.
 
 image::playground-chat.png[]
 
-¡Perfecto! Prueba a escribir algo en la barra inferior para que el modelo responda.
+¡Perfecto! Prueba a escribir algo en la barra inferior para comprobar que el modelo responde. Por ejemplo:
 
-Hemos terminado esta parte, vamos a pasar a la sección **3.Desarrollar el Servidor MCP**.
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+Cuéntame cómo hacer una tortilla de patatas.
+----
+
+image::playground-answer.png[]
+
+En la respuesta del modelo, se pueden ver dos procesos:
+- Primero el modelo nos enseña qué está pensando antes de responder. Esto es muy útil para entender el razonamiento del modelo y entender la respuesta que ofrece al usuario.
+- Segundo la respuesta final que muestra al usuario.
+
+Genial, con esto terminamos esta parte, vamos a pasar a la sección **3.Desarrollar el Servidor MCP**.
 

@@ -24,6 +24,10 @@ En OpenShift, el **Llama Stack Operator** gestiona el ciclo de vida del desplieg
 [#42]
 === 4.2 Desplegar Llama Stack
 
+
+image::values-none.png[]
+
+
 Para entornos de producción o desarrollo avanzado en OpenShift AI, la gestión manual de manifiestos YAML puede volverse tediosa. Por ello, vamos a utilizar Helm Charts para orquestar nuestra distribución.
 
 Volvemos a la pestaña de nuestro espacio de trabajo, el IDE. Vamos a desplegar una primera versión de nuestro Llama Stack.
@@ -31,12 +35,13 @@ Volvemos a la pestaña de nuestro espacio de trabajo, el IDE. Vamos a desplegar 
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
+PROJECT="llama-stack-demo-{username}"
 helm install llama-stack-demo helm/ --namespace ${PROJECT} --timeout 20m
 ----
 
 Una vez ejecutado el comando, ve a la consola de OpenShift. En la barra lateral, selecciona `Topology`. Aunque el orden de los despliegues no concuerde con el de la imagen, deberías tener todos estos:
 
-image::llama-stack-deployment.png[]
+image::values-llama-stack.png[]
 
 La arquitectura que hemos desplegado dispone de lo siguiente:
 

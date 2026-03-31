@@ -12,7 +12,7 @@ Para desplegar, vuelve al IDE e ejecuta el siguiente comando:
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
-helm upgrade llama-stack-demo XXX
+helm upgrade llama-stack-demo helm/ -f helm/values-observability.yaml --set assigned="${PROJECT}" --namespace ${PROJECT} --timeout 20m
 ----
 
 En este caso, nos adentramos en cómo fluye la *telemetría* desde las apps hasta su análisis. ¿Qué diferencia hay entre instrumentar aplicaciones y almacenar/visualizar los datos?
@@ -21,7 +21,11 @@ La instrumentación se encarga de generar telemetría: *trazas y métricas* que 
 
 Desplegando de esta manera, la infraestructura base (collector, Tempo y el stack de monitorización) se prepara solo una sola vez a nivel de clúster. Luego, el despliegue de la app solo agrega lo específico: dashboards, datasources y ServiceMonitors, sin duplicar componentes.
 
-En Openshift, vuelve a `Workloads>Topology` y esta vez clica en el Deployment `llama-stack-demo-grafana`, con el icono naranja. Clica en la ruta que aparece en el panel de la derecha.
+En Openshift, vuelve a `Workloads>Topology`.
+
+image::values-observability.png[]
+
+Esta vez clica en el Deployment `llama-stack-demo-grafana`, con el icono naranja. Clica en la ruta que aparece en el panel de la derecha.
 
 image::reaching-grafana.png[]
 

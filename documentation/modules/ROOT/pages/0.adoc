@@ -25,7 +25,7 @@ image::workshop.png[]
 [#02]
 === Entorno
 
-Para este taller, **no tienes que instalar nada en tu portátil**. Sólo un navegador al que acceder a las URLs donde trabajaras. Dispondrás de acceso a un clúster de OpenShift que ya dispone de OpenShift AI e iremos trabajando en diferentes pestañas:
+Para este taller, **no tienes que instalar nada en tu portátil**. Simplemente necesitas un navegador al que acceder a las URLs donde trabajarás. Dispondrás de acceso a un clúster de OpenShift que ya dispone de OpenShift AI y te moveras entre diferentes pestañas:
 
 * En la **consola del propio OpenShift**, comprobaremos los despliegues que haremos.
 * En la **consola de OpenShift AI**, crearemos nuestro espacio de trabajo, desplegaremos el modelo y testearemos el agente.

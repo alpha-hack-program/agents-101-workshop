@@ -37,10 +37,12 @@ Para empezar, vamos a descargar el repositorio usando `git clone`:
 [source,bash,subs="+macros,+attributes"]
 ----
 cd
-git clone --branch empty --single-branch git@github.com:alpha-hack-program/penalty-engine-mcp-rs.git
+git clone --branch empty --single-branch https://github.com/alpha-hack-program/penalty-engine-mcp-rs.git
 ----
 
 En la barra lateral izquierda, accede a `penalty-engine>src>common/penalty-engine.yaml`. Este es el archivo en el que definiremos todo el servidor. 
+
+image::penalty-engine-empty.png[]
 
 Vamos a construir el servidor MCP paso a paso, en total son 8. El código está escrito en Rust, no hace falta que tengas conocimientos sobre este lenguaje de programación. Iremos copiando cada paso en el archivo hasta obtener un servidor MCP funcional.
 
@@ -780,4 +782,4 @@ mod tests {
 }
 ----
 
-¡Hasta aquí el copiado! Deberías tener alrededor de 660 líneas de código en las que queda toda la lógica del servidor MCP. ¿Cuál será el siguiente paso? Crear una imagen con el código y desplegarla junto al resto de componentes de Llama Stack. ¡Continúa a la siguiente sección!
+¡Hasta aquí el copiado! Deberías tener alrededor de 650 líneas de código en las que queda toda la lógica del servidor MCP. ¿Cuál es el siguiente paso? Desplegar el servidor MCP junto al resto de componentes de Llama Stack. ¡Continúa a la siguiente sección!
