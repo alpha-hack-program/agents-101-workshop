@@ -24,30 +24,42 @@ En OpenShift, el **Llama Stack Operator** gestiona el ciclo de vida del desplieg
 [#42]
 === 4.2 Desplegar Llama Stack
 
+Antes de desplegar Llama Stack, veamos la situación actual de nuestro proyecto. Ve a la pestaña de la consola de Openshift y en la barra lateral selecciona `Workloads>Topology`. Una vez en la página, en el desplegable superior `Project` selecciona `llama-stack-demo-{username}`.
 
 image::values-none.png[]
 
+Deberías ver los deployments de los elementos que hemos desplegado hasta ahora:
 
-Para entornos de producción o desarrollo avanzado en OpenShift AI, la gestión manual de manifiestos YAML puede volverse tediosa. Por ello, vamos a utilizar Helm Charts para orquestar nuestra distribución.
+* *workbench-{username}*: Representa a nuestro entorno de desarrollo.
+* *redhat-qwen3-8B-fp8-dynamic-predicator*: Aquí tenemos el modelo Qwen 3 que desplegamos desde OpenShift AI antes.
+* *lsd-gen-ai-playground*: Necesario para los Playgrounds de OpenShift AI.
 
-Volvemos a la pestaña de nuestro espacio de trabajo, el IDE. Vamos a desplegar una primera versión de nuestro Llama Stack.
+Podríamos continuar y desplegar los YAMLs necesarios a mano. Para entornos de producción o desarrollo avanzado en OpenShift AI, la gestión manual de manifiestos YAML puede volverse tediosa. Por ello, vamos a utilizar Helm Charts para orquestar nuestra distribución.
+
+Volvemos a la pestaña de nuestro espacio de trabajo, el IDE. Vamos a escribir en el terminal inferior lo siguiente para desplegar una primera versión de nuestro Llama Stack.
 
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
 PROJECT="llama-stack-demo-{username}"
-helm install llama-stack-demo helm/ --namespace ${PROJECT} --timeout 20m
+helm install llama-stack-demo helm/ --namespace llama-stack-demo-{username} --timeout 20m
 ----
 
-Una vez ejecutado el comando, ve a la consola de OpenShift. En la barra lateral, selecciona `Topology`. Aunque el orden de los despliegues no concuerde con el de la imagen, deberías tener todos estos:
+Una vez ejecutado el comando, vuelve a la consola de OpenShift para visualizar la nueva topología. Aunque el orden de los despliegues no concuerde con el de la imagen, deberías tener todos estos:
 
 image::values-llama-stack.png[]
 
-La arquitectura que hemos desplegado dispone de lo siguiente:
+La arquitectura actual dispone nuevos elementos:
 
-* A la izquierda, tenemos el despliegue de *Penalty Engine*, el servidor MCP.
-* A su lado, tenemos la *base de datos de vectores* de PostgreSQL junto a su propia interfaz web.
-* Un poco más arriba, tres despliegues que pertenecen a Milvus, otra base de datos de vectores que podemos usar opcionalmente.
+* Como pieza central, tenemos la distribución de Llama Stack, llamada *llama-stack-demo*.
+* A su lado con una R, tenemos *penalty-engine*, el servidor MCP que hemos desarrollado.
+* Abajo tenemos dos deployments con una cara de elefante, representando la *base de datos de vectores* de PostgreSQL.
+* Por último tenemos tres deployments con el logo de Helm, que representan una segunda *base de datos de vectores* de Milvus. 
+
+¿Por qué hay dos bases de datos de vectores? Podríamos haber elegido una sola sin problema. El objetivo es demostrar que Llama Stack es flexible y que cambiar su configuración es muy fácil.
+
+Un poco más arriba, tres despliegues que pertenecen a Milvus, otra base de datos de vectores que podemos usar opcionalmente.
+
 * La *pieza central* es la distribución de Llama Stack, que actúa como conector del resto de elementos del stack.
 * Encima, encontramos el *modelo Qwen 3* que desplegamos al principio del taller.
 * En verde, jobs para automatizar el despliegue del workshop.

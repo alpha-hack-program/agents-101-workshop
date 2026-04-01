@@ -20,7 +20,7 @@
 ** xref:4.adoc#42[4.2 Desplegar Llama Stack]
 ** xref:4.adoc#43[4.3 Ingestión de documentos para RAG]
 
-* xref:5.adoc[5. Desplegar el App Agéntica]
+* xref:5.adoc[5. Desplegar la App Agéntica]
 ** xref:5.adoc#51[5.1 Desplegar e interactuar con la app]
 
 * xref:6.adoc[6. Habilitar Observabilidad]
