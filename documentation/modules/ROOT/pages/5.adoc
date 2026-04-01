@@ -35,8 +35,10 @@ image::app.png[]
 Hello! I want you to calculate the penalty for 12 days.
 ----
 
-Si todo ha ido bien, el modelo responderá con el importe de la penalización. Puedes probar a preguntarle cómo ha llegado a ese cálculo.
+Si todo ha ido bien, el modelo debe responder algo parecido a esto:
 
-¡Finalmente tenemos el agente funcionando! Aunque... ¿cómo sabemos qué el agente está interactuando correctamente con el nuestro stack de IA? Toca el paso final, habilitar la capa de *observabilidad*.
+image::app-results.png[]
+
+¡Tenemos el agente funcionando! Aunque... ¿cómo sabemos qué el agente está interactuando correctamente con el nuestro stack de IA? Toca el paso final, habilitar la capa de *observabilidad*.
 
 
