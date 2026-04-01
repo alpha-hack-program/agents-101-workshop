@@ -139,7 +139,7 @@
   </li>
   <li class="nav-item is-current-page" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="5.html">5. Desplegar el App Agéntica</a>
+    <a class="nav-link" href="5.html">5. Desplegar la App Agéntica</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#51">5.1 Desplegar e interactuar con la app</a>
@@ -195,7 +195,7 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="0.html">Agents 101: How to Build the Agents of the Future Today with Red Hat AI</a></li>
-    <li><a href="5.html">5. Desplegar el App Agéntica</a></li>
+    <li><a href="5.html">5. Desplegar la App Agéntica</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/alpha-hack-program/agents-101-workshop/edit/master/documentation/modules/ROOT/pages/5.adoc">Edit this Page</a></div>
@@ -203,7 +203,7 @@
   <div class="content">
 <article class="doc">
 <div class="sect1">
-<h2 id="_5_desplegar_el_app_agéntica"><a class="anchor" href="#_5_desplegar_el_app_agéntica"></a>5. Desplegar el App Agéntica</h2>
+<h2 id="_5_desplegar_la_app_agéntica"><a class="anchor" href="#_5_desplegar_la_app_agéntica"></a>5. Desplegar la App Agéntica</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="51"><a class="anchor" href="#51"></a>5.1 Desplegar e interactuar con la app</h3>
@@ -215,7 +215,7 @@
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">helm upgrade llama-stack-demo helm/ -f helm/values-app.yaml --set assigned="$llama-stack-demo-%USERNAME%" --namespace $llama-stack-demo-%USERNAME% --timeout 20m</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">helm upgrade llama-stack-demo helm/ -f helm/values-app.yaml --set assigned=llama-stack-demo-%USERNAME% --namespace llama-stack-demo-%USERNAME% --timeout 20m</code></pre>
 </div>
 </div>
 <div class="paragraph">

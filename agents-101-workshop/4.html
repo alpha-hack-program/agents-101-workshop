@@ -139,7 +139,7 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="5.html">5. Desplegar el App Agéntica</a>
+    <a class="nav-link" href="5.html">5. Desplegar la App Agéntica</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="5.html#51">5.1 Desplegar e interactuar con la app</a>
@@ -240,25 +240,44 @@
 </div>
 <div class="sect2">
 <h3 id="42"><a class="anchor" href="#42"></a>4.2 Desplegar Llama Stack</h3>
+<div class="paragraph">
+<p>Antes de desplegar Llama Stack, veamos la situación actual de nuestro proyecto. Ve a la pestaña de la consola de Openshift y en la barra lateral selecciona <code>Workloads&gt;Topology</code>. Una vez en la página, en el desplegable superior <code>Project</code> selecciona <code>llama-stack-demo-%USERNAME%</code>.</p>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/values-none.png" alt="values none">
 </div>
 </div>
 <div class="paragraph">
-<p>Para entornos de producción o desarrollo avanzado en OpenShift AI, la gestión manual de manifiestos YAML puede volverse tediosa. Por ello, vamos a utilizar Helm Charts para orquestar nuestra distribución.</p>
+<p>Deberías ver los deployments de los elementos que hemos desplegado hasta ahora:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>workbench-%USERNAME%</strong>: Representa a nuestro entorno de desarrollo.</p>
+</li>
+<li>
+<p><strong>redhat-qwen3-8B-fp8-dynamic-predicator</strong>: Aquí tenemos el modelo Qwen 3 que desplegamos desde OpenShift AI antes.</p>
+</li>
+<li>
+<p><strong>lsd-gen-ai-playground</strong>: Necesario para los Playgrounds de OpenShift AI.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>Volvemos a la pestaña de nuestro espacio de trabajo, el IDE. Vamos a desplegar una primera versión de nuestro Llama Stack.</p>
+<p>Podríamos continuar y desplegar los YAMLs necesarios a mano. Para entornos de producción o desarrollo avanzado en OpenShift AI, la gestión manual de manifiestos YAML puede volverse tediosa. Por ello, vamos a utilizar Helm Charts para orquestar nuestra distribución.</p>
+</div>
+<div class="paragraph">
+<p>Volvemos a la pestaña de nuestro espacio de trabajo, el IDE. Vamos a escribir en el terminal inferior lo siguiente para desplegar una primera versión de nuestro Llama Stack.</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">PROJECT="llama-stack-demo-%USERNAME%"
-helm install llama-stack-demo helm/ --namespace $llama-stack-demo-%USERNAME% --timeout 20m</code></pre>
+helm install llama-stack-demo helm/ --namespace llama-stack-demo-%USERNAME% --timeout 20m</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Una vez ejecutado el comando, ve a la consola de OpenShift. En la barra lateral, selecciona <code>Topology</code>. Aunque el orden de los despliegues no concuerde con el de la imagen, deberías tener todos estos:</p>
+<p>Una vez ejecutado el comando, vuelve a la consola de OpenShift para visualizar la nueva topología. Aunque el orden de los despliegues no concuerde con el de la imagen, deberías tener todos estos:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -266,19 +285,32 @@ helm install llama-stack-demo helm/ --namespace $llama-stack-demo-%USERNAME% --t
 </div>
 </div>
 <div class="paragraph">
-<p>La arquitectura que hemos desplegado dispone de lo siguiente:</p>
+<p>La arquitectura actual dispone nuevos elementos:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>A la izquierda, tenemos el despliegue de <strong>Penalty Engine</strong>, el servidor MCP.</p>
+<p>Como pieza central, tenemos la distribución de Llama Stack, llamada <strong>llama-stack-demo</strong>.</p>
 </li>
 <li>
-<p>A su lado, tenemos la <strong>base de datos de vectores</strong> de PostgreSQL junto a su propia interfaz web.</p>
+<p>A su lado con una R, tenemos <strong>penalty-engine</strong>, el servidor MCP que hemos desarrollado.</p>
 </li>
 <li>
+<p>Abajo tenemos dos deployments con una cara de elefante, representando la <strong>base de datos de vectores</strong> de PostgreSQL.</p>
+</li>
+<li>
+<p>Por último tenemos tres deployments con el logo de Helm, que representan una segunda <strong>base de datos de vectores</strong> de Milvus.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>¿Por qué hay dos bases de datos de vectores? Podríamos haber elegido una sola sin problema. El objetivo es demostrar que Llama Stack es flexible y que cambiar su configuración es muy fácil.</p>
+</div>
+<div class="paragraph">
 <p>Un poco más arriba, tres despliegues que pertenecen a Milvus, otra base de datos de vectores que podemos usar opcionalmente.</p>
-</li>
+</div>
+<div class="ulist">
+<ul>
 <li>
 <p>La <strong>pieza central</strong> es la distribución de Llama Stack, que actúa como conector del resto de elementos del stack.</p>
 </li>
@@ -307,7 +339,7 @@ helm install llama-stack-demo helm/ --namespace $llama-stack-demo-%USERNAME% --t
 </div>
 <nav class="pagination">
   <span class="prev"><a href="3.html" class="query-params-link">3. Desarrollar el Servidor MCP</a></span>
-  <span class="next"><a href="5.html" class="query-params-link">5. Desplegar el App Agéntica</a></span>
+  <span class="next"><a href="5.html" class="query-params-link">5. Desplegar la App Agéntica</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
