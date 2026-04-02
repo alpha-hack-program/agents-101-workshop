@@ -208,10 +208,10 @@
 <div class="sect2">
 <h3 id="51"><a class="anchor" href="#51"></a>5.1 Desplegar e interactuar con la app</h3>
 <div class="paragraph">
-<p>¡Es hora de <strong>unir todas las piezas</strong> en la app! Esta app consistirá en una ventana de chat con el agente que hemos creado. Se trata de un front-end bastante sencillo que nos permite experimentar con el comportamiento del agente.</p>
+<p>¡Es hora de <strong>unir todas las piezas</strong> en la app! Esta app consistirá en una ventana de chat con el agente que hemos creado. Se trata de un front-end que nos permite ajustar parámetros del modelo y experimentar con el comportamiento del agente.</p>
 </div>
 <div class="paragraph">
-<p>No es necesario que tengas conocimientos de programación. Vamos a desplegar directamente la app con este comando:</p>
+<p>Vamos a volver a la pestaña del IDE. Escribe en el terminal el siguiente comando para actualizar nuestra arquitectura:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
@@ -219,12 +219,28 @@
 </div>
 </div>
 <div class="paragraph">
-<p>Vuelve a la ventana de Openshift. En el panel lateral, busca <code>Workloads&gt;Topology</code>.</p>
+<p>Vuelve a la ventana de Openshift para verificar que los cambios se han ejecutado. Deberías estar en la sección <code>Workloads&gt;Topology</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/values-app.png" alt="values app">
 </div>
+</div>
+<div class="paragraph">
+<p>¿Qué ha cambiado? Vamos a echarle un ojo a la topología. Recuerda que tus despliegues seguramente se hayan colocado de otra manera:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Con el logo de Python, tenemos dos deployments dedicados a la app agéntica que hace llamadas a Llama Stack.</p>
+</li>
+<li>
+<p>Encima, tenemos una fila de deployments de pipelines.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>En este caso, hemos desplegado unas pipelines que se encargan de automatizar la ingestión de archivos para hacer RAG. Disponemos de unos documentos legales ficticios para que el agente tenga un contexto en el que usar sus herramientas. Estos documentos son troceados y guardados en la base de datos vectorial. La distribución de Llama Stack ya incorpora un modelo de embedding, necesario para realizar la búsqueda y retrieval de esta información.</p>
 </div>
 <div class="paragraph">
 <p>Esta vez vamos a clicar en el Deployment <code>llama-stack-demo-app</code>, con el icono azul y amarillo de Python. Luego clica en la ruta que aparece en el panel de la derecha.</p>
@@ -237,13 +253,35 @@
 <div class="paragraph">
 <p>Se abrirá otra pestaña en la que accedemos a la app. Vamos a configurar el chat desde el panel del lado izquierdo tal como aparece en la siguiente imagen.</p>
 </div>
+<div class="paragraph">
+<p>En <code>Vector Store</code>, selecciona <code>rag-store-milvus-remote</code>. En caso de que no aparezcan opciones, espera unos minutos y vuelve a recargar la página. Esto es debido a que están en ejecución las pipelines que procesan los archivos y tenemos que esperar a que terminen.</p>
+</div>
+<div class="paragraph">
+<p>En <code>MCP Tools</code>, selecciona <code>all</code>. De esta forma habilitamos la comunicación a la herramienta de cálculo de penalizaciones.</p>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/app.png" alt="app">
 </div>
 </div>
 <div class="paragraph">
-<p>¡Genial! Ya solo queda a poner a prueba el agente. Escribe lo siguiente:</p>
+<p>¡Genial! Primero vamos a verificar que el agente puede extraer información de la documentación con RAG. Escribe lo siguiente:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Based on the documents that have been provided, what is Lysmark?</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Lysmark</strong> es el nombre ficticio del país que ha decidido poner en marcha a este agente de inteligencia artificial. Por lo que debería de ser capaz de dar una respuesta como esta:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/app-rag.png" alt="app rag">
+</div>
+</div>
+<div class="paragraph">
+<p>Perfecto, ahora toca poner a prueba su razonamiento a la hora de calcular penalizaciones por impago. Como si fueramos ciudadanos de este país, vamos a escribir:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
