@@ -5,9 +5,9 @@ include::_attributes.adoc[]
 [#51]
 === 5.1 Desplegar e interactuar con la app
 
-¡Es hora de *unir todas las piezas* en la app! Esta app consistirá en una ventana de chat con el agente que hemos creado. Se trata de un front-end bastante sencillo que nos permite experimentar con el comportamiento del agente.
+¡Es hora de *unir todas las piezas* en la app! Esta app consistirá en una ventana de chat con el agente que hemos creado. Se trata de un front-end que nos permite ajustar parámetros del modelo y experimentar con el comportamiento del agente.
 
-No es necesario que tengas conocimientos de programación. Vamos a desplegar directamente la app con este comando:
+Vamos a volver a la pestaña del IDE. Escribe en el terminal el siguiente comando para actualizar nuestra arquitectura:
 
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
@@ -15,19 +15,43 @@ No es necesario que tengas conocimientos de programación. Vamos a desplegar dir
 helm upgrade llama-stack-demo helm/ -f helm/values-app.yaml --set assigned=llama-stack-demo-{username} --namespace llama-stack-demo-{username} --timeout 20m
 ----
 
-Vuelve a la ventana de Openshift. En el panel lateral, busca `Workloads>Topology`.
+Vuelve a la ventana de Openshift para verificar que los cambios se han ejecutado. Deberías estar en la sección `Workloads>Topology`.
 
 image::values-app.png[]
+
+¿Qué ha cambiado? Vamos a echarle un ojo a la topología. Recuerda que tus despliegues seguramente se hayan colocado de otra manera: 
+
+* Con el logo de Python, tenemos dos deployments dedicados a la app agéntica que hace llamadas a Llama Stack.
+* Encima, tenemos una fila de deployments de pipelines.
+
+En este caso, hemos desplegado unas pipelines que se encargan de automatizar la ingestión de archivos para hacer RAG. Disponemos de unos documentos legales ficticios para que el agente tenga un contexto en el que usar sus herramientas. Estos documentos son troceados y guardados en la base de datos vectorial. La distribución de Llama Stack ya incorpora un modelo de embedding, necesario para realizar la búsqueda y retrieval de esta información.
 
 Esta vez vamos a clicar en el Deployment `llama-stack-demo-app`, con el icono azul y amarillo de Python. Luego clica en la ruta que aparece en el panel de la derecha.
 
 image::reaching-app.png[]
 
-Se abrirá otra pestaña en la que accedemos a la app. Vamos a configurar el chat desde el panel del lado izquierdo tal como aparece en la siguiente imagen.
+Se abrirá otra pestaña en la que accedemos a la app. Vamos a configurar el chat desde el panel del lado izquierdo tal como aparece en la siguiente imagen. 
+
+En `Vector Store`, selecciona `rag-store-milvus-remote`. En caso de que no aparezcan opciones, espera unos minutos y vuelve a recargar la página. Esto es debido a que están en ejecución las pipelines que procesan los archivos y tenemos que esperar a que terminen.
+
+En `MCP Tools`, selecciona `all`. De esta forma habilitamos la comunicación a la herramienta de cálculo de penalizaciones.
 
 image::app.png[]
 
-¡Genial! Ya solo queda a poner a prueba el agente. Escribe lo siguiente:
+¡Genial! Primero vamos a verificar que el agente puede extraer información de la documentación con RAG. Escribe lo siguiente:
+
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+Based on the documents that have been provided, what is Lysmark?
+----
+
+*Lysmark* es el nombre ficticio del país que ha decidido poner en marcha a este agente de inteligencia artificial. Por lo que debería de ser capaz de dar una respuesta como esta:
+
+image::app-rag.png[]
+
+Perfecto, ahora toca poner a prueba su razonamiento a la hora de calcular penalizaciones por impago. Como si fueramos ciudadanos de este país, vamos a escribir:
 
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
