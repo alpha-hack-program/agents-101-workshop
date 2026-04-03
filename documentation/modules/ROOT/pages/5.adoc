@@ -3,7 +3,7 @@ include::_attributes.adoc[]
 == 5. Desplegar la App Agéntica
 
 [#51]
-=== 5.1 Desplegar e interactuar con la app
+=== 5.1 Desplegar la app y las pipeline RAG, RAGas
 
 ¡Es hora de *unir todas las piezas* en la app! Esta app consistirá en una ventana de chat con el agente que hemos creado. Se trata de un front-end que nos permite ajustar parámetros del modelo y experimentar con el comportamiento del agente.
 
@@ -24,9 +24,71 @@ image::values-app.png[]
 * Con el logo de Python, tenemos dos deployments dedicados a la app agéntica que hace llamadas a Llama Stack.
 * Encima, tenemos una fila de deployments de pipelines.
 
-En este caso, hemos desplegado unas pipelines que se encargan de automatizar la ingestión de archivos para hacer RAG. Disponemos de unos documentos legales ficticios para que el agente tenga un contexto en el que usar sus herramientas. Estos documentos son troceados y guardados en la base de datos vectorial. La distribución de Llama Stack ya incorpora un modelo de embedding, necesario para realizar la búsqueda y retrieval de esta información.
+[#52]
+=== 5.2 Pipeline de RAG
 
-Esta vez vamos a clicar en el Deployment `llama-stack-demo-app`, con el icono azul y amarillo de Python. Luego clica en la ruta que aparece en el panel de la derecha.
+En este caso, hemos desplegado unas pipelines que se encargan de automatizar la ingestión de archivos para hacer RAG.
+
+Disponemos de unos documentos legales ficticios para que el agente tenga un contexto en el que usar sus herramientas. En la ventana de nuestro entorno de desarrollo, puedes visualizar los documentos en la ruta `llama-stack-demo/client/docs/`.
+
+image::docs.png[]
+
+La pipeline RAG coge estos documentos, los trocea y guarda en la base de datos vectorial (PostgreSQL y Milvus). Luego gracias a un modelo de embedding que incluye Llama Stack, podemos realizar la búsqueda y retrieval de la información procesada.
+
+Vamos a ver el desarrollo de esta pipeline desde Openshift AI. Dirígete a la pestaña de OpenShift AI a `Develop & train > Experiments`:
+
+image::experiments.png[]
+
+Clica en `rag-pipeline-experiment`.
+
+image::experiments-rag-milvus.png[]
+
+Ahora vamos a seleccionar la pipeline de `rag-pipeline-milvus-remote`:
+
+image::experiments-rag.png[]
+
+Deberías ver a la pipeline en pleno procesamiento. Tardará unos minutos en terminar, ¡así que mientras continúa con el taller!
+
+[#53]
+=== 5.3 Pipeline de RAGas
+
+Por otro lado, hemos creado unas pipelines RAGas. Estas nos permiten hacer pruebas y comprobar la precisión de nuestro RAG pasandole a nuestro modelo una batería de tests.
+
+Vamos a ver los datasets que hemos pasado a la pipeline de RAGas. Vuelve al entorno de desarrollo y ve a la carpeta `llama-stack-demo/materials/datasets`:
+
+image::datasets.png[]
+
+Volvemos a la pestaña de experimentos de OpenShift AI y esta vez clicamos en la pipeline de RAGas:
+
+image::experiments-ragas.png[]
+
+Aquí encontrarás varias pipelines en proceso. Nuestro sistema de RAGas está configurado para lanzarse cada cierto tiempo para enseñar que podemos configurar pipelines recurrentes.
+
+Puede que la primera ejecución de estas haya dado error al depender de que acabaran las pipelines de RAG antes. No te preocupes, en la segunda ejecución no debería haber problema.
+
+image::experiments-ragas-2.png[]
+
+Vamos a mirar la segunda ejecución del RAGas de `ragas-milvus-remote-vector`, que debería estar en proceso:
+
+image::experiments-ragas-milvus.png[]
+
+Aquí se ven los pasos del RAGas e incluso puedes ver los logs de cada paso. Una vez que esté verdes, podremos volver a la página anterior:
+
+image::experiments-ragas-2.png[]
+
+Una vez que las pipelines de RAGas estén en el estado `Succeded`,nos vamos en los dos números a la derecha de cada fila: 
+
+* El primer número es el *answer_relevancy* evalúa la calidad del buscador y mide qué tan relevante es el contenido que recuperamos de la base de datos respecto a nuestro dataset.
+* El segundo *context_precision* nos habla de la calidad de la respuesta del LLM. Mide qué tan bien responde al output del modelo a la intención original de la pregunta.
+
+image::experiments-ragas-succeded.png[]
+
+Cuando hayas visto terminar la pipeline de RAGas y visto los resultados, podemos pasar a ver la app.
+
+[#54]
+=== 5.4 Probar la app
+
+Vamos a la pestaña de Openshift a ver la topología `Workloads > Topology`. Verifica que en el desplegable de arriba estás en el proyecto `{project}` Esta vez vamos a clicar en el Deployment `llama-stack-demo-app`, con el icono azul y amarillo de Python. Luego clica en la ruta que aparece en el panel de la derecha.
 
 image::reaching-app.png[]
 
