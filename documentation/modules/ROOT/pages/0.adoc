@@ -17,10 +17,11 @@ Un modelo sólo responde en base a lo que conoce. Es ahí donde entran en juego 
 [#01]
 === Objetivo
 
-El objetivo de este taller es desplegar un **asistente** que ayude a los usuarios a calcular la penalización por un pago pendiente. Lo haremos utilizando un agente basado en Llama Stack, RAG y servidores MCP. Conocerás paso a paso cómo es el flujo de trabajo dentro de OpenShift AI para tanto el desarrollo como el despliegue del agente.
+El objetivo de este taller es desplegar un **asistente** para ayudar a los ciudadanos de un país ficticio, Lysmark. A través del chat, los usuarios podrán pedir información sobre la leyes del país. En este caso, nos centraremos en ofrecer información precisa sobre las penalizaciones por impago. 
+
+La aplicación estará basada en un agente de IA basado en Llama Stack, RAG y servidores MCP. Conocerás paso a paso cómo es el flujo de trabajo dentro de OpenShift AI para tanto el desarrollo como el despliegue del agente.
 
 image::workshop.png[]
-
 
 [#02]
 === Entorno

@@ -38,8 +38,7 @@ En `MCP Tools`, selecciona `all`. De esta forma habilitamos la comunicación a l
 
 image::app.png[]
 
-¡Genial! Primero vamos a verificar que el agente puede extraer información de la documentación con RAG. Escribe lo siguiente:
-
+¡Genial! Primero vamos a verificar que el agente tiene acceso a la documentación gracias al RAG. Vamos a preguntar si conoce algo sobre el país para el que estamos creando el agente. Escribe lo siguiente:
 
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
@@ -47,7 +46,7 @@ image::app.png[]
 Based on the documents that have been provided, what is Lysmark?
 ----
 
-*Lysmark* es el nombre ficticio del país que ha decidido poner en marcha a este agente de inteligencia artificial. Por lo que debería de ser capaz de dar una respuesta como esta:
+Debería de ser capaz de dar una respuesta como esta:
 
 image::app-rag.png[]
 

@@ -45,7 +45,18 @@ En el segundo paso, vamos a definir el **proyecto** con el nombre `{namespace}`.
 
 image::deploy-model-2.png[]
 
-En el tercer paso tenemos opciones de configuración avanzada. Modifica el formulario como se muestra en la siguiente imagen.
+En el tercer paso tenemos opciones de configuración avanzada. Modifica el formulario de la siguiente forma:
+
+* Habilita la casilla `Add as AI asset endpoint`.
+* Habilita la casilla `Add custom runtime arguments` y pega abajo estos argumentos:
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+--enable-auto-tool-choice
+--tool-call-parser
+hermes
+----
 
 image::deploy-model-3.png[]
 

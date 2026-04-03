@@ -11,6 +11,7 @@ Antes de terminar, vamos a hacer un repaso de todo lo que se ha hecho en este ta
 * Hemos desplegado un modelo Qwen3 en nuestro cluster y hemos comprobado sus respuestas desde el Playground.
 * Hemos visto más de cerca qué compone a un servidor MCP y qué es necesario para garantizar que funcione correctamente.
 * Hemos unificado la comunicación de nuestro stack desplegando una distribución de LlamaStack y sus respectivos componentes.
+* Hemos utilizado automatizaciones a través de pipelines para la ingestión de documentación y realizar RAG.
 * Hemos terminado desplegando la aplicación agéntica que usa todas las piezas de nuestra arquitectura.
 * Como paso final, hemos habilitado la observabilidad de trazas de nuestra aplicación agéntica.
 
