@@ -276,7 +276,24 @@
 </div>
 </div>
 <div class="paragraph">
-<p>En el tercer paso tenemos opciones de configuración avanzada. Modifica el formulario como se muestra en la siguiente imagen.</p>
+<p>En el tercer paso tenemos opciones de configuración avanzada. Modifica el formulario de la siguiente forma:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Habilita la casilla <code>Add as AI asset endpoint</code>.</p>
+</li>
+<li>
+<p>Habilita la casilla <code>Add custom runtime arguments</code> y pega abajo estos argumentos:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">--enable-auto-tool-choice
+--tool-call-parser
+hermes</code></pre>
+</div>
 </div>
 <div class="imageblock">
 <div class="content">
