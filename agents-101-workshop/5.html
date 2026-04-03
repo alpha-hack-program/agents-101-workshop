@@ -203,7 +203,7 @@
 <h2 id="_5_desplegar_la_app_agéntica"><a class="anchor" href="#_5_desplegar_la_app_agéntica"></a>5. Desplegar la App Agéntica</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="51"><a class="anchor" href="#51"></a>5.1 Desplegar e interactuar con la app</h3>
+<h3 id="51"><a class="anchor" href="#51"></a>5.1 Desplegar la app y las pipeline RAG, RAGas</h3>
 <div class="paragraph">
 <p>¡Es hora de <strong>unir todas las piezas</strong> en la app! Esta app consistirá en una ventana de chat con el agente que hemos creado. Se trata de un front-end que nos permite ajustar parámetros del modelo y experimentar con el comportamiento del agente.</p>
 </div>
@@ -236,11 +236,125 @@
 </li>
 </ul>
 </div>
+</div>
+<div class="sect2">
+<h3 id="52"><a class="anchor" href="#52"></a>5.2 Pipeline de RAG</h3>
 <div class="paragraph">
-<p>En este caso, hemos desplegado unas pipelines que se encargan de automatizar la ingestión de archivos para hacer RAG. Disponemos de unos documentos legales ficticios para que el agente tenga un contexto en el que usar sus herramientas. Estos documentos son troceados y guardados en la base de datos vectorial. La distribución de Llama Stack ya incorpora un modelo de embedding, necesario para realizar la búsqueda y retrieval de esta información.</p>
+<p>En este caso, hemos desplegado unas pipelines que se encargan de automatizar la ingestión de archivos para hacer RAG.</p>
 </div>
 <div class="paragraph">
-<p>Esta vez vamos a clicar en el Deployment <code>llama-stack-demo-app</code>, con el icono azul y amarillo de Python. Luego clica en la ruta que aparece en el panel de la derecha.</p>
+<p>Disponemos de unos documentos legales ficticios para que el agente tenga un contexto en el que usar sus herramientas. En la ventana de nuestro entorno de desarrollo, puedes visualizar los documentos en la ruta <code>llama-stack-demo/client/docs/</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/docs.png" alt="docs">
+</div>
+</div>
+<div class="paragraph">
+<p>La pipeline RAG coge estos documentos, los trocea y guarda en la base de datos vectorial (PostgreSQL y Milvus). Luego gracias a un modelo de embedding que incluye Llama Stack, podemos realizar la búsqueda y retrieval de la información procesada.</p>
+</div>
+<div class="paragraph">
+<p>Vamos a ver el desarrollo de esta pipeline desde Openshift AI. Dirígete a la pestaña de OpenShift AI a <code>Develop &amp; train &gt; Experiments</code>:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/experiments.png" alt="experiments">
+</div>
+</div>
+<div class="paragraph">
+<p>Clica en <code>rag-pipeline-experiment</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/experiments-rag-milvus.png" alt="experiments rag milvus">
+</div>
+</div>
+<div class="paragraph">
+<p>Ahora vamos a seleccionar la pipeline de <code>rag-pipeline-milvus-remote</code>:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/experiments-rag.png" alt="experiments rag">
+</div>
+</div>
+<div class="paragraph">
+<p>Deberías ver a la pipeline en pleno procesamiento. Tardará unos minutos en terminar, ¡así que mientras continúa con el taller!</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="53"><a class="anchor" href="#53"></a>5.3 Pipeline de RAGas</h3>
+<div class="paragraph">
+<p>Por otro lado, hemos creado unas pipelines RAGas. Estas nos permiten hacer pruebas y comprobar la precisión de nuestro RAG pasandole a nuestro modelo una batería de tests.</p>
+</div>
+<div class="paragraph">
+<p>Vamos a ver los datasets que hemos pasado a la pipeline de RAGas. Vuelve al entorno de desarrollo y ve a la carpeta <code>llama-stack-demo/materials/datasets</code>:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/datasets.png" alt="datasets">
+</div>
+</div>
+<div class="paragraph">
+<p>Volvemos a la pestaña de experimentos de OpenShift AI y esta vez clicamos en la pipeline de RAGas:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/experiments-ragas.png" alt="experiments ragas">
+</div>
+</div>
+<div class="paragraph">
+<p>Aquí encontrarás varias pipelines en proceso. Nuestro sistema de RAGas está configurado para lanzarse cada cierto tiempo para enseñar que podemos configurar pipelines recurrentes.</p>
+</div>
+<div class="paragraph">
+<p>Puede que la primera ejecución de estas haya dado error al depender de que acabaran las pipelines de RAG antes. No te preocupes, en la segunda ejecución no debería haber problema.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/experiments-ragas-2.png" alt="experiments ragas 2">
+</div>
+</div>
+<div class="paragraph">
+<p>Vamos a mirar la segunda ejecución del RAGas de <code>ragas-milvus-remote-vector</code>, que debería estar en proceso:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/experiments-ragas-milvus.png" alt="experiments ragas milvus">
+</div>
+</div>
+<div class="paragraph">
+<p>Aquí se ven los pasos del RAGas e incluso puedes ver los logs de cada paso. Una vez que esté verdes, podremos volver a la página anterior:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/experiments-ragas-2.png" alt="experiments ragas 2">
+</div>
+</div>
+<div class="paragraph">
+<p>Una vez que las pipelines de RAGas estén en el estado <code>Succeded</code>,nos vamos en los dos números a la derecha de cada fila:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>El primer número es el <strong>answer_relevancy</strong> evalúa la calidad del buscador y mide qué tan relevante es el contenido que recuperamos de la base de datos respecto a nuestro dataset.</p>
+</li>
+<li>
+<p>El segundo <strong>context_precision</strong> nos habla de la calidad de la respuesta del LLM. Mide qué tan bien responde al output del modelo a la intención original de la pregunta.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/experiments-ragas-succeded.png" alt="experiments ragas succeded">
+</div>
+</div>
+<div class="paragraph">
+<p>Cuando hayas visto terminar la pipeline de RAGas y visto los resultados, podemos pasar a ver la app.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="54"><a class="anchor" href="#54"></a>5.4 Probar la app</h3>
+<div class="paragraph">
+<p>Vamos a la pestaña de Openshift a ver la topología <code>Workloads &gt; Topology</code>. Verifica que en el desplegable de arriba estás en el proyecto <code>llama-stack-demo-%USERNAME%</code> Esta vez vamos a clicar en el Deployment <code>llama-stack-demo-app</code>, con el icono azul y amarillo de Python. Luego clica en la ruta que aparece en el panel de la derecha.</p>
 </div>
 <div class="imageblock">
 <div class="content">
