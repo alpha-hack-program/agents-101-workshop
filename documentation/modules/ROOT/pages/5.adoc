@@ -1,6 +1,6 @@
 include::_attributes.adoc[]
 
-== 5. Desplegar la App Agéntica
+== 5. Desplegar la App y Pipelines
 
 [#51]
 === 5.1 Desplegar la app y las pipeline RAG, RAGas
@@ -86,7 +86,7 @@ image::experiments-ragas-succeded.png[]
 Cuando hayas visto terminar la pipeline de RAGas y visto los resultados, podemos pasar a ver la app.
 
 [#54]
-=== 5.4 Probar la app
+=== 5.4 Probar la App
 
 Vamos a la pestaña de Openshift a ver la topología `Workloads > Topology`. Verifica que en el desplegable de arriba estás en el proyecto `{project}` Esta vez vamos a clicar en el Deployment `llama-stack-demo-app`, con el icono azul y amarillo de Python. Luego clica en la ruta que aparece en el panel de la derecha.
 

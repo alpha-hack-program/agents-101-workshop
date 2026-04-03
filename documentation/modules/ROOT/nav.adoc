@@ -19,8 +19,11 @@
 ** xref:4.adoc#41[4.1 ¿Qué es Llama Stack?]
 ** xref:4.adoc#42[4.2 Desplegar Llama Stack]
 
-* xref:5.adoc[5. Desplegar la App Agéntica]
-** xref:5.adoc#51[5.1 Desplegar e interactuar con la app]
+* xref:5.adoc[5. Desplegar la App y Pipelines]
+** xref:5.adoc#51[5.1 Desplegar la app y las pipeline RAG, RAGas]
+** xref:5.adoc#52[5.2 Pipeline de RAG]
+** xref:5.adoc#53[5.3 Pipeline de RAGas]
+** xref:5.adoc#54[5.4 Probar la App]
 
 * xref:6.adoc[6. Habilitar Observabilidad]
 ** xref:6.adoc#61[6.1 Desplegar Observabilidad]
