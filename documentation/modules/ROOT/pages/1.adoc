@@ -2,7 +2,7 @@ include::_attributes.adoc[]
 
 == 1. Preparar el Entorno
 
-Para empezar, los facilitadores del taller os daremos acceso al cluster de OpenShift con vuestro usuario y contraseña. Recordad ambos porque os harán falta varias veces.
+Para empezar, los facilitadores del taller os daremos acceso al cluster de OpenShift con vuestro usuario y contraseña. Durante el taller, estos os harán falta varias veces.
 
 El objetivo de esta sección 1 es preparar el entorno donde trabajaremos. Desplegaremos un espacio de trabajo (un IDE) desde OpenShift AI para poder modificar código e interactuar por el terminal. 
 
@@ -10,7 +10,7 @@ El objetivo de esta sección 1 es preparar el entorno donde trabajaremos. Desple
 * Contraseña: {password}
 * URL: {openshift-console-url}
 
-¡Comencemos!
+¡Clica en la *URL* para acceder al cluster! Luego introduce tu *usuario* y *contraseña*.
 
 [#11]
 === 1.1 Entrar en OpenShift y OpenShift AI
@@ -98,6 +98,16 @@ Common actions for Helm:
 - helm install:   upload the chart to Kubernetes
 - helm list:      list releases of charts
 ...
+----
+
+Por último, vamos a logearnos en la línea de comandos de OpenShift para interactuar con nuestro cluster a través del terminal.
+
+Ejecuta el siguiente comando:
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+oc login -u {username} -p {password} {api-domain}
 ----
 
 ¡Genial! Ya tienes el IDE ya configurado, puedes pasar a la sección **2. Desplegar el Modelo**. 

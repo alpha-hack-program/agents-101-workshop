@@ -42,7 +42,9 @@ Volvemos a la pestaña de nuestro espacio de trabajo, el IDE. Vamos a escribir e
 [source,bash,subs="+macros,+attributes"]
 ----
 PROJECT="llama-stack-demo-{username}"
-helm install llama-stack-demo helm/ --namespace llama-stack-demo-{username} --timeout 20m
+helm install llama-stack-demo ./llama-stack-demo/helm/ \
+  -f ./llama-stack-demo/helm/values-llama-stack.yaml \
+  -n llama-stack-demo-{username}
 ----
 
 Una vez ejecutado el comando, vuelve a la consola de OpenShift para visualizar la nueva topología. Aunque el orden de los despliegues no concuerde con el de la imagen, deberías tener todos estos:

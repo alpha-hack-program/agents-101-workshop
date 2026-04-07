@@ -58,6 +58,8 @@ En el tercer paso tenemos opciones de configuración avanzada. Modifica el formu
 hermes
 ----
 
+* Por último, en `Deployment Strategy` selecciona *Recreate*.
+
 image::deploy-model-3.png[]
 
 Llegamos al cuarto y último paso. Veremos un resumen de nuestro formulario, vamos a lanzar el despliegue clicando en `Deploy model`.

@@ -40,7 +40,7 @@ cd
 git clone --branch empty --single-branch https://github.com/alpha-hack-program/penalty-engine-mcp-rs.git
 ----
 
-En la barra lateral izquierda, accede a `penalty-engine>src>common/penalty-engine.yaml`. Este es el archivo en el que definiremos todo el servidor. 
+En la barra lateral izquierda, accede a `penalty-engine-mcp-rs>src>common/penalty_engine.rs`. Este es el archivo en el que definiremos todo el servidor. 
 
 image::penalty-engine-empty.png[]
 
