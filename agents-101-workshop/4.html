@@ -132,6 +132,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#42">4.2 Desplegar Llama Stack</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#42">4.3 Probar MCP en Playground</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -314,8 +317,62 @@ helm install llama-stack-demo ./llama-stack-demo/helm/ \
 <div class="paragraph">
 <p>¿Por qué hay dos bases de datos de vectores? Podríamos haber elegido una sola sin problema. El objetivo es demostrar que Llama Stack es flexible y que se pueden utilizar cualquiera de estas dos opciones sin problemas.</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="43"><a class="anchor" href="#43"></a>4.3 Probar MCP en Playground</h3>
 <div class="paragraph">
-<p>Ya tenemos Llama Stack funcionando en el cluster, pasa a la siguiente sección.</p>
+<p>Vamos a comprobar que el servidor MCP funciona correctamente en el Playground. Accede a la ventana de OpenShift AI y en la barra lateral clica en <code>Gen AI studio</code> en la sección <code>Playground</code>.</p>
+</div>
+<div class="paragraph">
+<p>En el panel de la derecha, clica en el <strong>candado</strong> de <code>penalty-engine-llama-stack-demo-%USERNAME%-MCP-Server</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/mcp1.png" alt="mcp1">
+</div>
+</div>
+<div class="paragraph">
+<p>Deberías ver el siguiente mensaje. Simplemente clica en <code>Save</code> para habilitar el servidor MCP.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/mcp2.png" alt="mcp2">
+</div>
+</div>
+<div class="paragraph">
+<p>Para activar la herramienta del servidor, clica en la caja a la izquierda de su nombre.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/mcp3.png" alt="mcp3">
+</div>
+</div>
+<div class="paragraph">
+<p>¡Genial! Ahora introduce el siguiente mensaje en el chat.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Hello! Last shipment arrived 12 days late, how much should we claim to the shipping company according to the default contract we signed up?</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/mcp4.png" alt="mcp4">
+</div>
+</div>
+<div class="paragraph">
+<p>El servidor MCP debería ser capaz de llamar a la herramienta <strong>calc_penalty</strong>. Al final del mensaje que se ha generado, clica en <code>Tool response: calc_penalty</code>. Podrás ver qué inputs y outputs se han procesado en el servidor MCP para generar la respuesta.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/mcp5.png" alt="mcp5">
+</div>
+</div>
+<div class="paragraph">
+<p>Ya tenemos Llama Stack funcionando en el cluster y los servidores MCP son accesibles.</p>
+</div>
+<div class="paragraph">
+<p>¡Pasa a la siguiente sección!</p>
 </div>
 </div>
 </div>
