@@ -10,7 +10,7 @@ Disponer de herramientas de **observabilidad** es un pilar clave para operar con
 Para desplegar, vuelve al IDE e ejecuta el siguiente comando:
 
 [.console-input]
-[source,bash,subs="+macros,+attributes"]º
+[source,bash,subs="+macros,+attributes"]
 ----
 helm upgrade llama-stack-demo helm/ -f helm/values-observability.yaml --set assigned=llama-stack-demo-{username} --namespace llama-stack-demo-{username} --timeout 20m
 ----

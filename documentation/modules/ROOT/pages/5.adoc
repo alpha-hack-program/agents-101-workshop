@@ -76,7 +76,7 @@ Aquí se ven los pasos del RAGas e incluso puedes ver los logs de cada paso. Una
 
 image::experiments-ragas-2.png[]
 
-Una vez que las pipelines de RAGas estén en el estado `Succeded`,nos vamos en los dos números a la derecha de cada fila: 
+Cuando ya las pipelines de RAGas se encuentren en el estado `Succeded`, vamos a fijarnos en los dos números a la derecha de cada fila: 
 
 * El primer número es el *answer_relevancy* evalúa la calidad del buscador y mide qué tan relevante es el contenido que recuperamos de la base de datos respecto a nuestro dataset.
 * El segundo *context_precision* nos habla de la calidad de la respuesta del LLM. Mide qué tan bien responde al output del modelo a la intención original de la pregunta.
