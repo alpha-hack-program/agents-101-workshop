@@ -212,7 +212,7 @@
 <h2 id="_1_preparar_el_entorno"><a class="anchor" href="#_1_preparar_el_entorno"></a>1. Preparar el Entorno</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Para empezar, los facilitadores del taller os daremos acceso al cluster de OpenShift con vuestro usuario y contraseña. Recordad ambos porque os harán falta varias veces.</p>
+<p>Para empezar, los facilitadores del taller os daremos acceso al cluster de OpenShift con vuestro usuario y contraseña. Durante el taller, estos os harán falta varias veces.</p>
 </div>
 <div class="paragraph">
 <p>El objetivo de esta sección 1 es preparar el entorno donde trabajaremos. Desplegaremos un espacio de trabajo (un IDE) desde OpenShift AI para poder modificar código e interactuar por el terminal.</p>
@@ -226,12 +226,12 @@
 <p>Contraseña: %PASSWORD%</p>
 </li>
 <li>
-<p>URL: <a href="https://console-openshift-console.apps.%BASE_SUBDOMAIN%" class="bare">https://console-openshift-console.apps.%BASE_SUBDOMAIN%</a></p>
+<p>URL: <a href="https://console-openshift-console.apps.ocp.%BASE_SUBDOMAIN%" class="bare">https://console-openshift-console.apps.ocp.%BASE_SUBDOMAIN%</a></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>¡Comencemos!</p>
+<p>¡Clica en la <strong>URL</strong> para acceder al cluster! Luego introduce tu <strong>usuario</strong> y <strong>contraseña</strong>.</p>
 </div>
 <div class="sect2">
 <h3 id="11"><a class="anchor" href="#11"></a>1.1 Entrar en OpenShift y OpenShift AI</h3>
@@ -358,6 +358,17 @@ Common actions for Helm:
 - helm install:   upload the chart to Kubernetes
 - helm list:      list releases of charts
 ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Por último, vamos a logearnos en la línea de comandos de OpenShift para interactuar con nuestro cluster a través del terminal.</p>
+</div>
+<div class="paragraph">
+<p>Ejecuta el siguiente comando:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc login -u %USERNAME% -p %PASSWORD% https://api.ocp.%BASE_SUBDOMAIN%:6443</code></pre>
 </div>
 </div>
 <div class="paragraph">
