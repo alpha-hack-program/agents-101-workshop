@@ -60,4 +60,38 @@ La arquitectura actual dispone nuevos elementos:
 
 ¿Por qué hay dos bases de datos de vectores? Podríamos haber elegido una sola sin problema. El objetivo es demostrar que Llama Stack es flexible y que se pueden utilizar cualquiera de estas dos opciones sin problemas.
 
-Ya tenemos Llama Stack funcionando en el cluster, pasa a la siguiente sección.
+[#43]
+=== 4.3 Probar MCP en Playground
+
+Vamos a comprobar que el servidor MCP funciona correctamente en el Playground. Accede a la ventana de OpenShift AI y en la barra lateral clica en `Gen AI studio` en la sección `Playground`.
+
+En el panel de la derecha, clica en el *candado* de `penalty-engine-llama-stack-demo-{username}-MCP-Server`.
+
+image::mcp1.png[]
+
+Deberías ver el siguiente mensaje. Simplemente clica en `Save` para habilitar el servidor MCP.
+
+image::mcp2.png[]
+
+Para activar la herramienta del servidor, clica en la caja a la izquierda de su nombre.
+
+image::mcp3.png[]
+
+
+¡Genial! Ahora introduce el siguiente mensaje en el chat.
+
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+Hello! Last shipment arrived 12 days late, how much should we claim to the shipping company according to the default contract we signed up?
+----
+
+image::mcp4.png[]
+
+El servidor MCP debería ser capaz de llamar a la herramienta *calc_penalty*. Al final del mensaje que se ha generado, clica en `Tool response: calc_penalty`. Podrás ver qué inputs y outputs se han procesado en el servidor MCP para generar la respuesta.
+
+image::mcp5.png[]
+
+Ya tenemos Llama Stack funcionando en el cluster y los servidores MCP son accesibles.
+
+¡Pasa a la siguiente sección!
