@@ -115,12 +115,12 @@ Debería de ser capaz de dar una respuesta como esta:
 
 image::app-rag.png[]
 
-Perfecto, ahora toca poner a prueba su razonamiento a la hora de calcular penalizaciones por impago. Como si fueramos ciudadanos de este país, vamos a escribir:
+Perfecto, ahora toca poner a prueba su razonamiento a la hora de calcular penalizaciones. Vamos a escribir:
 
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
-Hello! I want you to calculate the penalty for 12 days.
+Hello! Last shipment arrived 12 days late, how much should we claim to the shipping company according to the default contract we signed up?
 ----
 
 Si todo ha ido bien, el modelo debe responder algo parecido a esto:
