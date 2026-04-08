@@ -98,7 +98,7 @@ Common actions for Helm:
 ...
 ----
 
-Por último, vamos a logearnos en la línea de comandos de OpenShift para interactuar con nuestro cluster a través del terminal.
+Por último, vamos a logearnos en OpenShift a través del terminal para interactuar con el cluster.
 
 Ejecuta el siguiente comando:
 

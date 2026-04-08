@@ -27,11 +27,12 @@ Esto permite a nuestro modelo interactuar con herramientas externas como Slack, 
 [#32]
 === 3.2 Penalty Engine
 
-*RAG* permite al modelo acceder a documentación y aprender de ella, pero a la hora de realizar cálculos basados en la información, puede cometer fallos. Para mejorar la *fiabilidad*, vamos a crear un *servidor MCP* que calcule la *penalización* por retrasos de envíos según la ley de *Lysmark*. Lo llamaremos *Penalty Engine* y funcionará de la siguiente forma:
+*RAG* permite al modelo acceder a documentación y aprender de ella, pero a la hora de realizar cálculos basados en la información, puede cometer fallos. Para mejorar la *fiabilidad*, vamos a crear un *servidor MCP* que calcule la *penalización* por retrasos de envíos según la ley de nuestro país imaginario *Lysmark*. Lo llamaremos *Penalty Engine* y funcionará de la siguiente forma:
 
 image::penalty-engine.png[]
 
-Para empezar, vamos a descargar el repositorio usando `git clone`:
+
+Vamos a dirigirnos a la pestaña del *workbench*, el IDE. Para empezar, vamos a descargar el repositorio usando `git clone`:
 
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
@@ -169,7 +170,7 @@ Antes de procesar cualquier dato, el código aplica una capa de defensa en profu
 * `parse_f64_from_string`: Limpia símbolos de moneda ($, €, %) y comas antes de convertir la cadena en un número real (f64).
 
 [.console-input]
-[source,bash,subs="+macros,+attributes"]
+[source,bash]
 ----
 // =================== 3. PARSING UTILITIES ===================
 // Input validation and string-to-number parsing helpers.

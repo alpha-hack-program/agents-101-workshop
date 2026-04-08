@@ -67,7 +67,7 @@ Llegamos al cuarto y último paso. Veremos un resumen de nuestro formulario, vam
 
 image::deploy-model-4.png[]
 
-Al hacerlo, seremos redirigidos a la página de Deployments, donde veremos los modelos que hemos desplegado. El modelo puede llegar a tardar 10 minutos en desplegarse. Sabrás que se ha desplegado correctamente cuando su status cambie a `Running`.
+Al hacerlo, seremos redirigidos a la página de Deployments, donde veremos los modelos que hemos desplegado. El modelo puede tardar unos minutos en desplegarse. Sabrás que se ha desplegado correctamente cuando su status cambie a `Started`.
 
 image::deployments.png[]
 
@@ -75,13 +75,13 @@ image::deployments.png[]
 
 Clica en la barra lateral en `Gen AI studio` en la sección `AI asset endpoints`.
 
-Cambia el proyecto en la parte superior. Deberías poder ver el modelo que acabas de desplegar. Continua pinchando en `Add to playground` y luego `Create`.
+Verifica que estás en el proyecto `{project}`en la parte superior. Deberías poder ver el modelo que acabas de desplegar. Continua pinchando en `Add to playground` y luego `Create`.
 
 image::assets.png[]
 
-Puede que al hacerlo, salte el siguiente mensaje de error. Estos espacios de testeo aún están en `Tech Preview`. Puedes ignorarlo, cerrarlo pinchando en la `X` y continuar con el siguiente paso sin problema.
+Puede que al hacerlo, salte el siguiente mensaje de error. Estos espacios de testeo aún están en `Tech Preview`. Puedes ignorarlo, *cerrarlo pinchando* en la `X` y continuar con el siguiente paso sin problema.
 
-image::playground-error.png[]
+image::playground-error-old.png[]
 
 Vamos a acceder al espacio de pruebas clicando en la barra lateral izquierda en `Gen AI studio` en la sección `Playground`. El playground puede tardar hasta 5 minutos en desplegarse. Durante este tiempo, lo que está haciendo OpenShift AI es crear una distribución de Llama Stack con los assets que le hemos indicado.
 
