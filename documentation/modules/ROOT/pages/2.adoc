@@ -15,7 +15,7 @@ En este taller, cuando hablamos del modelo nos referimos a un **modelo de IA gen
 [#22]
 === 2.2 Despliegues de OpenShift AI
 
-En nuestro caso, vamos a desplegar un **modelo Qwen 3** con 8 billones de parámetros en el motor de inferencia de Red Hat, el **Red Hat AI Inference Server**, que está basado en el proyecto open-source vLLM.
+En nuestro caso, vamos a desplegar un **modelo Qwen 3** con 8 billones de parámetros en el motor de inferencia de Red Hat, el **Red Hat AI Inference Server**, que está basado en el proyecto open-source *vLLM*.
 
 Vamos a volver a la pestaña de OpenShift AI. En la barra lateral, ve al `AI Hub` a la sección `Catalog`.
 
@@ -26,14 +26,15 @@ image::models.png[]
 En nuestro caso, vamos a escribir en la barra de búsqueda **Qwen3-8B-FP8-dynamic**. Clica en el nombre del modelo para entrar en su página de información.
 
 
-Al entrar en la página del modelo, vemos información como detalles sobe su arquitectura y su fecha de lanzamiento. Si descendemos, veremos los resultados que ha obtenido en los benchmarks más populares. Si clicas en Performance Insights, verás los resultados obtenidos en los tests de velocidad realizados por Red Hat en diferentes configuraciones de GPUs.
+Al entrar en la página del modelo, vemos detalles sobre su arquitectura y optimizaciones. Si descendemos, veremos los resultados que ha obtenido en los benchmarks más populares. 
+
+image::model-data.png[]
+
+Si clicas en Performance Insights, verás los resultados obtenidos en los tests de velocidad realizados por Red Hat en diferentes configuraciones de GPUs.
 
 image::model-performance.png[]
 
-
 Vamos a continuar clicando el botón `Deploy model` en la esquina superior derecha.
-
-image::model-data.png[]
 
 Entraremos en el primer paso del formulario para configurar el despliegue del modelo. 
 
@@ -91,14 +92,16 @@ image::playground-chat.png[]
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
-Cuéntame cómo hacer una tortilla de patatas.
+Cuéntame qué es necesario para hacer una buena tortilla de patatas.
 ----
 
 image::playground-answer.png[]
 
-En la respuesta del modelo, se pueden ver dos procesos:
-- Primero el modelo nos enseña qué está pensando antes de responder. Esto es muy útil para entender el razonamiento del modelo y entender la respuesta que ofrece al usuario.
-- Segundo la respuesta final que muestra al usuario.
+¡Perfecto! El modelo ha generado una respuesta, ¡lo de estar de acuerdo con echar cebolla ya es otro tema aparte!
+
+Si nos fijamos en la respuesta del modelo, se pueden ver dos procesos:
+- Primero, el modelo nos enseña qué está pensando antes de responder. Esto es muy útil para entender el razonamiento del modelo y entender la respuesta que ofrece al usuario.
+- Segundo, vemos la respuesta final que muestra al usuario.
 
 Genial, con esto terminamos esta parte, vamos a pasar a la sección **3.Desarrollar el Servidor MCP**.
 

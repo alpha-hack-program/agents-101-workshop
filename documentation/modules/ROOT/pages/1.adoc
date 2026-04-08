@@ -12,36 +12,34 @@ El objetivo de esta sección 1 es preparar el entorno donde trabajaremos. Desple
 
 ¡Clica en la *URL* para acceder al cluster! Luego introduce tu *usuario* y *contraseña*.
 
+image::login.png[]
+
 [#11]
 === 1.1 Entrar en OpenShift y OpenShift AI
 
-image::access-to-openshift-ai.png[]
-
 Como ves en la imagen, ve a la esquina superior derecha, abre el desplegable y clica en el acceso directo.
 
-image::login.png[]
+image::access-to-openshift-ai.png[]
 
-Introduce tu usuario y tu contraseña para entrar a la consola de OpenShift AI.
+
+Debes de introducir de nuevo tu usuario y contraseña para entrar a la consola de OpenShift AI. Después de hacerlo, estaremos dentro de la consola de OpenShift AI Tu página de inicio debería parecerse a la imagen.
 
 image::openshift-ai-homepage.png[]
-
-¡Estamos dentro de OpenShift AI! Tu página de inicio debería parecerse a la imagen. 
-
 
 [#12]
 === 1.2 Crear el Code Server
 
-Primero vamos a ir a los proyectos de OpenShift AI para elegir dónde crear el Code Server.
-
-image::project.png[]
+Lo primero que vamos a hacer es clicar en `Projects` en la barra lateral izquierda y seleccionar el proyecto ir a los proyectos de OpenShift AI para elegir dónde crear el Code Server.
 
 Elije el proyecto `{namespace}`.
+
+image::project.png[]
 
 Deberías estar a una página como la siguiente. Ahora, clica en "Create a workbench".
 
 image::project-openshift-ai.png[]
 
-Vamos a rellenar el formulario de creación del workbench como en la siguiente imagen. En `name`, tienes que escribir {workbench} y en `Image server`, selecciona la image de `Code Server | Data Science | CPU | Python 3.12`. Cuando lo tengas listo, confirma al botón inferior izquierdo "Create workbench".
+Vamos a rellenar el formulario de creación del workbench como en la siguiente imagen. En `name`, tienes que escribir *{workbench}* y en `Image server`, selecciona la image de `Code Server | Data Science | CPU | Python 3.12`. Cuando lo tengas listo, confirma al botón inferior izquierdo `Create workbench`.
 
 image::workbench-form.png[]
 
@@ -54,7 +52,7 @@ image::workbench-list.png[]
 
 Si todo ha ido bien, te encontrarás en un editor de código basado en VS Code. El objetivo de estos entornos en OpenShift AI es acelerar el trabajo de los equipos de desarrollo, así pueden entrar fácilmente con una URL a un espacio de trabajo con todas las librerías que les hacen falta. Además, al estar definidos como un objeto de Kubernetes se pueden escalar y eliminar al momento.
 
-Ahora vamos a clonar el repositorio del taller. Primero, vamos a crear un terminal clicando en el menú hamburguesa de la esquina superior izquierda y Terminal>New Terminal.
+Ahora vamos a clonar el repositorio del taller. Primero, vamos a crear un terminal clicando en el menú hamburguesa de la esquina superior izquierda y `Terminal>New Terminal`.
 
 image::create-terminal.png[]
 
