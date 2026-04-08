@@ -292,10 +292,10 @@ helm upgrade llama-stack-demo ./llama-stack-demo/helm/ \
 <div class="sect2">
 <h3 id="53"><a class="anchor" href="#53"></a>5.3 Pipeline de RAGas</h3>
 <div class="paragraph">
-<p>Por otro lado, hemos creado unas pipelines RAGas. Estas nos permiten hacer pruebas y comprobar la precisión de nuestro RAG pasandole a nuestro modelo una batería de tests.</p>
+<p>Por otro lado, hemos creado <strong>unas pipelines RAGas</strong>. Estas nos permiten hacer pruebas y comprobar la precisión de nuestro RAG pasándole a nuestro modelo una batería de tests.</p>
 </div>
 <div class="paragraph">
-<p>Vamos a ver los datasets que hemos pasado a la pipeline de RAGas. Vuelve al entorno de desarrollo y ve a la carpeta <code>llama-stack-demo/materials/datasets</code>:</p>
+<p>Vamos a ver los datasets que hemos pasado a la pipeline de RAGas. Vuelve al entorno de desarrollo, el IDE. Echa un vistazo a los <strong>datasets</strong> de la carpeta <code>llama-stack-demo/materials/datasets</code>:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -303,7 +303,7 @@ helm upgrade llama-stack-demo ./llama-stack-demo/helm/ \
 </div>
 </div>
 <div class="paragraph">
-<p>Volvemos a la pestaña de experimentos de OpenShift AI y esta vez clicamos en la pipeline de RAGas:</p>
+<p>Volvemos a la pestaña de experimentos de OpenShift AI y esta vez clicamos en la pipeline <code>ragas-scoring-experiment</code>:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -311,13 +311,13 @@ helm upgrade llama-stack-demo ./llama-stack-demo/helm/ \
 </div>
 </div>
 <div class="paragraph">
-<p>Aquí encontrarás varias pipelines en proceso. Nuestro sistema de RAGas está configurado para lanzarse cada cierto tiempo para enseñar que podemos configurar pipelines recurrentes.</p>
+<p>Aquí encontrarás varias pipelines <strong>en proceso</strong>. Nuestro sistema de RAGas está configurado para lanzarse cada cierto tiempo para enseñar que podemos configurar <strong>pipelines recurrentes</strong>.</p>
 </div>
 <div class="paragraph">
 <p>Puede que la primera ejecución de estas haya dado error al depender de que acabaran las pipelines de RAG antes. No te preocupes, en la segunda ejecución no debería haber problema.</p>
 </div>
 <div class="paragraph">
-<p>Cuando ya las pipelines de RAGas se encuentren en el estado <code>Succeded</code>, vamos a fijarnos en los dos números a la derecha de cada fila:</p>
+<p>Cuando ya las pipelines de RAGas se encuentren en el estado <code>Succeded</code>, vamos a fijarnos en los <strong>dos números</strong> a la derecha de cada fila:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -343,7 +343,7 @@ helm upgrade llama-stack-demo ./llama-stack-demo/helm/ \
 </div>
 </div>
 <div class="paragraph">
-<p>¡Perfecto, todas nuestras pipelines funcionan! Ya que hemos visto los resultados, podemos pasar a ver la app.</p>
+<p>Aquí tenemos una vista al completo de todos los pasos que ha ejecutado la pipeline RAGas. Ya que hemos visto los resultados del RAGas, el siguiente paso es poner en acción el agente en nuestra propia aplicación.</p>
 </div>
 </div>
 <div class="sect2">

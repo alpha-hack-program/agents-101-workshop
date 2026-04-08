@@ -298,17 +298,7 @@ git clone --branch empty --single-branch <a href="https://github.com/alpha-hack-
 <p><strong>Paso 1: Configuración Dinámica (Lazy Initialization)</strong></p>
 </div>
 <div class="paragraph">
-<p>Definimos el EngineConfig, una estructura que almacena los valores por defecto para los cálculos (tasas, topes e intereses).</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Carga de Entorno: Utiliza <code>std::env</code> para intentar leer variables de entorno (como <code>ENGINE_DEFAULT_CAP</code>). Si no existen, usa valores predeterminados (como 1000.0).</p>
-</li>
-<li>
-<p>Lazy: Se usa <code>once_cell::sync::Lazy</code> para asegurar que la configuración se cargue una sola vez y sea accesible globalmente de forma segura entre hilos.</p>
-</li>
-</ul>
+<p>Definimos el EngineConfig, una estructura que almacena los valores por defecto para los cálculos (tasas, topes e intereses):</p>
 </div>
 <div class="paragraph">
 <p>Copia el siguiente fragmento y pégalo al inicio del archivo.</p>
@@ -419,7 +409,7 @@ where
 <p><strong>Paso 3: Parseo y Comprobaciones de Seguridad</strong></p>
 </div>
 <div class="paragraph">
-<p>Antes de procesar cualquier dato, el código aplica una capa de defensa en profundidad:</p>
+<p>Antes de procesar cualquier dato, el código aplica una capa de <strong>defensa</strong> en profundidad:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -568,7 +558,7 @@ pub struct CalcPenaltyResponse {
 <p><strong>Paso 5: Función</strong> <code>calc_penalty_engine</code></p>
 </div>
 <div class="paragraph">
-<p>Esta función es la pieza fundamental del servidor, contiene la lógica del cálculo. Implementa la fórmula matemática para calcular la penalización y genera una explicación textual paso a paso de cómo se llegó al resultado. Esto es muy importante, ya que permitimos al agente que pueda explicar el proceso al usuario.</p>
+<p>Esta función es la <strong>pieza fundamental</strong> del servidor, contiene la lógica del cálculo. Implementa la <strong>fórmula matemática</strong> para calcular la penalización y genera una explicación textual paso a paso de cómo se llegó al resultado. Esto es <strong>muy importante</strong>, ya que permitimos al agente que pueda explicar el proceso al usuario.</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
@@ -653,7 +643,7 @@ impl CompatibilityEngine {
 <p><strong>Paso 6: Rutas de Herramientas MCP</strong></p>
 </div>
 <div class="paragraph">
-<p>Aquí es donde el código se "registra" como un servidor de herramientas.</p>
+<p>Aquí es donde el código <strong>se registra</strong> como un servidor de herramientas.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -729,7 +719,7 @@ impl CompatibilityEngine {
 <p><strong>Paso 7: Handler del Servidor</strong></p>
 </div>
 <div class="paragraph">
-<p>La implementación de ServerHandler define la identidad del servidor. Le dice al cliente (Llama Stack) cómo se llama el servidor (penalty-engine-mcp-rs), su versión y qué instrucciones generales debe seguir la IA al usarlo.</p>
+<p>La implementación de ServerHandler define la <strong>identidad del servidor</strong>. Le dice al cliente (Llama Stack) cómo se llama el servidor (penalty-engine-mcp-rs), su versión y qué instrucciones generales debe seguir el agente al usarlo.</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
@@ -768,7 +758,7 @@ impl ServerHandler for CompatibilityEngine {
 <p><strong>Paso 8: Tests de comprobación</strong></p>
 </div>
 <div class="paragraph">
-<p>En este paso final, realizamos varias pruebas para no solo verificar el cálculo, sino poner a prueba la resistencia del servidor:</p>
+<p>En este paso final, realizamos <strong>varias pruebas</strong> para no solo verificar el cálculo, sino poner a prueba la <strong>resistencia</strong> del servidor:</p>
 </div>
 <div class="ulist">
 <ul>
