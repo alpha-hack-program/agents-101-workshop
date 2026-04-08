@@ -21,11 +21,11 @@ helm upgrade llama-stack-demo ./llama-stack-demo/helm/ \
 
 En este caso, nos adentramos en cómo fluye la *telemetría* desde las apps hasta su análisis. ¿Qué diferencia hay entre instrumentar aplicaciones y almacenar/visualizar los datos?
 
-La instrumentación se encarga de generar telemetría: *trazas y métricas* que describen lo que hace la app. Esto se hace con OpenTelemetry y se exporta a un collector compartido del clúster. Ese collector *enruta las trazas* hacia Tempo, donde quedan almacenadas y listas para su análisis. Grafana se encarga de la *visualización*, ofreciendo los paneles de trazas para explorarlas y correlacionarlas.
+* La instrumentación se encarga de generar telemetría: *trazas y métricas* que describen lo que hace la app. Esto se hace con OpenTelemetry y se exporta a un collector compartido del clúster.
+* Ese collector *enruta las trazas* hacia Tempo, donde quedan almacenadas y listas para su análisis.
+* Grafana se encarga de la *visualización*, ofreciendo los paneles de trazas para explorarlas y correlacionarlas.
 
-Desplegando de esta manera, la infraestructura base (collector, Tempo y el stack de monitorización) se prepara solo una sola vez a nivel de clúster. Luego, el despliegue de la app solo agrega lo específico: dashboards, datasources y ServiceMonitors, sin duplicar componentes.
-
-En Openshift, vuelve a `Workloads>Topology`.
+Vamos a proceder a ver *las trazas* de la app. En la consola de Openshift, vuelve a `Workloads>Topology`.
 
 image::values-observability.png[]
 
@@ -41,7 +41,7 @@ image::grafana-permissions.png[]
 
 image::grafana-folders.png[]
 
-Después clica en `Llama-Stack-Demo-{username}> Distributed Traces`. Si no aparece aún, deberás esperar unos minutos hasta que se haya desplegado. Al clicar, deberías llegar a la siguiente imagen:
+Después clica en `Llama-Stack-Demo-{username}> Distributed Traces`. Si no aparece aún, deberás esperar un poco hasta que se haya desplegado. Al clicar, deberías llegar a la siguiente imagen:
 
 image::grafana-dashboards.png[]
 

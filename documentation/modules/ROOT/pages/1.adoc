@@ -6,13 +6,13 @@ Para empezar, los facilitadores del taller os daremos acceso al cluster de OpenS
 
 El objetivo de esta sección 1 es preparar el entorno donde trabajaremos. Desplegaremos un espacio de trabajo (un IDE) desde OpenShift AI para poder modificar código e interactuar por el terminal. 
 
-* Usuario asignado: {username}
-* Contraseña: {password}
-* URL: {openshift-console-url}
+* *Usuario asignado*: {username}
+* *Contraseña*: {password}
+* *URL*: {openshift-console-url}
 
-Durante el taller, se te abrirán pestañas en tu navegador. Es importante que no las elimines para trabajar fácilmente entre ellas.
+A medida que avances con el taller, se te abrirán pestañas en el navegador. Es importante que no las elimines para trabajar fácilmente entre ellas.
 
-¡Clica en la *URL* para acceder al cluster! Luego introduce tu *usuario* y *contraseña*.
+¡Clica en la *URL* para acceder al cluster! Introduce el *usuario* y *contraseña* que te han sido proporcionados.
 
 image::login.png[]
 
