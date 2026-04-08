@@ -236,45 +236,42 @@
 <div class="paragraph">
 <p>¡Clica en la <strong>URL</strong> para acceder al cluster! Luego introduce tu <strong>usuario</strong> y <strong>contraseña</strong>.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/login.png" alt="login">
+</div>
+</div>
 <div class="sect2">
 <h3 id="11"><a class="anchor" href="#11"></a>1.1 Entrar en OpenShift y OpenShift AI</h3>
+<div class="paragraph">
+<p>Como ves en la imagen, ve a la esquina superior derecha, abre el desplegable y clica en el acceso directo.</p>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/access-to-openshift-ai.png" alt="access to openshift ai">
 </div>
 </div>
 <div class="paragraph">
-<p>Como ves en la imagen, ve a la esquina superior derecha, abre el desplegable y clica en el acceso directo.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/login.png" alt="login">
-</div>
-</div>
-<div class="paragraph">
-<p>Introduce tu usuario y tu contraseña para entrar a la consola de OpenShift AI.</p>
+<p>Debes de introducir de nuevo tu usuario y contraseña para entrar a la consola de OpenShift AI. Después de hacerlo, estaremos dentro de la consola de OpenShift AI Tu página de inicio debería parecerse a la imagen.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/openshift-ai-homepage.png" alt="openshift ai homepage">
 </div>
 </div>
-<div class="paragraph">
-<p>¡Estamos dentro de OpenShift AI! Tu página de inicio debería parecerse a la imagen.</p>
-</div>
 </div>
 <div class="sect2">
 <h3 id="12"><a class="anchor" href="#12"></a>1.2 Crear el Code Server</h3>
 <div class="paragraph">
-<p>Primero vamos a ir a los proyectos de OpenShift AI para elegir dónde crear el Code Server.</p>
+<p>Lo primero que vamos a hacer es clicar en <code>Projects</code> en la barra lateral izquierda y seleccionar el proyecto ir a los proyectos de OpenShift AI para elegir dónde crear el Code Server.</p>
+</div>
+<div class="paragraph">
+<p>Elije el proyecto <code>llama-stack-demo-%USERNAME%</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/project.png" alt="project">
 </div>
-</div>
-<div class="paragraph">
-<p>Elije el proyecto <code>llama-stack-demo-%USERNAME%</code>.</p>
 </div>
 <div class="paragraph">
 <p>Deberías estar a una página como la siguiente. Ahora, clica en "Create a workbench".</p>
@@ -285,7 +282,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>Vamos a rellenar el formulario de creación del workbench como en la siguiente imagen. En <code>name</code>, tienes que escribir workbench-%USERNAME% y en <code>Image server</code>, selecciona la image de <code>Code Server | Data Science | CPU | Python 3.12</code>. Cuando lo tengas listo, confirma al botón inferior izquierdo "Create workbench".</p>
+<p>Vamos a rellenar el formulario de creación del workbench como en la siguiente imagen. En <code>name</code>, tienes que escribir <strong>workbench-%USERNAME%</strong> y en <code>Image server</code>, selecciona la image de <code>Code Server | Data Science | CPU | Python 3.12</code>. Cuando lo tengas listo, confirma al botón inferior izquierdo <code>Create workbench</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -307,7 +304,7 @@
 <p>Si todo ha ido bien, te encontrarás en un editor de código basado en VS Code. El objetivo de estos entornos en OpenShift AI es acelerar el trabajo de los equipos de desarrollo, así pueden entrar fácilmente con una URL a un espacio de trabajo con todas las librerías que les hacen falta. Además, al estar definidos como un objeto de Kubernetes se pueden escalar y eliminar al momento.</p>
 </div>
 <div class="paragraph">
-<p>Ahora vamos a clonar el repositorio del taller. Primero, vamos a crear un terminal clicando en el menú hamburguesa de la esquina superior izquierda y Terminal&gt;New Terminal.</p>
+<p>Ahora vamos a clonar el repositorio del taller. Primero, vamos a crear un terminal clicando en el menú hamburguesa de la esquina superior izquierda y <code>Terminal&gt;New Terminal</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">

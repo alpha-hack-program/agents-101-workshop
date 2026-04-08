@@ -236,7 +236,7 @@
 <div class="sect2">
 <h3 id="22"><a class="anchor" href="#22"></a>2.2 Despliegues de OpenShift AI</h3>
 <div class="paragraph">
-<p>En nuestro caso, vamos a desplegar un <strong>modelo Qwen 3</strong> con 8 billones de parámetros en el motor de inferencia de Red Hat, el <strong>Red Hat AI Inference Server</strong>, que está basado en el proyecto open-source vLLM.</p>
+<p>En nuestro caso, vamos a desplegar un <strong>modelo Qwen 3</strong> con 8 billones de parámetros en el motor de inferencia de Red Hat, el <strong>Red Hat AI Inference Server</strong>, que está basado en el proyecto open-source <strong>vLLM</strong>.</p>
 </div>
 <div class="paragraph">
 <p>Vamos a volver a la pestaña de OpenShift AI. En la barra lateral, ve al <code>AI Hub</code> a la sección <code>Catalog</code>.</p>
@@ -253,7 +253,15 @@
 <p>En nuestro caso, vamos a escribir en la barra de búsqueda <strong>Qwen3-8B-FP8-dynamic</strong>. Clica en el nombre del modelo para entrar en su página de información.</p>
 </div>
 <div class="paragraph">
-<p>Al entrar en la página del modelo, vemos información como detalles sobe su arquitectura y su fecha de lanzamiento. Si descendemos, veremos los resultados que ha obtenido en los benchmarks más populares. Si clicas en Performance Insights, verás los resultados obtenidos en los tests de velocidad realizados por Red Hat en diferentes configuraciones de GPUs.</p>
+<p>Al entrar en la página del modelo, vemos detalles sobre su arquitectura y optimizaciones. Si descendemos, veremos los resultados que ha obtenido en los benchmarks más populares.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/model-data.png" alt="model data">
+</div>
+</div>
+<div class="paragraph">
+<p>Si clicas en Performance Insights, verás los resultados obtenidos en los tests de velocidad realizados por Red Hat en diferentes configuraciones de GPUs.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -262,11 +270,6 @@
 </div>
 <div class="paragraph">
 <p>Vamos a continuar clicando el botón <code>Deploy model</code> en la esquina superior derecha.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/model-data.png" alt="model data">
-</div>
 </div>
 <div class="paragraph">
 <p>Entraremos en el primer paso del formulario para configurar el despliegue del modelo.</p>
@@ -370,7 +373,7 @@ hermes</code></pre>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Cuéntame cómo hacer una tortilla de patatas.</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Cuéntame qué es necesario para hacer una buena tortilla de patatas.</code></pre>
 </div>
 </div>
 <div class="imageblock">
@@ -379,9 +382,12 @@ hermes</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>En la respuesta del modelo, se pueden ver dos procesos:
-- Primero el modelo nos enseña qué está pensando antes de responder. Esto es muy útil para entender el razonamiento del modelo y entender la respuesta que ofrece al usuario.
-- Segundo la respuesta final que muestra al usuario.</p>
+<p>¡Perfecto! El modelo ha generado una respuesta, ¡lo de estar de acuerdo con echar cebolla ya es otro tema aparte!</p>
+</div>
+<div class="paragraph">
+<p>Si nos fijamos en la respuesta del modelo, se pueden ver dos procesos:
+- Primero, el modelo nos enseña qué está pensando antes de responder. Esto es muy útil para entender el razonamiento del modelo y entender la respuesta que ofrece al usuario.
+- Segundo, vemos la respuesta final que muestra al usuario.</p>
 </div>
 <div class="paragraph">
 <p>Genial, con esto terminamos esta parte, vamos a pasar a la sección <strong>3.Desarrollar el Servidor MCP</strong>.</p>
