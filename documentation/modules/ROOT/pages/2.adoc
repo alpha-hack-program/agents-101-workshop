@@ -101,8 +101,8 @@ image::playground-answer.png[]
 
 Si nos fijamos en la respuesta del modelo, se pueden ver dos procesos:
 
-* Primero, el modelo nos enseña qué está pensando antes de responder. Esto es muy útil para entender el razonamiento del modelo y entender la respuesta que ofrece al usuario. Qwen 3 realiza esta fase de pensamiento en inglés, pero es capaz de adaptar la respuesta al idioma del usuario.
-* Segundo, vemos la respuesta final que muestra al usuario.
+* Primero, el modelo nos enseña qué está *pensando antes de responder*. Esto es muy útil para entender el razonamiento del modelo y entender la respuesta que ofrece al usuario. *Qwen 3* realiza esta fase de pensamiento en *inglés*, pero es capaz de adaptar la respuesta al *idioma del usuario*.
+* Segundo, vemos la *respuesta final* que muestra al usuario.
 
-Genial, con esto terminamos esta parte, vamos a pasar a la sección **3.Desarrollar el Servidor MCP**.
+Genial, con esto terminamos esta parte. Vamos a pasar a la sección **3.Desarrollar el Servidor MCP**.
 

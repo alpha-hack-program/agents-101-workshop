@@ -49,10 +49,7 @@ Vamos a construir el servidor MCP paso a paso, en total son 8. El código está 
 
 **Paso 1: Configuración Dinámica (Lazy Initialization)**
 
-Definimos el EngineConfig, una estructura que almacena los valores por defecto para los cálculos (tasas, topes e intereses).
-
-* Carga de Entorno: Utiliza `std::env` para intentar leer variables de entorno (como `ENGINE_DEFAULT_CAP`). Si no existen, usa valores predeterminados (como 1000.0).
-* Lazy: Se usa `once_cell::sync::Lazy` para asegurar que la configuración se cargue una sola vez y sea accesible globalmente de forma segura entre hilos.
+Definimos el EngineConfig, una estructura que almacena los valores por defecto para los cálculos (tasas, topes e intereses):
 
 Copia el siguiente fragmento y pégalo al inicio del archivo.
 
@@ -161,7 +158,7 @@ where
 
 **Paso 3: Parseo y Comprobaciones de Seguridad**
 
-Antes de procesar cualquier dato, el código aplica una capa de defensa en profundidad:
+Antes de procesar cualquier dato, el código aplica una capa de *defensa* en profundidad:
 
 * `sanitize_for_error_message`: Limpia los inputs antes de devolverlos en mensajes de error. Reemplaza caracteres peligrosos (<, >, ", \n) por ? para prevenir ataques de inyección de Log o XSS si estos errores se muestran en una interfaz web.
 
@@ -300,7 +297,7 @@ pub struct CalcPenaltyResponse {
 
 **Paso 5: Función** `calc_penalty_engine`
 
-Esta función es la pieza fundamental del servidor, contiene la lógica del cálculo. Implementa la fórmula matemática para calcular la penalización y genera una explicación textual paso a paso de cómo se llegó al resultado. Esto es muy importante, ya que permitimos al agente que pueda explicar el proceso al usuario.
+Esta función es la *pieza fundamental* del servidor, contiene la lógica del cálculo. Implementa la *fórmula matemática* para calcular la penalización y genera una explicación textual paso a paso de cómo se llegó al resultado. Esto es *muy importante*, ya que permitimos al agente que pueda explicar el proceso al usuario.
 
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
@@ -384,7 +381,7 @@ impl CompatibilityEngine {
 
 **Paso 6: Rutas de Herramientas MCP**
 
-Aquí es donde el código se "registra" como un servidor de herramientas.
+Aquí es donde el código *se registra* como un servidor de herramientas.
 
 * `#[tool]`. Esta macro expone la función `calc_penalty` al protocolo MCP.
 * `Métricas`: Incluye un `RequestTimer` e incrementa contadores de éxito o error. Esto permite monitorizar el rendimiento del servidor en producción.
@@ -452,7 +449,7 @@ impl CompatibilityEngine {
 
 **Paso 7: Handler del Servidor**
 
-La implementación de ServerHandler define la identidad del servidor. Le dice al cliente (Llama Stack) cómo se llama el servidor (penalty-engine-mcp-rs), su versión y qué instrucciones generales debe seguir la IA al usarlo.
+La implementación de ServerHandler define la *identidad del servidor*. Le dice al cliente (Llama Stack) cómo se llama el servidor (penalty-engine-mcp-rs), su versión y qué instrucciones generales debe seguir el agente al usarlo.
 
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
@@ -490,7 +487,7 @@ impl ServerHandler for CompatibilityEngine {
 
 **Paso 8: Tests de comprobación**
 
-En este paso final, realizamos varias pruebas para no solo verificar el cálculo, sino poner a prueba la resistencia del servidor:
+En este paso final, realizamos *varias pruebas* para no solo verificar el cálculo, sino poner a prueba la *resistencia* del servidor:
 
 * **Inyección JSON**: Verifica que no se pueda romper la estructura del mensaje enviando comillas maliciosas.
 

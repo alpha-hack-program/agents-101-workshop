@@ -52,21 +52,21 @@ image::experiments-rag-milvus.png[]
 [#53]
 === 5.3 Pipeline de RAGas
 
-Por otro lado, hemos creado unas pipelines RAGas. Estas nos permiten hacer pruebas y comprobar la precisión de nuestro RAG pasandole a nuestro modelo una batería de tests.
+Por otro lado, hemos creado *unas pipelines RAGas*. Estas nos permiten hacer pruebas y comprobar la precisión de nuestro RAG pasándole a nuestro modelo una batería de tests.
 
-Vamos a ver los datasets que hemos pasado a la pipeline de RAGas. Vuelve al entorno de desarrollo y ve a la carpeta `llama-stack-demo/materials/datasets`:
+Vamos a ver los datasets que hemos pasado a la pipeline de RAGas. Vuelve al entorno de desarrollo, el IDE. Echa un vistazo a los *datasets* de la carpeta `llama-stack-demo/materials/datasets`:
 
 image::datasets.png[]
 
-Volvemos a la pestaña de experimentos de OpenShift AI y esta vez clicamos en la pipeline de RAGas:
+Volvemos a la pestaña de experimentos de OpenShift AI y esta vez clicamos en la pipeline `ragas-scoring-experiment`:
 
 image::experiments-ragas.png[]
 
-Aquí encontrarás varias pipelines en proceso. Nuestro sistema de RAGas está configurado para lanzarse cada cierto tiempo para enseñar que podemos configurar pipelines recurrentes.
+Aquí encontrarás varias pipelines *en proceso*. Nuestro sistema de RAGas está configurado para lanzarse cada cierto tiempo para enseñar que podemos configurar *pipelines recurrentes*.
 
 Puede que la primera ejecución de estas haya dado error al depender de que acabaran las pipelines de RAG antes. No te preocupes, en la segunda ejecución no debería haber problema.
 
-Cuando ya las pipelines de RAGas se encuentren en el estado `Succeded`, vamos a fijarnos en los dos números a la derecha de cada fila: 
+Cuando ya las pipelines de RAGas se encuentren en el estado `Succeded`, vamos a fijarnos en los *dos números* a la derecha de cada fila: 
 
 * El primer número es el *answer_relevancy* evalúa la calidad del buscador y mide qué tan relevante es el contenido que recuperamos de la base de datos respecto a nuestro dataset.
 * El segundo *context_precision* nos habla de la calidad de la respuesta del LLM. Mide qué tan bien responde al output del modelo a la intención original de la pregunta.
@@ -77,7 +77,7 @@ Vamos a mirar los pasos que ha seguido el RAGas clicando en la pipeline `ragas-m
 
 image::experiments-ragas-milvus.png[]
 
-¡Perfecto, todas nuestras pipelines funcionan! Ya que hemos visto los resultados, podemos pasar a ver la app.
+Aquí tenemos una vista al completo de todos los pasos que ha ejecutado la pipeline RAGas. Ya que hemos visto los resultados del RAGas, el siguiente paso es poner en acción el agente en nuestra propia aplicación.
 
 [#54]
 === 5.4 Probar la App
