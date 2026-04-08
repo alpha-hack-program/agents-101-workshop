@@ -267,7 +267,7 @@
 <div class="sect2">
 <h3 id="32"><a class="anchor" href="#32"></a>3.2 Penalty Engine</h3>
 <div class="paragraph">
-<p><strong>RAG</strong> permite al modelo acceder a documentación y aprender de ella, pero a la hora de realizar cálculos basados en la información, puede cometer fallos. Para mejorar la <strong>fiabilidad</strong>, vamos a crear un <strong>servidor MCP</strong> que calcule la <strong>penalización</strong> por retrasos de envíos según la ley de <strong>Lysmark</strong>. Lo llamaremos <strong>Penalty Engine</strong> y funcionará de la siguiente forma:</p>
+<p><strong>RAG</strong> permite al modelo acceder a documentación y aprender de ella, pero a la hora de realizar cálculos basados en la información, puede cometer fallos. Para mejorar la <strong>fiabilidad</strong>, vamos a crear un <strong>servidor MCP</strong> que calcule la <strong>penalización</strong> por retrasos de envíos según la ley de nuestro país imaginario <strong>Lysmark</strong>. Lo llamaremos <strong>Penalty Engine</strong> y funcionará de la siguiente forma:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -275,7 +275,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>Para empezar, vamos a descargar el repositorio usando <code>git clone</code>:</p>
+<p>Vamos a dirigirnos a la pestaña del <strong>workbench</strong>, el IDE. Para empezar, vamos a descargar el repositorio usando <code>git clone</code>:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
@@ -487,7 +487,21 @@ fn validate_input_security(input: &amp;str, field_name: &amp;str) -&gt; Result&l
         return Err(format!("Invalid {}: input contains too many control characters", field_name));
     }
 
-    Ok)) }  /// Parse a string to f64, handling various formats with security validation fn parse_f64_from_string(s: &amp;str) -&gt; Result&lt;f64, String&gt; {     let trimmed = s.trim();      // Security validation first     if let Err(e) = validate_input_security(trimmed, "number") {         return Err(e);     }      // Handle empty strings     if trimmed.is_empty() {         return Err("Empty string cannot be parsed as number".to_string(;
+    Ok(())
+}
+
+/// Parse a string to f64, handling various formats with security validation
+fn parse_f64_from_string(s: &amp;str) -&gt; Result&lt;f64, String&gt; {
+    let trimmed = s.trim();
+
+    // Security validation first
+    if let Err(e) = validate_input_security(trimmed, "number") {
+        return Err(e);
+    }
+
+    // Handle empty strings
+    if trimmed.is_empty() {
+        return Err("Empty string cannot be parsed as number".to_string());
     }
 
     // Sanitize input for error messages
