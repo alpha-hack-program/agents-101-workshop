@@ -278,7 +278,7 @@ helm upgrade llama-stack-demo ./llama-stack-demo/helm/ \
 </div>
 </div>
 <div class="paragraph">
-<p>Clica en <code>rag-pipeline-experiment</code>.</p>
+<p>Clica en <code>rag-pipeline-experiment</code> y vamos a esperar unos minutos a que las pipelines tengan el status <code>Succeeded</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -286,15 +286,7 @@ helm upgrade llama-stack-demo ./llama-stack-demo/helm/ \
 </div>
 </div>
 <div class="paragraph">
-<p>Ahora vamos a seleccionar la pipeline de <code>rag-pipeline-milvus-remote</code>:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/experiments-rag.png" alt="experiments rag">
-</div>
-</div>
-<div class="paragraph">
-<p>Deberías ver a la pipeline en pleno procesamiento. Tardará unos minutos en terminar, ¡así que mientras continúa con el taller!</p>
+<p>¡Genial, nuestros documentos han sido procesados y el modelo puede responder acerca de ellos!</p>
 </div>
 </div>
 <div class="sect2">
@@ -324,27 +316,6 @@ helm upgrade llama-stack-demo ./llama-stack-demo/helm/ \
 <div class="paragraph">
 <p>Puede que la primera ejecución de estas haya dado error al depender de que acabaran las pipelines de RAG antes. No te preocupes, en la segunda ejecución no debería haber problema.</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/experiments-ragas-2.png" alt="experiments ragas 2">
-</div>
-</div>
-<div class="paragraph">
-<p>Vamos a mirar la segunda ejecución del RAGas de <code>ragas-milvus-remote-vector</code>, que debería estar en proceso:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/experiments-ragas-milvus.png" alt="experiments ragas milvus">
-</div>
-</div>
-<div class="paragraph">
-<p>Aquí se ven los pasos del RAGas e incluso puedes ver los logs de cada paso. Una vez que esté verdes, podremos volver a la página anterior:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/experiments-ragas-2.png" alt="experiments ragas 2">
-</div>
-</div>
 <div class="paragraph">
 <p>Cuando ya las pipelines de RAGas se encuentren en el estado <code>Succeded</code>, vamos a fijarnos en los dos números a la derecha de cada fila:</p>
 </div>
@@ -364,7 +335,15 @@ helm upgrade llama-stack-demo ./llama-stack-demo/helm/ \
 </div>
 </div>
 <div class="paragraph">
-<p>Cuando hayas visto terminar la pipeline de RAGas y visto los resultados, podemos pasar a ver la app.</p>
+<p>Vamos a mirar los pasos que ha seguido el RAGas clicando en la pipeline <code>ragas-milvus-remote-vector</code> que tiene el estado <code>Succeded</code>:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/experiments-ragas-milvus.png" alt="experiments ragas milvus">
+</div>
+</div>
+<div class="paragraph">
+<p>¡Perfecto, todas nuestras pipelines funcionan! Ya que hemos visto los resultados, podemos pasar a ver la app.</p>
 </div>
 </div>
 <div class="sect2">
@@ -396,7 +375,7 @@ helm upgrade llama-stack-demo ./llama-stack-demo/helm/ \
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Based on the documents that have been provided, what is Lysmark?</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Basándote en los documentos proporcionados, ¿qué es Lysmark?</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -404,7 +383,7 @@ helm upgrade llama-stack-demo ./llama-stack-demo/helm/ \
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/app-rag.png" alt="app rag">
+<img src="_images/app-rag-es.png" alt="app rag es">
 </div>
 </div>
 <div class="paragraph">
