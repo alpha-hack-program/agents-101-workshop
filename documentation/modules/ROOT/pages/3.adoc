@@ -27,7 +27,7 @@ Esto permite a nuestro modelo interactuar con herramientas externas como Slack, 
 [#32]
 === 3.2 Penalty Engine
 
-RAG permite al modelo acceder a documentación y aprender de ella, pero a la hora de realizar cálculos basados en la información, puede cometer fallos. Vamos a crear un servidor MCP para mejorar la fiabilidad a la hora de calcular la penalización por no realizar un pago. Lo llamaremos *Penalty Engine* y funcionará de la siguiente forma:
+RAG permite al modelo acceder a documentación y aprender de ella, pero a la hora de realizar cálculos basados en la información, puede cometer fallos. Para mejorar la fiabilidad, vamos a crear un servidor MCP que calcule la penalización por retrasos de envíos según la ley de Lysmark. Lo llamaremos *Penalty Engine* y funcionará de la siguiente forma:
 
 image::penalty-engine.png[]
 

@@ -115,17 +115,17 @@ Debería de ser capaz de dar una respuesta como esta:
 
 image::app-rag.png[]
 
-Perfecto, ahora toca poner a prueba su razonamiento a la hora de calcular penalizaciones. Vamos a escribir:
+Perfecto, ahora toca comprobar que el agente de nuestra app es capaz de llamar al servidor MCP para calcular las penalizaciones. Vamos a escribir:
 
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
-Hello! Last shipment arrived 12 days late, how much should we claim to the shipping company according to the default contract we signed up?
+¡Hola! Mi empresa hizo un gran pedido a una empresa de retail online y el envío ha llegado con 12 días de retraso. ¿Cuál sería la penalización por ello?
 ----
 
 Si todo ha ido bien, el modelo debe responder algo parecido a esto:
 
-image::app-results.png[]
+image::app-results-es.png[]
 
 ¡Tenemos el agente funcionando! Aunque... ¿cómo sabemos qué el agente está interactuando correctamente con el nuestro stack de IA? Toca el paso final, habilitar la capa de *observabilidad*.
 

@@ -83,14 +83,14 @@ image::mcp3.png[]
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
-Hello! Last shipment arrived 12 days late, how much should we claim to the shipping company according to the default contract we signed up?
+¡Hola! Mi empresa hizo un gran pedido a una empresa de retail online y el envío ha llegado con 12 días de retraso. ¿Cuál sería la penalización por ello?
 ----
 
-image::mcp4.png[]
+image::mcp4-es.png[]
 
 El servidor MCP debería ser capaz de llamar a la herramienta *calc_penalty*. Al final del mensaje que se ha generado, clica en `Tool response: calc_penalty`. Podrás ver qué inputs y outputs se han procesado en el servidor MCP para generar la respuesta.
 
-image::mcp5.png[]
+image::mcp5-es.png[]
 
 Ya tenemos Llama Stack funcionando en el cluster y los servidores MCP son accesibles.
 
