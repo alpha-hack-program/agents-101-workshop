@@ -234,14 +234,21 @@ helm upgrade llama-stack-demo ./llama-stack-demo/helm/ \
 <div class="paragraph">
 <p>En este caso, nos adentramos en cómo fluye la <strong>telemetría</strong> desde las apps hasta su análisis. ¿Qué diferencia hay entre instrumentar aplicaciones y almacenar/visualizar los datos?</p>
 </div>
-<div class="paragraph">
-<p>La instrumentación se encarga de generar telemetría: <strong>trazas y métricas</strong> que describen lo que hace la app. Esto se hace con OpenTelemetry y se exporta a un collector compartido del clúster. Ese collector <strong>enruta las trazas</strong> hacia Tempo, donde quedan almacenadas y listas para su análisis. Grafana se encarga de la <strong>visualización</strong>, ofreciendo los paneles de trazas para explorarlas y correlacionarlas.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>La instrumentación se encarga de generar telemetría: <strong>trazas y métricas</strong> que describen lo que hace la app. Esto se hace con OpenTelemetry y se exporta a un collector compartido del clúster.</p>
+</li>
+<li>
+<p>Ese collector <strong>enruta las trazas</strong> hacia Tempo, donde quedan almacenadas y listas para su análisis.</p>
+</li>
+<li>
+<p>Grafana se encarga de la <strong>visualización</strong>, ofreciendo los paneles de trazas para explorarlas y correlacionarlas.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>Desplegando de esta manera, la infraestructura base (collector, Tempo y el stack de monitorización) se prepara solo una sola vez a nivel de clúster. Luego, el despliegue de la app solo agrega lo específico: dashboards, datasources y ServiceMonitors, sin duplicar componentes.</p>
-</div>
-<div class="paragraph">
-<p>En Openshift, vuelve a <code>Workloads&gt;Topology</code>.</p>
+<p>Vamos a proceder a ver <strong>las trazas</strong> de la app. En la consola de Openshift, vuelve a <code>Workloads&gt;Topology</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -273,7 +280,7 @@ helm upgrade llama-stack-demo ./llama-stack-demo/helm/ \
 </div>
 </div>
 <div class="paragraph">
-<p>Después clica en <code>Llama-Stack-Demo-%USERNAME%&gt; Distributed Traces</code>. Si no aparece aún, deberás esperar unos minutos hasta que se haya desplegado. Al clicar, deberías llegar a la siguiente imagen:</p>
+<p>Después clica en <code>Llama-Stack-Demo-%USERNAME%&gt; Distributed Traces</code>. Si no aparece aún, deberás esperar un poco hasta que se haya desplegado. Al clicar, deberías llegar a la siguiente imagen:</p>
 </div>
 <div class="imageblock">
 <div class="content">
