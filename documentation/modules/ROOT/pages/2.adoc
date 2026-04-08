@@ -100,8 +100,9 @@ image::playground-answer.png[]
 ¡Perfecto! El modelo ha generado una respuesta, ¡lo de estar de acuerdo con echar cebolla ya es otro tema aparte!
 
 Si nos fijamos en la respuesta del modelo, se pueden ver dos procesos:
-- Primero, el modelo nos enseña qué está pensando antes de responder. Esto es muy útil para entender el razonamiento del modelo y entender la respuesta que ofrece al usuario.
-- Segundo, vemos la respuesta final que muestra al usuario.
+
+* Primero, el modelo nos enseña qué está pensando antes de responder. Esto es muy útil para entender el razonamiento del modelo y entender la respuesta que ofrece al usuario.
+* Segundo, vemos la respuesta final que muestra al usuario.
 
 Genial, con esto terminamos esta parte, vamos a pasar a la sección **3.Desarrollar el Servidor MCP**.
 
