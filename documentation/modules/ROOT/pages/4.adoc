@@ -36,7 +36,7 @@ Deberías ver los deployments de los elementos que hemos desplegado hasta ahora:
 
 Podríamos continuar y desplegar los YAMLs necesarios a mano. Para entornos de producción o desarrollo avanzado en OpenShift AI, la gestión manual de manifiestos YAML puede volverse tediosa. Por ello, vamos a utilizar Helm Charts para orquestar nuestra distribución.
 
-Volvemos a la pestaña de nuestro espacio de trabajo, el IDE. Vamos a escribir en el terminal inferior lo siguiente para desplegar una primera versión de nuestro Llama Stack.
+Volvemos a la pestaña de nuestro espacio de trabajo, el IDE. Vamos a escribir en el *terminal inferior* lo siguiente para desplegar una primera versión de nuestro Llama Stack.
 
 [.console-input]
 [source,bash,subs="+macros,+attributes"]

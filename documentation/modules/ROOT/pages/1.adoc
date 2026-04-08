@@ -10,6 +10,8 @@ El objetivo de esta sección 1 es preparar el entorno donde trabajaremos. Desple
 * Contraseña: {password}
 * URL: {openshift-console-url}
 
+Durante el taller, se te abrirán pestañas en tu navegador. Es importante que no las elimines para trabajar fácilmente entre ellas.
+
 ¡Clica en la *URL* para acceder al cluster! Luego introduce tu *usuario* y *contraseña*.
 
 image::login.png[]
@@ -29,17 +31,22 @@ image::openshift-ai-homepage.png[]
 [#12]
 === 1.2 Crear el Code Server
 
-Lo primero que vamos a hacer es clicar en `Projects` en la barra lateral izquierda y seleccionar el proyecto ir a los proyectos de OpenShift AI para elegir dónde crear el Code Server.
+Lo primero que vamos a hacer es clicar en `Projects` en la barra lateral izquierda para elegir dónde crear el Code Server.
 
 Elije el proyecto `{namespace}`.
 
 image::project.png[]
 
-Deberías estar a una página como la siguiente. Ahora, clica en "Create a workbench".
+Deberías estar a una página como la siguiente. Ahora, clica en `Create a workbench`.
 
 image::project-openshift-ai.png[]
 
-Vamos a rellenar el formulario de creación del workbench como en la siguiente imagen. En `name`, tienes que escribir *{workbench}* y en `Image server`, selecciona la image de `Code Server | Data Science | CPU | Python 3.12`. Cuando lo tengas listo, confirma al botón inferior izquierdo `Create workbench`.
+Vamos a rellenar el formulario de creación del workbench como en la siguiente imagen:
+
+* En `name`, tienes que escribir *{workbench}*
+* En `Image server`, selecciona la image de `Code Server | Data Science | CPU | Python 3.12`
+
+Cuando lo tengas listo, confirma al botón inferior izquierdo `Create workbench`.
 
 image::workbench-form.png[]
 

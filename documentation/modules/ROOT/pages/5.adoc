@@ -43,15 +43,11 @@ Vamos a ver el desarrollo de esta pipeline desde Openshift AI. Dirígete a la pe
 
 image::experiments.png[]
 
-Clica en `rag-pipeline-experiment`.
+Clica en `rag-pipeline-experiment` y vamos a esperar unos minutos a que las pipelines tengan el status `Succeeded`.
 
 image::experiments-rag-milvus.png[]
 
-Ahora vamos a seleccionar la pipeline de `rag-pipeline-milvus-remote`:
-
-image::experiments-rag.png[]
-
-Deberías ver a la pipeline en pleno procesamiento. Tardará unos minutos en terminar, ¡así que mientras continúa con el taller!
+¡Genial, nuestros documentos han sido procesados y el modelo puede responder acerca de ellos!
 
 [#53]
 === 5.3 Pipeline de RAGas
@@ -70,16 +66,6 @@ Aquí encontrarás varias pipelines en proceso. Nuestro sistema de RAGas está c
 
 Puede que la primera ejecución de estas haya dado error al depender de que acabaran las pipelines de RAG antes. No te preocupes, en la segunda ejecución no debería haber problema.
 
-image::experiments-ragas-2.png[]
-
-Vamos a mirar la segunda ejecución del RAGas de `ragas-milvus-remote-vector`, que debería estar en proceso:
-
-image::experiments-ragas-milvus.png[]
-
-Aquí se ven los pasos del RAGas e incluso puedes ver los logs de cada paso. Una vez que esté verdes, podremos volver a la página anterior:
-
-image::experiments-ragas-2.png[]
-
 Cuando ya las pipelines de RAGas se encuentren en el estado `Succeded`, vamos a fijarnos en los dos números a la derecha de cada fila: 
 
 * El primer número es el *answer_relevancy* evalúa la calidad del buscador y mide qué tan relevante es el contenido que recuperamos de la base de datos respecto a nuestro dataset.
@@ -87,7 +73,11 @@ Cuando ya las pipelines de RAGas se encuentren en el estado `Succeded`, vamos a 
 
 image::experiments-ragas-succeded.png[]
 
-Cuando hayas visto terminar la pipeline de RAGas y visto los resultados, podemos pasar a ver la app.
+Vamos a mirar los pasos que ha seguido el RAGas clicando en la pipeline `ragas-milvus-remote-vector` que tiene el estado `Succeded`:
+
+image::experiments-ragas-milvus.png[]
+
+¡Perfecto, todas nuestras pipelines funcionan! Ya que hemos visto los resultados, podemos pasar a ver la app.
 
 [#54]
 === 5.4 Probar la App
@@ -109,12 +99,12 @@ image::app.png[]
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
-Based on the documents that have been provided, what is Lysmark?
+Basándote en los documentos proporcionados, ¿qué es Lysmark?
 ----
 
 Debería de ser capaz de dar una respuesta como esta:
 
-image::app-rag.png[]
+image::app-rag-es.png[]
 
 Perfecto, ahora toca comprobar que el agente de nuestra app es capaz de llamar al servidor MCP para calcular las penalizaciones. Vamos a escribir:
 
