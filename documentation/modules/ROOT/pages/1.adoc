@@ -33,7 +33,7 @@ image::openshift-ai-homepage.png[]
 
 Lo primero que vamos a hacer es clicar en `Projects` en la barra lateral izquierda para elegir dónde crear el Code Server.
 
-Elije el proyecto `{namespace}`.
+Elige el proyecto `{namespace}`.
 
 image::project.png[]
 
